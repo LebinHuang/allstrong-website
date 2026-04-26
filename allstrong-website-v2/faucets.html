@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Faucets | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.product-page { background: #fafaf8; min-height: 100vh; }
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* PAGE HERO */
+.page-hero {
+  background: var(--black);
+  padding: 70px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: 'FAUCET';
+  position: absolute; top: 50%; right: -10px; transform: translateY(-50%);
+  font-size: 160px; font-weight: 900; color: rgba(255,255,255,0.03);
+  letter-spacing: -8px; pointer-events: none; white-space: nowrap;
+}
+.page-hero-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.page-hero-text .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.page-hero-text .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.page-hero-text .eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.page-hero-text h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 16px; }
+.page-hero-text h1 em { color: var(--red); font-style: normal; }
+.page-hero-text p { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.8; max-width: 480px; }
+.page-hero-stats { display: flex; gap: 0; flex-shrink: 0; }
+.hero-stat { padding: 20px 36px; text-align: center; border-left: 1px solid rgba(255,255,255,0.08); }
+.hero-stat:first-child { border-left: none; }
+.hero-stat-val { font-size: 40px; font-weight: 900; color: white; letter-spacing: -2px; line-height: 1; }
+.hero-stat-val span { color: var(--red); font-size: 24px; }
+.hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+
+/* FILTER BAR */
+.filter-bar { background: white; border-bottom: 1px solid #ebebeb; position: sticky; top: 72px; z-index: 50; }
+.filter-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 0; overflow-x: auto; }
+.filter-btn {
+  padding: 18px 22px; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #888; border: none; background: none;
+  cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--black); }
+.filter-btn.active { color: var(--red); border-bottom-color: var(--red); }
+.filter-count { background: #f0eeea; color: #888; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-left: 6px; }
+.filter-btn.active .filter-count { background: var(--red); color: white; }
+
+/* PRODUCTS GRID */
+.products-section { padding: 60px 0 100px; }
+.products-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.section-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.section-meta p { font-size: 12px; color: #aaa; font-weight: 500; }
+
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+
+/* Product card */
+.faucet-card {
+  background: white; overflow: hidden; display: block; text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.faucet-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); z-index: 2; }
+.faucet-card:hover .faucet-img-inner { transform: scale(1.04); }
+.faucet-card:hover .faucet-cta { opacity: 1; transform: translateY(0); }
+
+.faucet-img-wrap {
+  position: relative; aspect-ratio: 1/1; overflow: hidden;
+  background: #f5f5f3;
+  display: flex; align-items: center; justify-content: center;
+}
+.faucet-img-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.5s ease;
+  font-size: 64px;
+  background: linear-gradient(145deg, #f8f8f6, #eeecea);
+}
+/* Placeholder styles until photos uploaded */
+.faucet-img-inner.has-photo {
+  background-size: cover;
+  background-position: center;
+  font-size: 0;
+}
+.faucet-img-inner img {
+  width: 100%; height: 100%; object-fit: contain; padding: 20px;
+}
+
+.nsf-tag {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,0.65); color: white;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 4px 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.brand-tag {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  padding: 4px 9px; text-transform: uppercase;
+}
+.brand-tag.aa { background: var(--red); color: white; }
+.brand-tag.fisher { background: #1a3a7a; color: white; }
+.brand-tag.other { background: var(--black); color: white; }
+
+.faucet-cta {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--red); color: white; text-align: center;
+  padding: 11px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  opacity: 0; transform: translateY(100%); transition: all 0.3s;
+}
+
+.faucet-info { padding: 18px 16px 20px; }
+.faucet-brand { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+.faucet-name { font-size: 13px; font-weight: 800; color: var(--black); line-height: 1.3; margin-bottom: 7px; }
+.faucet-desc { font-size: 11px; color: #888; line-height: 1.6; font-weight: 300; margin-bottom: 10px; }
+.faucet-price {
+  font-size: 16px; font-weight: 900; color: var(--black); letter-spacing: -0.5px;
+}
+.faucet-price.contact { font-size: 11px; color: #aaa; font-weight: 500; }
+
+/* PHOTO UPLOAD NOTE */
+.upload-note {
+  background: #fff8f0; border: 1px dashed #f0c080;
+  padding: 60px 40px; text-align: center; margin-bottom: 2px;
+}
+.upload-note-icon { font-size: 40px; margin-bottom: 12px; }
+.upload-note h3 { font-size: 16px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.upload-note p { font-size: 13px; color: #888; font-weight: 300; max-width: 400px; margin: 0 auto; line-height: 1.7; }
+
+/* CTA BOTTOM */
+.cta-section { background: var(--red); padding: 60px 0; }
+.cta-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.cta-text h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 6px; }
+.cta-text p { font-size: 13px; color: rgba(255,255,255,0.72); font-weight: 300; }
+.btn-cta { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--red); text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 16px 34px; transition: all 0.25s; flex-shrink: 0; }
+.btn-cta:hover { background: var(--black); color: white; }
+
+@media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .page-hero { padding: 50px 20px; }
+  .page-hero-inner { flex-direction: column; }
+  .page-hero-stats { flex-wrap: wrap; }
+  .hero-stat { flex: 0 0 calc(50% - 1px); }
+  .products-inner, .back-inner, .breadcrumb-inner, .cta-inner { padding: 0 20px; }
+  .filter-inner { padding: 0 20px; }
+  .cta-inner { flex-direction: column; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🚰 14 NSF Certified Faucet Models · AA Faucet &amp; Fisher Brands · Call: 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Parts &amp; Accessories</a><span class="sep">›</span>
+    <span class="current">Faucets</span>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-text">
+      <div class="eyebrow"><span>Parts &amp; Accessories</span></div>
+      <h1>Commercial<br/><em>Faucets</em></h1>
+      <p>NSF Certified commercial-grade faucets from AA Faucet and Fisher — wall mount, deck mount, wok range faucets, pre-rinse units, and more. Built for professional kitchen environments.</p>
+    </div>
+    <div class="page-hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">14<span>+</span></div>
+        <div class="hero-stat-label">Models</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">2</div>
+        <div class="hero-stat-label">Brands</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">NSF</div>
+        <div class="hero-stat-label">Certified</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterCards('all', this)">
+      All <span class="filter-count">14</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('aa', this)">
+      AA Faucet <span class="filter-count">9</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('fisher', this)">
+      Fisher <span class="filter-count">4</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('wall', this)">
+      Wall Mount <span class="filter-count">4</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('deck', this)">
+      Deck Mount <span class="filter-count">4</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('wok', this)">
+      Wok Range <span class="filter-count">2</span>
+    </button>
+    <button class="filter-btn" onclick="filterCards('prerinse', this)">
+      Pre-Rinse <span class="filter-count">2</span>
+    </button>
+  </div>
+</div>
+
+<!-- PHOTO UPLOAD NOTE -->
+<div style="max-width:1400px;margin:40px auto 0;padding:0 40px;">
+  <div class="upload-note reveal">
+    <div class="upload-note-icon">📸</div>
+    <h3>Product Photos Coming Soon</h3>
+    <p>Product images are pending upload. Each card below has a placeholder — once you upload photos, they will be embedded permanently. Contact us to learn more about any product.</p>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-inner">
+    <div class="section-meta">
+      <p>Showing <strong>14</strong> products · All NSF Certified</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- 1 AA Wall Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal" data-category="aa wall">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-wall-mount"><img src="images/faucet-aa-wall-mount.jpg" alt="img-aa-wall-mount"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">6" – 16" Wall Mount Commercial Duty Faucet</div>
+          <div class="faucet-desc">Wall-mount commercial duty · 6"–16" spout reach · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 2 AA Deck Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-1" data-category="aa deck">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-deck-mount"><img src="images/faucet-aa-deck-mount.jpg" alt="img-aa-deck-mount"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">6" – 16" Deck Mount Commercial Duty Faucet</div>
+          <div class="faucet-desc">Deck-mount commercial duty · 6"–16" spout reach · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 3 Fisher Wall Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-2" data-category="fisher wall">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-fisher-wall"><img src="images/faucet-fisher-wall.jpg" alt="img-fisher-wall"/></div>
+          <span class="brand-tag fisher">Fisher</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Fisher Faucet</div>
+          <div class="faucet-name">6" – 16" Wall Mount Commercial Duty Faucet</div>
+          <div class="faucet-desc">Fisher brand · Wall-mount · 6"–16" reach · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 4 Fisher Deck Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-3" data-category="fisher deck">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-fisher-deck"><img src="images/faucet-fisher-deck.jpg" alt="img-fisher-deck"/></div>
+          <span class="brand-tag fisher">Fisher</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Fisher Faucet</div>
+          <div class="faucet-name">6" – 16" Deck Mount Commercial Duty Faucet</div>
+          <div class="faucet-desc">Fisher brand · Deck-mount · 6"–16" reach · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 5 AA Double Joint Swivel -->
+      <a href="tel:6264487878" class="faucet-card reveal" data-category="aa">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-swivel"><img src="images/faucet-aa-swivel.jpg" alt="img-aa-swivel"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$48.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">AA Faucet Double Joint Swivel</div>
+          <div class="faucet-desc">Double joint swivel · NSF Certified</div>
+          <div class="faucet-price">$48.00</div>
+        </div>
+      </a>
+
+      <!-- 6 Fisher Double Joint Swivel -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-1" data-category="fisher">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-fisher-swivel"><img src="images/faucet-fisher-swivel.jpg" alt="img-fisher-swivel"/></div>
+          <span class="brand-tag fisher">Fisher</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Fisher Faucet</div>
+          <div class="faucet-name">Fisher #54461 Double Joint Swivel 7"</div>
+          <div class="faucet-desc">Model #54461 · Double joint swivel 7" · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 7 AA Pre-Rinse Wall Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-2" data-category="aa prerinse wall">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-prerinse"><img src="images/faucet-aa-prerinse.jpg" alt="img-aa-prerinse"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$300.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">AA Faucet Pre-Rinse Unit Wall-Mount</div>
+          <div class="faucet-desc">Pre-rinse unit · Wall-mount · 8" add-on spout · NSF Certified</div>
+          <div class="faucet-price">$300.00</div>
+        </div>
+      </a>
+
+      <!-- 8 Fisher Pre-Rinse Wall Mount -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-3" data-category="fisher prerinse wall">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-fisher-prerinse"><img src="images/faucet-fisher-prerinse.jpg" alt="img-fisher-prerinse"/></div>
+          <span class="brand-tag fisher">Fisher</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">Contact for Price →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Fisher Faucet</div>
+          <div class="faucet-name">Fisher #54461 Pre-Rinse Unit Wall-Mount S/S</div>
+          <div class="faucet-desc">Stainless steel · Pre-rinse wall-mount · NSF Certified</div>
+          <div class="faucet-price contact">Contact for Price</div>
+        </div>
+      </a>
+
+      <!-- 9 AA Auto Faucet Wok Range -->
+      <a href="tel:6264487878" class="faucet-card reveal" data-category="aa wok">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-auto-wok"><img src="images/faucet-aa-auto-wok.jpg" alt="img-aa-auto-wok"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$60.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">Wok Range Auto Faucet ½" or ⅜" NPT</div>
+          <div class="faucet-desc">Automatic wok range faucet · ½" or ⅜" NPT · NSF Certified</div>
+          <div class="faucet-price">$60.00</div>
+        </div>
+      </a>
+
+      <!-- 10 Wok Range Manual Faucet -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-1" data-category="aa wok">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-aa-manual-wok"><img src="images/faucet-aa-manual-wok.jpg" alt="img-aa-manual-wok"/></div>
+          <span class="brand-tag aa">AA Faucet</span>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$68.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">AA Faucet</div>
+          <div class="faucet-name">Wok Range Manual Faucet</div>
+          <div class="faucet-desc">Manual wok range faucet · NSF Certified</div>
+          <div class="faucet-price">$68.00</div>
+        </div>
+      </a>
+
+      <!-- 11 Dipper Well No Lead Faucet -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-2" data-category="other">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-dipper-well"><img src="images/faucet-dipper-well.jpg" alt="img-dipper-well"/></div>
+          <span class="brand-tag other">Dipper Well</span>
+          <div class="faucet-cta">$75.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Heavy Duty Brass</div>
+          <div class="faucet-name">Dipper Well No Lead Faucet</div>
+          <div class="faucet-desc">Heavy duty brass · Polished chrome · ½" NPS male inlet</div>
+          <div class="faucet-price">$75.00</div>
+        </div>
+      </a>
+
+      <!-- 12 8" Service Sink Faucet -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-3" data-category="other">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-service-sink"><img src="images/faucet-service-sink.jpg" alt="img-service-sink"/></div>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$150.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Heavy Duty</div>
+          <div class="faucet-name">8" Heavy Duty Service Sink Faucet</div>
+          <div class="faucet-desc">5" spout · Vacuum breaker &amp; wall bucket · ½" NPT female inlets · NSF</div>
+          <div class="faucet-price">$150.00</div>
+        </div>
+      </a>
+
+      <!-- 13 4" Deck Mount Gooseneck -->
+      <a href="tel:6264487878" class="faucet-card reveal" data-category="deck other">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-gooseneck"><img src="images/faucet-gooseneck.jpg" alt="img-gooseneck"/></div>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$70.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Deck Mount</div>
+          <div class="faucet-name">4" Deck Mount Faucet w/ 3-½" Gooseneck Spout</div>
+          <div class="faucet-desc">3-½" or 6" gooseneck spout · ½" NPT female inlets · NSF Certified</div>
+          <div class="faucet-price">$70.00</div>
+        </div>
+      </a>
+
+      <!-- 14 Single Splash Mount Gooseneck Swivel -->
+      <a href="tel:6264487878" class="faucet-card reveal reveal-delay-1" data-category="other">
+        <div class="faucet-img-wrap">
+          <div class="faucet-img-inner has-photo" id="img-splash-mount"><img src="images/faucet-splash-mount.jpg" alt="img-splash-mount"/></div>
+          <span class="nsf-tag">NSF ✓</span>
+          <div class="faucet-cta">$90.00 — Call to Order →</div>
+        </div>
+        <div class="faucet-info">
+          <div class="faucet-brand">Splash Mount</div>
+          <div class="faucet-name">Single Splash Mount Faucet w/ 3-½" Swivel Gooseneck</div>
+          <div class="faucet-desc">½" NPS nipple · ½" NPT × ½" sweat elbow · NSF Certified</div>
+          <div class="faucet-price">$90.00</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Need Help Choosing the Right Faucet?</h2>
+      <p>Our team can help you find the perfect faucet for your wok range, sink, or kitchen setup.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-cta">📞 Call 626-448-7878</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF Certified</div><div class="trust-sub">All faucets NSF certified</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🔧</div><div><div class="trust-title">14 Models</div><div class="trust-sub">AA Faucet &amp; Fisher brands</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery across the US</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links">
+      <li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li>
+      <li><a href="bbq-oven.html">BBQ Ovens</a></li>
+      <li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li>
+      <li><a href="steamer-cabinets.html">Steamer Cabinets</a></li>
+      <li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li>
+      <li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+      <li><a href="thawing-machine.html">Thawing Machine</a></li>
+    </ul></div>
+    <div><div class="footer-col-title">Parts &amp; Accessories</div><ul class="footer-links">
+      <li><a href="faucets.html">Faucets</a></li>
+      <li><a href="#">Range Accessories</a></li>
+      <li><a href="#">Drop-in / Hand Sink</a></li>
+    </ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Company Video</a></li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out Deals</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+// Filter
+function filterCards(category, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".faucet-card").forEach(card => {
+    const cats = card.dataset.category || "";
+    if (category === "all" || cats.includes(category)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+</body>
+</html>
