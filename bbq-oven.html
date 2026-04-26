@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BBQ Roaster Oven | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ===== BBQ OVEN PRODUCT PAGE ===== */
+.product-page { background: #fafaf8; min-height: 100vh; }
+
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* HERO */
+.product-hero { max-width: 1400px; margin: 0 auto; padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.product-gallery { position: sticky; top: 90px; }
+.main-image-wrap { background: #111; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid #e8e8e5; }
+.main-image-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 32px; }
+.img-badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; }
+.nsf-badge { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.75); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2); }
+
+/* HINGE NOTE */
+.hinge-note {
+  margin-top: 16px; background: #fff8f0; border-left: 3px solid var(--red);
+  padding: 14px 18px; font-size: 12px; color: #666; font-weight: 500;
+}
+.hinge-note strong { color: var(--red); }
+
+/* PRODUCT DETAILS */
+.product-details { padding-top: 8px; }
+.product-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.product-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.product-eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.product-title { font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.product-title em { color: var(--red); font-style: normal; }
+.product-ref { font-size: 12px; color: #999; font-weight: 500; letter-spacing: 1px; margin-bottom: 28px; }
+.product-summary { font-size: 15px; color: #555; line-height: 1.9; font-weight: 300; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #e8e8e5; }
+
+/* Spec highlights */
+.spec-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 32px; }
+.spec-chip { background: white; padding: 16px 18px; border: 1px solid #ebebeb; }
+.spec-chip .chip-label { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+.spec-chip .chip-val { font-size: 14px; font-weight: 800; color: var(--black); line-height: 1.3; }
+
+/* CTAs */
+.product-ctas { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.btn-quote { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--red); color: white; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; transition: all 0.25s; min-width: 160px; }
+.btn-quote:hover { background: #96281b; transform: translateY(-2px); }
+.btn-download { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: var(--black); text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; border: 2px solid var(--black); transition: all 0.25s; min-width: 160px; }
+.btn-download:hover { background: var(--black); color: white; }
+
+/* Trust chips */
+.trust-chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid #e8e8e5; }
+.trust-chip { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #666; background: #f5f4f2; padding: 7px 12px; }
+
+/* MODEL TABLE */
+.models-section { background: var(--black); padding: 80px 0; }
+.models-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.models-table-wrap { overflow-x: auto; margin-top: 48px; }
+.models-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.models-table thead tr { background: var(--red); }
+.models-table thead th { padding: 14px 18px; text-align: left; font-size: 11px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+.models-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
+.models-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.models-table tbody td { padding: 14px 18px; color: rgba(255,255,255,0.75); font-weight: 400; white-space: nowrap; }
+.models-table tbody td:first-child { font-weight: 700; color: white; }
+.models-table tbody td .or { color: rgba(255,255,255,0.35); font-size: 11px; margin: 0 4px; }
+.btu-highlight { color: var(--red) !important; font-weight: 800 !important; }
+
+/* GAS REQUIREMENTS */
+.gas-section { background: white; padding: 80px 0; }
+.gas-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.gas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.gas-card { background: #fafaf8; padding: 36px 30px; border-top: 3px solid transparent; transition: all 0.25s; }
+.gas-card:hover { border-top-color: var(--red); background: white; box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+.gas-icon { font-size: 32px; margin-bottom: 16px; }
+.gas-title { font-size: 12px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+.gas-value { font-size: 28px; font-weight: 900; color: var(--red); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.gas-desc { font-size: 12px; color: #777; line-height: 1.6; font-weight: 300; }
+
+/* FEATURES */
+.features-section { padding: 80px 0; background: #fafaf8; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+.feature-card { background: white; padding: 32px 28px; border-bottom: 3px solid transparent; transition: all 0.25s; }
+.feature-card:hover { border-bottom-color: var(--red); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: #666; line-height: 1.7; font-weight: 300; }
+
+/* CLEARANCES */
+.clearance-section { background: var(--black); padding: 70px 0; }
+.clearance-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+.clearance-text h3 { font-size: clamp(28px,3vw,42px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.clearance-text h3 em { color: var(--red); font-style: normal; }
+.clearance-text p { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; max-width: 380px; line-height: 1.7; }
+.clearance-chips { display: flex; gap: 16px; flex-wrap: wrap; }
+.clearance-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 24px 32px; text-align: center; min-width: 160px; }
+.clearance-chip .c-val { font-size: 42px; font-weight: 900; color: white; line-height: 1; letter-spacing: -2px; }
+.clearance-chip .c-val span { color: var(--red); font-size: 28px; }
+.clearance-chip .c-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; }
+
+/* DOWNLOADS */
+.downloads-section { background: #f0eeea; padding: 60px 0; border-top: 1px solid #e0deda; }
+.downloads-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.downloads-title h3 { font-size: 20px; font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px; }
+.downloads-title p { font-size: 13px; color: #888; font-weight: 300; }
+.downloads-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-dl { display: inline-flex; align-items: center; gap: 8px; background: var(--black); color: white; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 13px 22px; transition: all 0.2s; }
+.btn-dl:hover { background: var(--red); }
+
+/* WARRANTY */
+.warranty-bar { background: var(--red); padding: 40px 0; }
+.warranty-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.warranty-text h3 { font-size: 22px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px; }
+.warranty-text p { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; }
+.btn-warranty { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--red); text-decoration: none; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 14px 30px; transition: all 0.25s; flex-shrink: 0; }
+.btn-warranty:hover { background: var(--black); color: white; }
+
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 48px; }
+  .product-gallery { position: static; }
+  .gas-grid { grid-template-columns: 1fr 1fr; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .clearance-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 768px) {
+  .product-hero, .models-inner, .gas-inner, .features-inner, .clearance-inner, .downloads-inner, .warranty-inner, .back-inner, .breadcrumb-inner { padding: 0 20px; }
+  .product-hero { padding-top: 40px; padding-bottom: 60px; }
+  .gas-grid, .features-grid { grid-template-columns: 1fr; }
+  .spec-highlights { grid-template-columns: 1fr; }
+  .product-ctas { flex-direction: column; }
+  .warranty-inner, .downloads-inner { flex-direction: column; }
+  .clearance-chips { flex-direction: column; width: 100%; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🔥 NSF Certified · Factory Direct · Left or Right Hinge Available · Call: 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to All Products</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Products</a><span class="sep">›</span>
+    <a href="#">Cooking Equipment</a><span class="sep">›</span>
+    <a href="bbq-oven.html">BBQ Ovens</a><span class="sep">›</span>
+    <span class="current">BBQ Roaster Oven</span>
+  </div>
+</div>
+
+<!-- PRODUCT HERO -->
+<div class="product-hero">
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <span class="img-badge">Roaster Series</span>
+      <span class="nsf-badge">NSF ✓</span>
+      <img src="data:image/png;base64,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" alt="Allstrong BBQ Roaster Oven"/>
+    </div>
+    <div class="hinge-note">
+      ⚠️ <strong>Important:</strong> Please specify <strong>Left</strong> or <strong>Right</strong> hinge location when ordering.
+    </div>
+  </div>
+
+  <div class="product-details">
+    <div class="product-eyebrow"><span>Roaster Series · EQ Series</span></div>
+    <h1 class="product-title">BBQ<br/><em>Roaster Oven</em></h1>
+    <p class="product-ref">SKU: EQ Series (EQ-24 / EQ-30 / EQ-36 / EQ-48) &nbsp;·&nbsp; Mfr: Allstrong Restaurant Equipment</p>
+
+    <p class="product-summary">
+      A custom-designed high-temperature roasting system combining direct flame and radiant heat — built for preparing whole-poultry products such as roast suckling pig, roast goose, and roast duck. By integrating Allstrong's proprietary technology with traditional Chinese oven craftsmanship, this Roaster Oven achieves crispy skin with tender meat, while maintaining agility, efficiency, and safety. NSF Certified.
+    </p>
+
+    <div class="spec-highlights">
+      <div class="spec-chip">
+        <div class="chip-label">Max BTU Output</div>
+        <div class="chip-val">143,000 BTU/HR (EQ-48)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Gas Types</div>
+        <div class="chip-val">Natural Gas &amp; Liquid Propane</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Models Available</div>
+        <div class="chip-val">5 Sizes: EQ-24 to EQ-48</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Hanger Types</div>
+        <div class="chip-val">Fixed Bracket &amp; Carousel</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Door Hinge</div>
+        <div class="chip-val">Left or Right (specify on order)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Certification</div>
+        <div class="chip-val">NSF Certified</div>
+      </div>
+    </div>
+
+    <div class="product-ctas">
+      <a href="tel:6264487878" class="btn-quote">📞 &nbsp;Get a Quote</a>
+      <a href="https://allstrong.com/attachment?id_attachment=3" target="_blank" class="btn-download">↓ Size Chart (L)</a>
+      <a href="https://allstrong.com/attachment?id_attachment=4" target="_blank" class="btn-download">↓ Size Chart (R)</a>
+    </div>
+
+    <div class="trust-chips">
+      <span class="trust-chip">✅ NSF Certified</span>
+      <span class="trust-chip">🏭 Factory Direct</span>
+      <span class="trust-chip">🔥 Direct Flame + Radiant Heat</span>
+      <span class="trust-chip">🦆 Roast Duck / Goose / Pig</span>
+      <span class="trust-chip">↔️ Left or Right Hinge</span>
+    </div>
+  </div>
+</div>
+
+<!-- MODEL COMPARISON TABLE -->
+<section class="models-section">
+  <div class="models-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>All Configurations</span></div>
+        <h2 class="section-title" style="color:white;">Model <em>Specifications</em></h2>
+      </div>
+      <p style="color:rgba(255,255,255,0.35);font-size:12px;font-weight:300;text-align:right;max-width:260px;">All models available in Left (L) or Right (R) hinge door configuration.</p>
+    </div>
+    <div class="models-table-wrap">
+      <table class="models-table">
+        <thead>
+          <tr>
+            <th>Item No. (Left)</th>
+            <th>Item No. (Right)</th>
+            <th>D × W × H (in)</th>
+            <th>Interior D×W×H (in)</th>
+            <th>Hanger Type</th>
+            <th>BTU/HR</th>
+            <th>Gas Inlet O.D.</th>
+            <th>Burners</th>
+            <th>G.W. (lb)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EQ-24AL</td>
+            <td>EQ-24AR</td>
+            <td>30 × 24 × 68</td>
+            <td>26½ × 20 × 42</td>
+            <td>Fixed Bracket</td>
+            <td class="btu-highlight">53,000</td>
+            <td>¾"</td>
+            <td>2</td>
+            <td>460</td>
+          </tr>
+          <tr>
+            <td>EQ-24NL</td>
+            <td>EQ-24NR</td>
+            <td>30 × 24 × 68</td>
+            <td>26½ × 20 × 42</td>
+            <td>Fixed Bracket</td>
+            <td class="btu-highlight">53,000</td>
+            <td>¾"</td>
+            <td>2</td>
+            <td>460</td>
+          </tr>
+          <tr>
+            <td>EQ-30NL</td>
+            <td>EQ-30NR</td>
+            <td>30 × 30 × 68</td>
+            <td>26½ × 26 × 42</td>
+            <td>Fixed Bracket</td>
+            <td class="btu-highlight">58,000</td>
+            <td>¾"</td>
+            <td>2</td>
+            <td>528</td>
+          </tr>
+          <tr>
+            <td>EQ-36NL</td>
+            <td>EQ-36NR</td>
+            <td>36 × 36 × 79</td>
+            <td>32 × 29½ × 50½</td>
+            <td>Carousel</td>
+            <td class="btu-highlight">63,000</td>
+            <td>1"</td>
+            <td>4</td>
+            <td>620</td>
+          </tr>
+          <tr>
+            <td>EQ-48NL</td>
+            <td>EQ-48NR</td>
+            <td>48 × 48 × 82</td>
+            <td>43 × 41 × 53</td>
+            <td>Carousel</td>
+            <td class="btu-highlight">143,000</td>
+            <td>1¼"</td>
+            <td>6</td>
+            <td>810</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- GAS REQUIREMENTS -->
+<section class="gas-section">
+  <div class="gas-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Gas Requirements</span></div>
+        <h2 class="section-title">Gas &amp; <em>Pressure</em></h2>
+      </div>
+    </div>
+    <div class="gas-grid">
+      <div class="gas-card reveal">
+        <div class="gas-icon">⚡</div>
+        <div class="gas-title">Max Consumption</div>
+        <div class="gas-value">100K<span style="font-size:18px;color:#888;"> BTU/HR</span></div>
+        <div class="gas-desc">Baseline gas consumption rating. Larger EQ-48 model reaches 143,000 BTU/HR with 6 burners for maximum capacity roasting.</div>
+      </div>
+      <div class="gas-card reveal reveal-delay-1">
+        <div class="gas-icon">🔵</div>
+        <div class="gas-title">Natural Gas Pressure</div>
+        <div class="gas-value">5"<span style="font-size:18px;color:#888;"> W.C.</span></div>
+        <div class="gas-desc">5 inches water column pressure required for Natural Gas operation. Standard for most commercial kitchen natural gas lines.</div>
+      </div>
+      <div class="gas-card reveal reveal-delay-2">
+        <div class="gas-icon">🟠</div>
+        <div class="gas-title">Propane Gas Pressure</div>
+        <div class="gas-value">10"<span style="font-size:18px;color:#888;"> W.C.</span></div>
+        <div class="gas-desc">10 inches water column pressure required for Liquid Propane Gas operation. Ideal for locations without natural gas supply.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALLATION CLEARANCES -->
+<section class="clearance-section">
+  <div class="clearance-inner">
+    <div class="clearance-text">
+      <div class="section-label" style="margin-bottom:16px;"><span>Installation Requirements</span></div>
+      <h3>Installation<br/><em>Clearances</em></h3>
+      <p style="margin-top:16px;">Ensure proper clearance is maintained around the unit during installation to comply with safety standards and prevent heat damage to surrounding structures.</p>
+    </div>
+    <div class="clearance-chips">
+      <div class="clearance-chip">
+        <div class="c-val">0<span>"</span></div>
+        <div class="c-label">Non-Combustible</div>
+      </div>
+      <div class="clearance-chip">
+        <div class="c-val">6<span>"</span></div>
+        <div class="c-label">Combustible Side</div>
+      </div>
+      <div class="clearance-chip">
+        <div class="c-val">3<span>"</span></div>
+        <div class="c-label">Combustible Rear</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Engineering Highlights</span></div>
+        <h2 class="section-title">Key <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">High-Temperature Capability</div>
+        <div class="feature-desc">Engineered for extreme heat needed in Chinese-style whole-animal roasting. Reaches temperatures required for perfectly crispy skin on duck, goose, and suckling pig.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">☀️</div>
+        <div class="feature-title">Direct Flame + Radiant Heat</div>
+        <div class="feature-desc">Dual-heat system combines direct flame with radiant heat reflection. This unique combination produces the authentic crispy exterior and tender interior of traditional Chinese roasting.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-title">Heavy-Duty Steel Construction</div>
+        <div class="feature-desc">Fully insulated walls and doors with heavy-duty steel frame. Stainless steel exterior on front, sides, and top. Interior finished in heavy-gauge heat-resistant steel.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🚿</div>
+        <div class="feature-title">Hygienic Easy-Clean Design</div>
+        <div class="feature-desc">Full-size galvanized drip pan under each burner for grease and debris collection. Smooth stainless surfaces make daily cleaning fast and thorough.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎛️</div>
+        <div class="feature-title">Precise Heat Control</div>
+        <div class="feature-desc">Manually controlled single gas valve with standard pilot system. Optional thermostatic multi-burner control with safety pilot system available for precise temperature management.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">Carousel &amp; Fixed Bracket</div>
+        <div class="feature-desc">Smaller EQ-24 and EQ-30 models feature Fixed Bracket hangers. Larger EQ-36 and EQ-48 models include rotating Carousel hangers for even roasting on all sides.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🔩</div>
+        <div class="feature-title">Reinforced Door &amp; Hinges</div>
+        <div class="feature-desc">Custom-reinforced stainless steel door with heavy-duty hinges. Adjustable legs for level installation on uneven kitchen floors. Choose Left or Right hinge at time of order.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">NSF Certified</div>
+        <div class="feature-desc">All Allstrong BBQ Roaster Ovens are NSF Certified, meeting commercial kitchen safety and sanitation requirements mandated by health departments nationwide.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section class="downloads-section">
+  <div class="downloads-inner">
+    <div class="downloads-title">
+      <h3>📄 Download Documents</h3>
+      <p>Size charts available for Left and Right hinge configurations</p>
+    </div>
+    <div class="downloads-btns">
+      <a href="https://allstrong.com/attachment?id_attachment=3" target="_blank" class="btn-dl">↓ Size Chart — Left Hinge</a>
+      <a href="https://allstrong.com/attachment?id_attachment=4" target="_blank" class="btn-dl">↓ Size Chart — Right Hinge</a>
+    </div>
+  </div>
+</section>
+
+<!-- WARRANTY -->
+<div class="warranty-bar">
+  <div class="warranty-inner">
+    <div class="warranty-text">
+      <h3>NSF Certified · Factory Direct</h3>
+      <p>All Allstrong BBQ Ovens are NSF certified and built at our South El Monte, CA factory. Call us to configure your order.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-warranty">📞 Call 626-448-7878</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF Certified</div><div class="trust-sub">All commercial equipment certified</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman — direct pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🔥</div><div><div class="trust-title">5 Model Sizes</div><div class="trust-sub">EQ-24 up to EQ-48</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878 anytime</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery available across the US</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+<li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="#">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
