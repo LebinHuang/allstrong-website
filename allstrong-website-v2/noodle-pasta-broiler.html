@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Noodle / Pasta Broiler | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ===== NOODLE / PASTA BROILER PAGE ===== */
+.product-page { background: #fafaf8; min-height: 100vh; }
+
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* HERO */
+.product-hero { max-width: 1400px; margin: 0 auto; padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.product-gallery { position: sticky; top: 90px; }
+
+/* Image placeholder (no real photo yet) */
+.main-image-wrap {
+  background: #111;
+  aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+  border: 1px solid #e8e8e5;
+}
+.main-image-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 32px; }
+
+/* SVG placeholder illustration */
+.placeholder-visual {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 40px;
+  width: 100%; height: 100%;
+}
+.placeholder-visual svg { opacity: 0.25; }
+.placeholder-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.3); letter-spacing: 3px; text-transform: uppercase; }
+
+.img-badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; }
+.nsf-badge { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.75); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2); }
+.csa-badge { position: absolute; bottom: 16px; right: 16px; background: #1a5ca8; color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; }
+
+/* Dual-function badge */
+.dual-badge {
+  margin-top: 16px; background: var(--black); color: white;
+  padding: 18px 22px; display: flex; align-items: center; gap: 16px;
+}
+.dual-badge .dual-icon { font-size: 28px; flex-shrink: 0; }
+.dual-badge .dual-text strong { display: block; font-size: 13px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 3px; }
+.dual-badge .dual-text span { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 300; }
+
+/* PRODUCT DETAILS */
+.product-details { padding-top: 8px; }
+.product-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.product-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.product-eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.product-title { font-size: clamp(30px, 4vw, 50px); font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.product-title em { color: var(--red); font-style: normal; }
+.product-ref { font-size: 12px; color: #999; font-weight: 500; letter-spacing: 1px; margin-bottom: 28px; }
+.product-summary { font-size: 15px; color: #555; line-height: 1.9; font-weight: 300; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #e8e8e5; }
+
+/* Spec highlights */
+.spec-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 32px; }
+.spec-chip { background: white; padding: 16px 18px; border: 1px solid #ebebeb; }
+.spec-chip .chip-label { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+.spec-chip .chip-val { font-size: 14px; font-weight: 800; color: var(--black); line-height: 1.3; }
+
+/* CTAs */
+.product-ctas { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.btn-quote { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--red); color: white; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; transition: all 0.25s; min-width: 160px; }
+.btn-quote:hover { background: #96281b; transform: translateY(-2px); }
+.btn-download { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: var(--black); text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; border: 2px solid var(--black); transition: all 0.25s; min-width: 160px; }
+.btn-download:hover { background: var(--black); color: white; }
+
+/* Trust chips */
+.trust-chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid #e8e8e5; }
+.trust-chip { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #666; background: #f5f4f2; padding: 7px 12px; }
+
+/* DUAL FUNCTION SECTION */
+.dual-section { background: var(--black); padding: 80px 0; overflow: hidden; position: relative; }
+.dual-section::before {
+  content: 'DUAL'; position: absolute; top: 50%; right: -20px;
+  transform: translateY(-50%); font-size: 200px; font-weight: 900;
+  color: rgba(255,255,255,0.03); letter-spacing: -10px; pointer-events: none;
+}
+.dual-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.dual-cards { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 48px; align-items: center; }
+.dual-card { background: #1a1a1a; padding: 48px 40px; }
+.dual-card-icon { font-size: 48px; margin-bottom: 20px; }
+.dual-card-title { font-size: 18px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.dual-card-title em { color: var(--red); font-style: normal; }
+.dual-card-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
+.dual-card-specs { display: flex; flex-direction: column; gap: 8px; }
+.dual-spec-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; }
+.dual-spec-row .dk { color: rgba(255,255,255,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.dual-spec-row .dv { color: white; font-weight: 700; }
+.dual-plus {
+  display: flex; align-items: center; justify-content: center;
+  width: 80px; font-size: 48px; font-weight: 900; color: var(--red);
+  background: #111;
+  align-self: stretch;
+}
+
+/* BASKET SECTION */
+.basket-section { background: white; padding: 80px 0; }
+.basket-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.basket-visual { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 48px; flex-wrap: wrap; }
+.basket-row { display: flex; gap: 2px; }
+.basket-slot {
+  width: 80px; height: 80px;
+  background: #fafaf8; border: 2px solid #e8e8e5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; transition: all 0.2s; cursor: default;
+  position: relative;
+}
+.basket-slot:hover { background: #fff0ee; border-color: var(--red); transform: scale(1.08); }
+.basket-slot.active { background: var(--red); border-color: var(--red); }
+.basket-slot.active span { filter: brightness(10); }
+.basket-num { position: absolute; bottom: 4px; right: 6px; font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.3); }
+.basket-slot.active .basket-num { color: rgba(255,255,255,0.6); }
+.basket-info { margin-top: 32px; text-align: center; }
+.basket-count { font-size: 72px; font-weight: 900; color: var(--black); letter-spacing: -3px; line-height: 1; }
+.basket-count span { color: var(--red); }
+.basket-label { font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-top: 8px; }
+.basket-note { font-size: 13px; color: #aaa; font-weight: 300; margin-top: 8px; }
+
+/* SPECS TABLE */
+.specs-section { background: #fafaf8; padding: 80px 0; }
+.specs-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
+.spec-group-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--red); }
+.spec-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 13px 0; border-bottom: 1px solid #ebebeb; gap: 20px; }
+.spec-row:last-child { border-bottom: none; }
+.spec-key { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; }
+.spec-value { font-size: 13px; font-weight: 700; color: var(--black); text-align: right; line-height: 1.5; }
+
+/* FEATURES */
+.features-section { padding: 80px 0; background: white; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+.feature-card { background: #fafaf8; padding: 32px 28px; border-bottom: 3px solid transparent; transition: all 0.25s; }
+.feature-card:hover { border-bottom-color: var(--red); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); background: white; }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: #666; line-height: 1.7; font-weight: 300; }
+
+/* NOTE BANNER */
+.note-banner { background: #fff8f0; border-top: 3px solid var(--red); padding: 40px 0; }
+.note-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 24px; }
+.note-icon { font-size: 36px; flex-shrink: 0; }
+.note-text strong { display: block; font-size: 14px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.note-text span { font-size: 13px; color: #666; font-weight: 300; line-height: 1.6; }
+
+/* WARRANTY */
+.warranty-bar { background: var(--red); padding: 40px 0; }
+.warranty-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.warranty-text h3 { font-size: 22px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px; }
+.warranty-text p { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; }
+.btn-warranty { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--red); text-decoration: none; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 14px 30px; transition: all 0.25s; flex-shrink: 0; }
+.btn-warranty:hover { background: var(--black); color: white; }
+
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 48px; }
+  .product-gallery { position: static; }
+  .dual-cards { grid-template-columns: 1fr; }
+  .dual-plus { width: 100%; height: 60px; }
+  .specs-grid { grid-template-columns: 1fr; gap: 40px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .product-hero, .dual-inner, .basket-inner, .specs-inner, .features-inner, .note-inner, .warranty-inner, .back-inner, .breadcrumb-inner { padding: 0 20px; }
+  .product-hero { padding-top: 40px; padding-bottom: 60px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .spec-highlights { grid-template-columns: 1fr; }
+  .product-ctas { flex-direction: column; }
+  .warranty-inner { flex-direction: column; }
+  .basket-row { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🍜 NSF &amp; CSA Certified · Up to 12 Baskets Simultaneously · Factory Direct · 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to All Products</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Products</a><span class="sep">›</span>
+    <a href="#">Cooking Equipment</a><span class="sep">›</span>
+    <span class="current">Noodle / Pasta Broiler</span>
+  </div>
+</div>
+
+<!-- PRODUCT HERO -->
+<div class="product-hero">
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <span class="img-badge">ARE Series</span>
+      <span class="nsf-badge">NSF ✓</span>
+      <span class="csa-badge">CSA ✓</span>
+      <!-- Product photo -->
+      <img src="images/noodle-pasta-broiler.jpg" alt="Allstrong Noodle / Pasta Broiler ARE-1"/>
+    </div>
+    <div class="dual-badge">
+      <div class="dual-icon">🔄</div>
+      <div class="dual-text">
+        <strong>Dual-Function Platform</strong>
+        <span>Converts between Wok Cooking and Noodle/Pasta Boiling — no gas system modification needed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-details">
+    <div class="product-eyebrow"><span>ARE Series · Noodle / Pasta</span></div>
+    <h1 class="product-title">Noodle / Pasta<br/><em>Broiler</em></h1>
+    <p class="product-ref">SKU: ARE-1 / noodle-broiler &nbsp;·&nbsp; Mfr: Allstrong Restaurant Equipment</p>
+
+    <p class="product-summary">
+      Allstrong ARE Series — a custom-designed dual-function commercial cooking platform built for maximum efficiency. The integrated Wok Range + Noodle/Pasta Pot System enables rapid conversion between high-BTU wok cooking and large-volume noodle or pasta boiling. A precision-fit adapter over the wok burner transforms the station instantly — no modification to the underlying burner or gas system required. Capacity up to 12 baskets simultaneously. NSF &amp; CSA Certified for USA &amp; Canada.
+    </p>
+
+    <div class="spec-highlights">
+      <div class="spec-chip">
+        <div class="chip-label">Max Capacity</div>
+        <div class="chip-val">Up to 12 Baskets Simultaneously</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">BTU Output</div>
+        <div class="chip-val">130,000 BTU/HR</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Basket Holes</div>
+        <div class="chip-val">9-Hole Plate Included</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Overall Dimensions</div>
+        <div class="chip-val">24"L × 41" × 50"H</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Gas Types</div>
+        <div class="chip-val">Natural Gas or Propane</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Certification</div>
+        <div class="chip-val">NSF &amp; CSA · USA &amp; Canada</div>
+      </div>
+    </div>
+
+    <div class="product-ctas">
+      <a href="tel:6264487878" class="btn-quote">📞 &nbsp;Get a Quote</a>
+      <a href="https://allstrong.com/attachment?id_attachment=15" target="_blank" class="btn-download">↓ &nbsp;Download Spec Sheet</a>
+    </div>
+
+    <div class="trust-chips">
+      <span class="trust-chip">✅ NSF Certified</span>
+      <span class="trust-chip">✅ CSA Listed</span>
+      <span class="trust-chip">🏭 Factory Direct</span>
+      <span class="trust-chip">🍜 Up to 12 Baskets</span>
+      <span class="trust-chip">🔄 Dual-Function</span>
+      <span class="trust-chip">⚡ 130,000 BTU</span>
+    </div>
+  </div>
+</div>
+
+<!-- DUAL FUNCTION SECTION -->
+<section class="dual-section">
+  <div class="dual-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Two Modes · One Machine</span></div>
+        <h2 class="section-title" style="color:white;">Dual-Function <em>Platform</em></h2>
+      </div>
+      <p style="color:rgba(255,255,255,0.35);font-size:13px;font-weight:300;max-width:280px;text-align:right;">Switch between cooking modes instantly — no tools, no gas system changes needed.</p>
+    </div>
+    <div class="dual-cards">
+      <div class="dual-card">
+        <div class="dual-card-icon">🥘</div>
+        <div class="dual-card-title">Mode 1: <em>Wok Cooking</em></div>
+        <div class="dual-card-desc">High-BTU open wok cooking for stir-fry, sautéing, and all traditional Chinese cuisine styles. Full 130,000 BTU output directly to wok chamber.</div>
+        <div class="dual-card-specs">
+          <div class="dual-spec-row"><span class="dk">Burner</span><span class="dv">23-Tips Jet Burner</span></div>
+          <div class="dual-spec-row"><span class="dk">BTU</span><span class="dv">130,000 BTU/HR</span></div>
+          <div class="dual-spec-row"><span class="dk">Hole Size</span><span class="dv">Single Wok Chamber</span></div>
+          <div class="dual-spec-row"><span class="dk">Water Tank</span><span class="dv">Custom Integrated</span></div>
+        </div>
+      </div>
+      <div class="dual-plus">+</div>
+      <div class="dual-card">
+        <div class="dual-card-icon">🍜</div>
+        <div class="dual-card-title">Mode 2: <em>Noodle / Pasta</em></div>
+        <div class="dual-card-desc">Install the precision-fit adapter to convert to a flat support surface. Accommodates noodle or pasta pots for large-volume boiling service — no burner modification needed.</div>
+        <div class="dual-card-specs">
+          <div class="dual-spec-row"><span class="dk">Basket Holes</span><span class="dv">9-Hole Plate</span></div>
+          <div class="dual-spec-row"><span class="dk">Capacity</span><span class="dv">Up to 12 Baskets</span></div>
+          <div class="dual-spec-row"><span class="dk">Conversion</span><span class="dv">Precision-Fit Adapter</span></div>
+          <div class="dual-spec-row"><span class="dk">Gas Change</span><span class="dv">None Required</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASKET CAPACITY VISUAL -->
+<section class="basket-section">
+  <div class="basket-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Capacity</span></div>
+        <h2 class="section-title">Up to <em>12 Baskets</em> at Once</h2>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; margin-top:48px; gap:4px;">
+      <div class="basket-row">
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">1</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">2</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">3</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">4</span></div>
+      </div>
+      <div class="basket-row">
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">5</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">6</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">7</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">8</span></div>
+      </div>
+      <div class="basket-row">
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">9</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">10</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">11</span></div>
+        <div class="basket-slot active"><span>🍜</span><span class="basket-num">12</span></div>
+      </div>
+    </div>
+    <div class="basket-info">
+      <div class="basket-count">12<span>+</span></div>
+      <div class="basket-label">Baskets Simultaneously</div>
+      <div class="basket-note">9-hole plate standard · Expandable to 12 baskets with optional pot configuration</div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL SPECS -->
+<section class="specs-section">
+  <div class="specs-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Technical Data</span></div>
+        <h2 class="section-title">Full <em>Specifications</em></h2>
+      </div>
+    </div>
+    <div class="specs-grid">
+      <div>
+        <div class="spec-group-title">Construction</div>
+        <div class="spec-row"><span class="spec-key">Design</span><span class="spec-value">Single Hole Wok Range with Custom Water Tank</span></div>
+        <div class="spec-row"><span class="spec-key">Basket Holes</span><span class="spec-value">9-Hole Plate for Noodle Cooking Baskets</span></div>
+        <div class="spec-row"><span class="spec-key">Control Location</span><span class="spec-value">Burner, Faucet &amp; Drain — Front Panel</span></div>
+        <div class="spec-row"><span class="spec-key">Adapter</span><span class="spec-value">Precision-Fit Conversion Adapter Included</span></div>
+        <div class="spec-row"><span class="spec-key">Certification</span><span class="spec-value">NSF &amp; CSA · Standard for USA &amp; Canada</span></div>
+
+        <div class="spec-group-title" style="margin-top:36px;">Dimensions</div>
+        <div class="spec-row"><span class="spec-key">Length</span><span class="spec-value">24"</span></div>
+        <div class="spec-row"><span class="spec-key">Width</span><span class="spec-value">41"</span></div>
+        <div class="spec-row"><span class="spec-key">Total Height</span><span class="spec-value">50"</span></div>
+        <div class="spec-row"><span class="spec-key">Cook Top Height</span><span class="spec-value">30"</span></div>
+      </div>
+      <div>
+        <div class="spec-group-title">Gas &amp; Performance</div>
+        <div class="spec-row"><span class="spec-key">Burner Type</span><span class="spec-value">23-Tips Jet Burner</span></div>
+        <div class="spec-row"><span class="spec-key">BTU Output</span><span class="spec-value">130,000 BTU/HR</span></div>
+        <div class="spec-row"><span class="spec-key">Gas Type</span><span class="spec-value">Natural Gas or Propane Gas</span></div>
+        <div class="spec-row"><span class="spec-key">Gas Regulator</span><span class="spec-value">¾" Included</span></div>
+        <div class="spec-row"><span class="spec-key">Max Basket Capacity</span><span class="spec-value">Up to 12 Simultaneously</span></div>
+
+        <div class="spec-group-title" style="margin-top:36px;">Notes</div>
+        <div class="spec-row"><span class="spec-key">Strainer Baskets</span><span class="spec-value">Not Included (sold separately)</span></div>
+        <div class="spec-row"><span class="spec-key">Model Number</span><span class="spec-value">ARE-1</span></div>
+        <div class="spec-row"><span class="spec-key">Available</span><span class="spec-value">In Stock · Custom Config Available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Engineering Highlights</span></div>
+        <h2 class="section-title">Key <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">Instant Mode Switch</div>
+        <div class="feature-desc">Converts from wok cooking to noodle/pasta boiling in seconds using a precision-fit adapter. No tools or gas system modifications required — maximum kitchen flexibility.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🍜</div>
+        <div class="feature-title">12 Baskets Simultaneously</div>
+        <div class="feature-desc">9-hole cooking plate supports up to 12 noodle or pasta baskets at once — ideal for high-volume noodle restaurants, dim sum kitchens, and fast-paced service environments.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">130,000 BTU Power</div>
+        <div class="feature-desc">Single 23-Tips Jet Burner delivers 130,000 BTU/HR — powerful enough for rapid boil recovery even during the busiest service periods.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🎛️</div>
+        <div class="feature-title">Front-Panel Controls</div>
+        <div class="feature-desc">Burner, faucet, and drain controls are all located on the front panel for quick, accessible operation during service. Ergonomically designed for the chef's workflow.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">💧</div>
+        <div class="feature-title">Custom Water Tank</div>
+        <div class="feature-desc">Integrated custom water tank built into the single-hole wok range. Provides consistent water supply for noodle cooking without the need for external tanks or extra plumbing.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">⛽</div>
+        <div class="feature-title">Dual Gas Compatible</div>
+        <div class="feature-desc">Available for both Natural Gas and Liquid Propane. ¾" gas regulator included. Easy to configure for any commercial kitchen gas setup in the USA or Canada.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">📐</div>
+        <div class="feature-title">Compact Footprint</div>
+        <div class="feature-desc">Compact 24"L × 41" × 50"H footprint packs full dual-function capability into a space-efficient station — perfect for kitchens where every inch counts.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">NSF &amp; CSA Certified</div>
+        <div class="feature-desc">Fully certified to NSF and CSA standards for commercial use in both the United States and Canada. Meets all health department requirements for professional kitchen installation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTE: BASKETS NOT INCLUDED -->
+<div class="note-banner">
+  <div class="note-inner">
+    <div class="note-icon">ℹ️</div>
+    <div class="note-text">
+      <strong>Note: Pasta Strainer / Blanching Baskets Not Included</strong>
+      <span>The 9-hole plate and cooking platform are included. Pasta strainer and blanching baskets must be purchased separately. Contact us for compatible basket recommendations.</span>
+    </div>
+  </div>
+</div>
+
+<!-- WARRANTY -->
+<div class="warranty-bar">
+  <div class="warranty-inner">
+    <div class="warranty-text">
+      <h3>NSF &amp; CSA Certified · Factory Direct</h3>
+      <p>All Allstrong ARE Series units are NSF &amp; CSA certified, built at our South El Monte, CA factory. Call to configure your order.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-warranty">📞 Call 626-448-7878</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF &amp; CSA Certified</div><div class="trust-sub">USA &amp; Canada standards</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman — direct pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🍜</div><div><div class="trust-title">12 Baskets at Once</div><div class="trust-sub">High-volume noodle cooking</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878 anytime</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery available across the US</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+<li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="#">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
