@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Work Tables &amp; Counters | Allstrong Restaurant Equipment Inc.</title>
+
+  <!-- ===== SEO Meta Tags ===== -->
+  <meta name="description" content="Commercial-grade stainless steel work tables, prep tables, and counters. 16-gauge 304 SS construction, ETL certified. Available in flat top, 4&quot; rear upturn, open base configurations. Factory direct from South El Monte, CA."/>
+  <meta name="keywords" content="commercial work table, stainless steel prep table, restaurant counter, 304 stainless steel table, ETL certified table, kitchen work bench, commercial prep counter"/>
+  <meta name="author" content="Allstrong Restaurant Equipment Inc."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://lebinhuang.github.io/allstrong-website/tables-and-counters.html"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Work Tables &amp; Counters | Allstrong Restaurant Equipment"/>
+  <meta property="og:description" content="Commercial-grade stainless steel work tables &amp; counters. 16-gauge 304 SS, ETL certified. Factory direct."/>
+  <meta property="og:url" content="https://lebinhuang.github.io/allstrong-website/tables-and-counters.html"/>
+  <meta property="og:site_name" content="Allstrong Restaurant Equipment"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="theme-color" content="#0a0a0a"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.product-page { background: #fafaf8; min-height: 100vh; }
+
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* PAGE HERO */
+.page-hero {
+  background: var(--black);
+  padding: 70px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: 'TABLES';
+  position: absolute; top: 50%; right: -10px; transform: translateY(-50%);
+  font-size: 160px; font-weight: 900; color: rgba(255,255,255,0.03);
+  letter-spacing: -8px; pointer-events: none; white-space: nowrap;
+}
+.page-hero-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.page-hero-text .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.page-hero-text .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.page-hero-text .eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.page-hero-text h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 16px; }
+.page-hero-text h1 em { color: var(--red); font-style: normal; }
+.page-hero-text p { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.8; max-width: 480px; }
+.page-hero-stats { display: flex; gap: 0; flex-shrink: 0; }
+.hero-stat { padding: 20px 36px; text-align: center; border-left: 1px solid rgba(255,255,255,0.08); }
+.hero-stat:first-child { border-left: none; }
+.hero-stat-val { font-size: 40px; font-weight: 900; color: white; letter-spacing: -2px; line-height: 1; }
+.hero-stat-val span { color: var(--red); font-size: 24px; }
+.hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+
+/* FILTER BAR */
+.filter-bar { background: white; border-bottom: 1px solid #ebebeb; position: sticky; top: 72px; z-index: 50; }
+.filter-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 0; overflow-x: auto; }
+.filter-btn {
+  padding: 18px 22px; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #888; border: none; background: none;
+  cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--black); }
+.filter-btn.active { color: var(--red); border-bottom-color: var(--red); }
+.filter-count { background: #f0eeea; color: #888; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-left: 6px; }
+.filter-btn.active .filter-count { background: var(--red); color: white; }
+
+/* PRODUCTS SECTION */
+.products-section { padding: 60px 0 100px; }
+.products-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.section-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.section-meta p { font-size: 12px; color: #aaa; font-weight: 500; }
+.sort-select { font-size: 12px; padding: 8px 14px; border: 1px solid #ddd; background: white; cursor: pointer; }
+
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+/* Product card */
+.table-card {
+  background: white;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.table-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); z-index: 2; }
+.table-card:hover .table-img-inner { transform: scale(1.04); }
+.table-card:hover .table-cta { opacity: 1; transform: translateY(0); }
+
+.table-img-wrap {
+  position: relative; aspect-ratio: 4/3; overflow: hidden;
+  background: linear-gradient(145deg, #f8f8f6, #e8e8e5);
+  display: flex; align-items: center; justify-content: center;
+}
+.table-img-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.5s ease;
+}
+.table-img-inner.has-photo {
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+
+/* Placeholder SVG illustration */
+.table-placeholder {
+  width: 60%; max-width: 280px; opacity: 0.18;
+}
+
+/* Top-left badge */
+.spec-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--black); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 5px 10px;
+  text-transform: uppercase;
+}
+.spec-badge.premium { background: var(--red); }
+
+.etl-badge {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(0,0,0,0.7); color: white;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 4px 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.table-cta {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--red); color: white; text-align: center;
+  padding: 11px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  opacity: 0; transform: translateY(100%); transition: all 0.3s;
+}
+
+.table-info { padding: 22px 20px; }
+.table-series { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.table-name { font-size: 15px; font-weight: 800; color: var(--black); line-height: 1.3; margin-bottom: 8px; text-transform: uppercase; }
+.table-desc { font-size: 12px; color: #777; line-height: 1.7; font-weight: 300; margin-bottom: 14px; }
+
+/* Specs row at bottom of card */
+.table-specs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0ee; }
+.tspec { background: #f5f4f2; padding: 4px 10px; font-size: 10px; font-weight: 700; color: #555; letter-spacing: 0.5px; text-transform: uppercase; }
+.tspec.red { background: var(--red); color: white; }
+
+/* Sizes pills */
+.size-pills { margin-top: 10px; display: flex; gap: 4px; flex-wrap: wrap; }
+.size-pill { font-size: 10px; padding: 3px 8px; background: #fff; border: 1px solid #ddd; color: #666; font-weight: 600; }
+
+/* CONSTRUCTION FEATURES SECTION */
+.features-section { background: var(--black); padding: 80px 0; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.section-header { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 0; flex-wrap: wrap; }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.section-label::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.section-label span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 900; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+.section-title em { color: var(--red); font-style: normal; }
+
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+.feature-card { background: #1a1a1a; padding: 32px 28px; border-bottom: 3px solid transparent; transition: all 0.25s; }
+.feature-card:hover { border-bottom-color: var(--red); background: #1f1f1f; transform: translateY(-3px); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+
+/* CTA */
+.cta-section { background: var(--red); padding: 60px 0; }
+.cta-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.cta-text h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 6px; }
+.cta-text p { font-size: 13px; color: rgba(255,255,255,0.72); font-weight: 300; }
+.btn-cta { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--red); text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 16px 34px; transition: all 0.25s; flex-shrink: 0; }
+.btn-cta:hover { background: var(--black); color: white; }
+
+@media (max-width: 1100px) { .products-grid, .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .products-grid, .features-grid { grid-template-columns: 1fr; }
+  .page-hero { padding: 50px 20px; }
+  .page-hero-inner { flex-direction: column; }
+  .page-hero-stats { flex-wrap: wrap; }
+  .hero-stat { flex: 0 0 calc(50% - 1px); padding: 16px 20px; }
+  .hero-stat-val { font-size: 30px; }
+  .products-inner, .back-inner, .breadcrumb-inner, .cta-inner, .features-inner { padding: 0 20px; }
+  .filter-inner { padding: 0 20px; }
+  .cta-inner { flex-direction: column; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🔧 ETL Certified · 16-Gauge 304 Stainless Steel · Factory Direct · 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="tables-and-counters.html">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Furniture</a><span class="sep">›</span>
+    <span class="current">Work Tables &amp; Counters</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-text">
+      <div class="eyebrow"><span>Furniture · Tables &amp; Counters</span></div>
+      <h1>Work Tables &amp;<br/><em>Counters</em></h1>
+      <p>Commercial-grade stainless steel work tables, prep tables, and counters. 16-gauge 304 SS construction, sound-deadened tops, ETL certified. Available in 10 series and over 60 size configurations.</p>
+    </div>
+    <div class="page-hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">8</div>
+        <div class="hero-stat-label">Product Series</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">60<span>+</span></div>
+        <div class="hero-stat-label">Size Configurations</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">ETL</div>
+        <div class="hero-stat-label">Certified</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterCards('all', this)">All <span class="filter-count">8</span></button>
+    <button class="filter-btn" onclick="filterCards('premium', this)">Premium <span class="filter-count">3</span></button>
+    <button class="filter-btn" onclick="filterCards('standard', this)">Standard <span class="filter-count">3</span></button>
+    <button class="filter-btn" onclick="filterCards('economy', this)">Economy <span class="filter-count">2</span></button>
+    <button class="filter-btn" onclick="filterCards('flat-top', this)">Flat Top <span class="filter-count">4</span></button>
+    <button class="filter-btn" onclick="filterCards('upturn', this)">Rear Upturn <span class="filter-count">4</span></button>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-inner">
+    <div class="section-meta">
+      <p>Showing <strong>8</strong> series · All ETL Certified · 16-Gauge 304 SS</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- 1: Premium All Stainless Flat Top Open Base -->
+      <a href="work-table-flat-top-open-base.html" class="table-card" data-category="premium flat-top">
+        <div class="table-img-wrap">
+          <span class="spec-badge premium">Premium</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-flat-top-open-base.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Premium · Open Base</div>
+          <div class="table-name">All Stainless Steel Flat Top Open Base</div>
+          <div class="table-desc">16 gauge 304 SS top &amp; legs · Aluminum cross bracing · Welded hat channel reinforcement · Rolled edge · Adjustable ABS bullet feet.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">30"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">304 SS</span>
+            <span class="tspec">Open Base</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2: Premium All Stainless w/ 4" Rear Upturn Open Base -->
+      <a href="work-table-4in-upturn-open-base.html" class="table-card" data-category="premium upturn">
+        <div class="table-img-wrap">
+          <span class="spec-badge premium">Premium</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-4in-upturn-open-base.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Premium · 4" Rear Upturn</div>
+          <div class="table-name">All Stainless Steel w/ 4" Rear Upturn Open Base</div>
+          <div class="table-desc">16 gauge 304 SS top &amp; legs · 4" rear upturn for backsplash protection · Aluminum cross bracing · Welded hat channel · ETL Certified.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">30"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">304 SS</span>
+            <span class="tspec">4" Upturn</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3: Premium Work Table SS Top w/ Galvanized Undershelf -->
+      <a href="work-table-premium-ss-flat-top.html" class="table-card" data-category="premium flat-top">
+        <div class="table-img-wrap">
+          <span class="spec-badge premium">Premium</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-premium-ss-flat.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Premium · w/ Undershelf</div>
+          <div class="table-name">Premium SS Top w/ Galvanized Undershelf</div>
+          <div class="table-desc">Polished 16 gauge SS top · Galvanized undershelf, legs &amp; gussets · Welded hat channel · Adjustable ABS bullet feet · 72"+ has 6 legs.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">24"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">SS Top</span>
+            <span class="tspec">Galv. Shelf</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4: Standard Commercial Work Table SS Top -->
+      <a href="work-table-commercial-ss-galv.html" class="table-card" data-category="standard flat-top">
+        <div class="table-img-wrap">
+          <span class="spec-badge">Standard</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-commercial-ss-galv.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Standard · w/ Undershelf</div>
+          <div class="table-name">Commercial Work Table SS Top, Galvanized Undershelf</div>
+          <div class="table-desc">Quality polished 16 gauge SS top · Galvanized undershelf, legs &amp; gussets · Welded hat channel reinforcement · Sound-deadened · ETL Certified.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">24"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">SS Top</span>
+            <span class="tspec">Galv. Shelf</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5: Standard Work Table w/ 4" Upturn (Galvanized Legs) -->
+      <a href="work-table-premium-4in-upturn.html" class="table-card" data-category="standard upturn">
+        <div class="table-img-wrap">
+          <span class="spec-badge">Standard</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-premium-4in-upturn.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Standard · 4" Rear Upturn</div>
+          <div class="table-name">Premium Work Table w/ 4" Rear Upturn</div>
+          <div class="table-desc">16 gauge SS top with 4" rear upturn · Galvanized legs, undershelf &amp; gussets · Welded hat channel · Rolled edge construction · 72"+ has 6 legs.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">24"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">4" Upturn</span>
+            <span class="tspec">Galv. Base</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6: Standard Stainless Steel Prep Tables -->
+      <a href="work-table-prep-tables.html" class="table-card" data-category="standard upturn">
+        <div class="table-img-wrap">
+          <span class="spec-badge">Prep Series</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-prep.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Prep Series · EB / PB Models</div>
+          <div class="table-name">Stainless Steel Prep Tables</div>
+          <div class="table-desc">EB Models with galvanized base · PB Models with all SS base · Welded hat channel · Sound-deadened top · Rolled edge construction · 72"+ has 6 legs.</div>
+          <div class="size-pills">
+            <span class="size-pill">EB-Models</span>
+            <span class="size-pill">PB-Models</span>
+            <span class="size-pill">24"-96" Length</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">EB / PB</span>
+            <span class="tspec">SS or Galv</span>
+            <span class="tspec red">4&quot; Upturn</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7: Economy Work Table 18 Gauge -->
+      <a href="work-table-economy.html" class="table-card" data-category="economy flat-top">
+        <div class="table-img-wrap">
+          <span class="spec-badge">Economy</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-economy.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Economy · Budget Friendly</div>
+          <div class="table-name">Economy Work Table SS Top, Galvanized Undershelf</div>
+          <div class="table-desc">Polished 18 gauge SS top · Galvanized undershelf, legs &amp; gussets · Welded hat channel · Sound-deadened · Adjustable ABS bullet feet · 72"+ has 6 legs.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">24"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec">18 GA</span>
+            <span class="tspec">SS Top</span>
+            <span class="tspec">Galv. Base</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8: Galvanized Work Table -->
+      <a href="work-table-ss-1-5in-upturn.html" class="table-card" data-category="economy upturn">
+        <div class="table-img-wrap">
+          <span class="spec-badge">Economy</span>
+          <span class="etl-badge">ETL ✓</span>
+          <div class="table-img-inner has-photo" style="background-image:url('images/table-ss-1-5in-upturn.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f8f8f6;"></div>
+          <div class="table-cta">View Details →</div>
+        </div>
+        <div class="table-info">
+          <div class="table-series">Standard · 1½" Rear Upturn</div>
+          <div class="table-name">Work Table — SS Top w/ 1½" Rear Upturn &amp; Undershelf</div>
+          <div class="table-desc">16 gauge SS top with 1½" rear upturn · Galvanized undershelf, legs &amp; gussets · Welded hat channel · Sound-deadened · Rolled edge · Adjustable ABS bullet feet · 72"+ has 6 legs.</div>
+          <div class="size-pills">
+            <span class="size-pill">24"×24"</span>
+            <span class="size-pill">24"×60"</span>
+            <span class="size-pill">30"×72"</span>
+            <span class="size-pill">30"×96"</span>
+            <span class="size-pill">+more</span>
+          </div>
+          <div class="table-specs">
+            <span class="tspec red">16 GA</span>
+            <span class="tspec">SS Top</span>
+            <span class="tspec">1½" Upturn</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONSTRUCTION FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Construction Standard</span></div>
+        <h2 class="section-title" style="color:white;">Built to Last <em>Decades</em></h2>
+      </div>
+      <p style="color:rgba(255,255,255,0.4);font-size:13px;font-weight:300;max-width:340px;text-align:right;">Every Allstrong work table shares the same engineering DNA — built for daily commercial abuse.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-title">16-Gauge 304 SS</div>
+        <div class="feature-desc">Heavy-duty 16-gauge 304-grade stainless steel — the gold standard for commercial kitchens. Resistant to corrosion, staining, and bacterial growth.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <div class="feature-title">Welded Hat Channel</div>
+        <div class="feature-desc">Top reinforced with welded-on hat channel framework. Sound-deadened between top and channels for quiet operation. Eliminates sagging under load.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚓</div>
+        <div class="feature-title">Recessed Gussets</div>
+        <div class="feature-desc">Gussets recessed into channel framework reduces lateral movement. Aluminum cross bracing on premium models for additional rigidity.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🦶</div>
+        <div class="feature-title">Adjustable Bullet Feet</div>
+        <div class="feature-desc">ABS bullet-style adjustable feet level the table on uneven floors. Easy to clean, won't scratch flooring, prevent rocking and noise.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📏</div>
+        <div class="feature-title">Rolled Edge</div>
+        <div class="feature-desc">Smooth rolled edge construction along all sides. Eliminates sharp corners, prevents injuries, and provides a finished professional appearance.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <div class="feature-title">Knock-Down Shipping</div>
+        <div class="feature-desc">Shipped knock-down for cost-effective freight. Easy to assemble in minutes with included hardware. Minimizes shipping damage and storage space.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💪</div>
+        <div class="feature-title">6-Leg Reinforcement</div>
+        <div class="feature-desc">All work tables 72" and longer come with 6 legs as standard for extra strength. Prevents sagging and supports heavy commercial workloads.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">ETL Certified</div>
+        <div class="feature-desc">All Allstrong work tables are ETL Certified for safety and performance. Meets all applicable health department and code requirements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Need Custom Sizes or Configurations?</h2>
+      <p>We offer custom fabrication for non-standard dimensions, drawer integration, sink installations, and more.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-cta">📞 Call 626-448-7878</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">ETL Certified</div><div class="trust-sub">All tables ETL certified</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🔧</div><div><div class="trust-title">8 Series</div><div class="trust-sub">60+ size configurations</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Knock-Down Shipped</div><div class="trust-sub">Cost-effective freight</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Cooking Equipment</div><ul class="footer-links">
+      <li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li>
+      <li><a href="bbq-oven.html">BBQ Ovens</a></li>
+      <li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li>
+      <li><a href="steamer-cabinets.html">Steamer Cabinets</a></li>
+      <li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li>
+      <li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+      <li><a href="thawing-machine.html">Thawing Machine</a></li>
+    </ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links">
+      <li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li>
+      <li><a href="#">Cabinets</a></li>
+      <li><a href="#">Shelves</a></li>
+      <li><a href="#">Hoods</a></li>
+      <li><a href="faucets.html">Faucets</a></li>
+    </ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out Deals</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function filterCards(category, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".table-card").forEach(card => {
+    const cats = card.dataset.category || "";
+    if (category === "all" || cats.includes(category)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+</body>
+</html>

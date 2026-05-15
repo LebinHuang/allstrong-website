@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rice Noodle Range | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.product-page { background: #fafaf8; min-height: 100vh; }
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* HERO */
+.product-hero { max-width: 1400px; margin: 0 auto; padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.product-gallery { position: sticky; top: 90px; }
+.main-image-wrap { background: #111; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid #222; }
+.main-image-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 24px; }
+.img-badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; }
+.nsf-badge { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.75); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2); }
+.csa-badge { position: absolute; bottom: 16px; right: 16px; background: #1a5ca8; color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; }
+
+/* stat strip */
+.stat-strip { margin-top: 16px; background: var(--black); display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; align-items: center; }
+.stat-item { padding: 18px 20px; text-align: center; }
+.stat-val { font-size: 26px; font-weight: 900; color: var(--red); letter-spacing: -0.5px; line-height: 1; }
+.stat-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+.stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.08); }
+
+/* PRODUCT DETAILS */
+.product-details { padding-top: 8px; }
+.product-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.product-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.product-eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.product-title { font-size: clamp(30px, 4vw, 50px); font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.product-title em { color: var(--red); font-style: normal; }
+.product-ref { font-size: 12px; color: #999; font-weight: 500; letter-spacing: 1px; margin-bottom: 28px; }
+.product-summary { font-size: 15px; color: #555; line-height: 1.9; font-weight: 300; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #e8e8e5; }
+.spec-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 32px; }
+.spec-chip { background: white; padding: 16px 18px; border: 1px solid #ebebeb; }
+.spec-chip .chip-label { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+.spec-chip .chip-val { font-size: 13px; font-weight: 800; color: var(--black); line-height: 1.3; }
+.product-ctas { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.btn-quote { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--red); color: white; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; transition: all 0.25s; }
+.btn-quote:hover { background: #96281b; transform: translateY(-2px); }
+.btn-download { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: var(--black); text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; border: 2px solid var(--black); transition: all 0.25s; }
+.btn-download:hover { background: var(--black); color: white; }
+.trust-chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid #e8e8e5; }
+.trust-chip { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #666; background: #f5f4f2; padding: 7px 12px; }
+
+/* COMPARTMENTS */
+.compartments-section { background: var(--black); padding: 80px 0; }
+.compartments-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.comp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+.comp-card { background: #1a1a1a; padding: 48px 40px; position: relative; overflow: hidden; border-top: 3px solid transparent; transition: all 0.25s; }
+.comp-card:hover { border-top-color: var(--red); background: #1f1f1f; }
+.comp-num { font-size: 100px; font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; top: 10px; right: 20px; line-height: 1; pointer-events: none; }
+.comp-icon { font-size: 40px; margin-bottom: 20px; }
+.comp-title { font-size: 16px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.comp-title em { color: var(--red); font-style: normal; }
+.comp-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; font-weight: 300; margin-bottom: 24px; }
+.comp-specs { display: flex; flex-direction: column; gap: 8px; }
+.comp-spec-row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; }
+.comp-spec-row:last-child { border-bottom: none; }
+.comp-spec-row .ck { color: rgba(255,255,255,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.comp-spec-row .cv { font-weight: 700; color: white; }
+
+/* SPECS TABLE */
+.specs-section { background: white; padding: 80px 0; }
+.specs-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
+.spec-group-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--red); }
+.spec-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 13px 0; border-bottom: 1px solid #f0f0ee; gap: 20px; }
+.spec-row:last-child { border-bottom: none; }
+.spec-key { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; }
+.spec-value { font-size: 13px; font-weight: 700; color: var(--black); text-align: right; line-height: 1.5; }
+
+/* FEATURES */
+.features-section { padding: 80px 0; background: #fafaf8; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+.feature-card { background: white; padding: 32px 28px; border-bottom: 3px solid transparent; transition: all 0.25s; }
+.feature-card:hover { border-bottom-color: var(--red); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: #666; line-height: 1.7; font-weight: 300; }
+
+/* NOODLE TYPES */
+.noodle-section { background: var(--red); padding: 70px 0; overflow: hidden; position: relative; }
+.noodle-section::before { content: 'NOODLE'; position: absolute; top: 50%; right: -10px; transform: translateY(-50%); font-size: 160px; font-weight: 900; color: rgba(255,255,255,0.06); letter-spacing: -8px; pointer-events: none; }
+.noodle-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+.noodle-text .label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 14px; }
+.noodle-text h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 16px; }
+.noodle-text p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.8; font-weight: 300; max-width: 420px; }
+.noodle-types { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+.noodle-type { background: rgba(255,255,255,0.12); padding: 14px 24px; display: flex; align-items: center; gap: 14px; min-width: 240px; transition: background 0.2s; }
+.noodle-type:hover { background: rgba(255,255,255,0.2); }
+.noodle-type .nt-icon { font-size: 22px; }
+.noodle-type .nt-text { font-size: 13px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* WARRANTY BAR */
+.warranty-bar { background: var(--black); padding: 40px 0; }
+.warranty-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.warranty-text h3 { font-size: 22px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px; }
+.warranty-text p { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 300; }
+.btn-warranty { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: white; text-decoration: none; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 14px 30px; transition: all 0.25s; flex-shrink: 0; }
+.btn-warranty:hover { background: #96281b; }
+
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 48px; }
+  .product-gallery { position: static; }
+  .comp-cards { grid-template-columns: 1fr; }
+  .specs-grid { grid-template-columns: 1fr; gap: 40px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .noodle-inner { flex-direction: column; }
+}
+@media (max-width: 768px) {
+  .product-hero, .compartments-inner, .specs-inner, .features-inner, .noodle-inner, .warranty-inner, .back-inner, .breadcrumb-inner { padding: 0 20px; }
+  .product-hero { padding-top: 40px; padding-bottom: 60px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .spec-highlights { grid-template-columns: 1fr; }
+  .product-ctas { flex-direction: column; }
+  .warranty-inner { flex-direction: column; }
+  .stat-strip { grid-template-columns: 1fr; gap: 0; }
+  .stat-divider { width: 80%; height: 1px; margin: 0 auto; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🍜 NSF &amp; CSA Certified · 130,000 BTU · 2 Compartments · Call: 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="tables-and-counters.html">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to All Products</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Products</a><span class="sep">›</span>
+    <a href="#">Cooking Equipment</a><span class="sep">›</span>
+    <span class="current">Rice Noodle Range</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="product-hero">
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <span class="img-badge">ARE-1 Series</span>
+      <span class="nsf-badge">NSF ✓</span>
+      <span class="csa-badge">CSA ✓</span>
+      <img src="images/rice-noodle-range.png" alt="Allstrong Rice Noodle Range ARE-1"/>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-val">130K</div>
+        <div class="stat-label">BTU / HR</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val">2</div>
+        <div class="stat-label">Compartments</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val">42"</div>
+        <div class="stat-label">Length</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-details">
+    <div class="product-eyebrow"><span>ARE-1 · Rice Noodle Series</span></div>
+    <h1 class="product-title">Rice<br/><em>Noodle</em><br/>Range</h1>
+    <p class="product-ref">SKU: ARE-1 / rice-noodle-range &nbsp;·&nbsp; Mfr: Allstrong Restaurant Equipment</p>
+
+    <p class="product-summary">
+      Allstrong Rice Noodle Range is a high-output commercial cooking station engineered specifically for blanching, reheating, and finishing rice noodles — fresh or dried — and related noodle products including pho, ho fun, and rice vermicelli. Combining intense 130,000 BTU burner output with direct water contact steaming, this unit delivers rapid heat recovery, consistent noodle texture, and high throughput during peak service. NSF &amp; CSA Certified for USA &amp; Canada.
+    </p>
+
+    <div class="spec-highlights">
+      <div class="spec-chip">
+        <div class="chip-label">BTU Output</div>
+        <div class="chip-val">130,000 BTU/HR</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Compartments</div>
+        <div class="chip-val">2 Rice Noodle Compartments</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Overall Dimensions</div>
+        <div class="chip-val">42"(L) × 40" × 51"(H)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Cook Top Height</div>
+        <div class="chip-val">32"(H)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Gas Type</div>
+        <div class="chip-val">Natural Gas or Propane</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Certification</div>
+        <div class="chip-val">NSF &amp; CSA · USA &amp; Canada</div>
+      </div>
+    </div>
+
+    <div class="product-ctas">
+      <a href="tel:6264487878" class="btn-quote">📞 &nbsp;Get a Quote</a>
+      <a href="https://allstrong.com/attachment?id_attachment=16" target="_blank" class="btn-download">↓ &nbsp;Download Spec Sheet</a>
+    </div>
+
+    <div class="trust-chips">
+      <span class="trust-chip">✅ NSF Certified</span>
+      <span class="trust-chip">✅ CSA Listed</span>
+      <span class="trust-chip">🏭 Factory Direct</span>
+      <span class="trust-chip">🍜 Pho · Ho Fun · Vermicelli</span>
+      <span class="trust-chip">⚡ 130,000 BTU</span>
+      <span class="trust-chip">💧 Direct Steam Contact</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2 COMPARTMENTS -->
+<section class="compartments-section">
+  <div class="compartments-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Dual-Compartment Design</span></div>
+        <h2 class="section-title" style="color:white;">2 Independent <em>Compartments</em></h2>
+      </div>
+      <p style="color:rgba(255,255,255,0.35);font-size:12px;font-weight:300;text-align:right;max-width:260px;">Each compartment has its own lid and individual steam control for independent operation.</p>
+    </div>
+    <div class="comp-cards">
+      <div class="comp-card reveal">
+        <div class="comp-num">01</div>
+        <div class="comp-icon">🍜</div>
+        <div class="comp-title">Compartment <em>One</em></div>
+        <div class="comp-desc">Individual steam cooking chamber with dedicated lid. Ideal for high-volume blanching or reheating of rice noodles. Independent operation allows different noodle types to be cooked simultaneously.</div>
+        <div class="comp-specs">
+          <div class="comp-spec-row"><span class="ck">Container</span><span class="cv">S.S. Water Container</span></div>
+          <div class="comp-spec-row"><span class="ck">Method</span><span class="cv">Direct Steam Contact</span></div>
+          <div class="comp-spec-row"><span class="ck">Control</span><span class="cv">Individual Lid</span></div>
+        </div>
+      </div>
+      <div class="comp-card reveal reveal-delay-1">
+        <div class="comp-num">02</div>
+        <div class="comp-icon">🍜</div>
+        <div class="comp-title">Compartment <em>Two</em></div>
+        <div class="comp-desc">Second independent cooking chamber sharing the single high-output 130,000 BTU burner. Run both compartments simultaneously for maximum throughput, or use one at a time for smaller batches.</div>
+        <div class="comp-specs">
+          <div class="comp-spec-row"><span class="ck">Container</span><span class="cv">S.S. Water Container</span></div>
+          <div class="comp-spec-row"><span class="ck">Shared Burner</span><span class="cv">130,000 BTU/HR</span></div>
+          <div class="comp-spec-row"><span class="ck">Control</span><span class="cv">Individual Lid</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL SPECS -->
+<section class="specs-section">
+  <div class="specs-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Technical Data</span></div>
+        <h2 class="section-title">Full <em>Specifications</em></h2>
+      </div>
+    </div>
+    <div class="specs-grid">
+      <div>
+        <div class="spec-group-title">Construction</div>
+        <div class="spec-row"><span class="spec-key">Compartments</span><span class="spec-value">2 Rice Noodle Compartments</span></div>
+        <div class="spec-row"><span class="spec-key">Water Container</span><span class="spec-value">Single S.S. Water Container for 2 compartments</span></div>
+        <div class="spec-row"><span class="spec-key">Certification</span><span class="spec-value">NSF &amp; CSA · USA &amp; Canada</span></div>
+        <div class="spec-row"><span class="spec-key">Model</span><span class="spec-value">ARE-1</span></div>
+
+        <div class="spec-group-title" style="margin-top:36px;">Dimensions</div>
+        <div class="spec-row"><span class="spec-key">Length</span><span class="spec-value">42"</span></div>
+        <div class="spec-row"><span class="spec-key">Width</span><span class="spec-value">40"</span></div>
+        <div class="spec-row"><span class="spec-key">Total Height</span><span class="spec-value">51"</span></div>
+        <div class="spec-row"><span class="spec-key">Cook Top Height</span><span class="spec-value">32"</span></div>
+      </div>
+      <div>
+        <div class="spec-group-title">Gas &amp; Performance</div>
+        <div class="spec-row"><span class="spec-key">Burner Quantity</span><span class="spec-value">Single Burner</span></div>
+        <div class="spec-row"><span class="spec-key">BTU Output</span><span class="spec-value">130,000 BTU/HR</span></div>
+        <div class="spec-row"><span class="spec-key">Gas Type</span><span class="spec-value">Natural Gas or Propane Gas</span></div>
+        <div class="spec-row"><span class="spec-key">Cooking Method</span><span class="spec-value">Direct Steam Contact · Water Immersion</span></div>
+        <div class="spec-row"><span class="spec-key">Applications</span><span class="spec-value">Rice Noodles · Pho · Ho Fun · Vermicelli</span></div>
+        <div class="spec-row"><span class="spec-key">Availability</span><span class="spec-value">In Stock · Custom Config Available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Engineering Highlights</span></div>
+        <h2 class="section-title">Key <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">130,000 BTU Output</div>
+        <div class="feature-desc">Single high-output burner delivers 130,000 BTU/HR — providing the intense heat needed for rapid water recovery and consistent noodle blanching during peak service hours.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🫙</div>
+        <div class="feature-title">Dual Compartments</div>
+        <div class="feature-desc">2 independent rice noodle compartments powered by a single burner. Run both simultaneously for maximum throughput, or use one at a time for smaller batches and flexible service.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">💧</div>
+        <div class="feature-title">Direct Steam Contact</div>
+        <div class="feature-desc">Single stainless steel water container feeds steam directly into both compartments. Ensures even heat distribution across both noodle chambers for consistent cooking results every batch.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🍜</div>
+        <div class="feature-title">Purpose-Built for Rice Noodles</div>
+        <div class="feature-desc">Engineered specifically for blanching and finishing rice noodles — fresh or dried. Ideal for pho restaurants, Cantonese cuisine, dim sum kitchens, and noodle-focused operations.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">⛽</div>
+        <div class="feature-title">Dual Gas Compatible</div>
+        <div class="feature-desc">Available for both Natural Gas and Liquid Propane. Easy to configure for any commercial kitchen setup in the USA or Canada. No modifications required to switch gas types.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">📐</div>
+        <div class="feature-title">Space-Efficient Design</div>
+        <div class="feature-desc">Compact 42"L × 40" footprint with 51" total height and 32" ergonomic cook top height. Fits efficiently into most commercial kitchen layouts without sacrificing cooking capacity.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">High Throughput Recovery</div>
+        <div class="feature-desc">Intense BTU output combined with direct water contact enables rapid temperature recovery between batches — essential for maintaining consistent quality during busy service periods.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">NSF &amp; CSA Certified</div>
+        <div class="feature-desc">Fully certified to NSF and CSA standards for commercial use in both the United States and Canada — meeting health department requirements for professional kitchen installation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOODLE TYPES -->
+<section class="noodle-section">
+  <div class="noodle-inner">
+    <div class="noodle-text reveal">
+      <div class="label">Compatible Noodle Types</div>
+      <h2>Built for<br/>Every Rice<br/>Noodle</h2>
+      <p>Engineered for the full spectrum of rice noodle products used in Chinese, Vietnamese, and Southeast Asian cuisines — fresh or dried, thin or wide.</p>
+    </div>
+    <div class="noodle-types reveal reveal-delay-2">
+      <div class="noodle-type"><div class="nt-icon">🍜</div><div class="nt-text">Ho Fun (河粉) — Wide Rice Noodles</div></div>
+      <div class="noodle-type"><div class="nt-icon">🍲</div><div class="nt-text">Pho Noodles — Vietnamese Style</div></div>
+      <div class="noodle-type"><div class="nt-icon">🍝</div><div class="nt-text">Rice Vermicelli — Thin Noodles</div></div>
+      <div class="noodle-type"><div class="nt-icon">🥢</div><div class="nt-text">Fresh Rice Noodle Sheets</div></div>
+      <div class="noodle-type"><div class="nt-icon">🌾</div><div class="nt-text">Dried Rice Stick Noodles</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WARRANTY BAR -->
+<div class="warranty-bar">
+  <div class="warranty-inner">
+    <div class="warranty-text">
+      <h3>NSF &amp; CSA Certified · Factory Direct</h3>
+      <p>All Allstrong Rice Noodle Ranges are NSF &amp; CSA certified, built at our South El Monte, CA factory. In stock and ready to order.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-warranty">📞 Call 626-448-7878</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF &amp; CSA Certified</div><div class="trust-sub">USA &amp; Canada standards</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman — direct pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">⚡</div><div><div class="trust-title">130,000 BTU</div><div class="trust-sub">High-output single burner</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878 anytime</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery available across the US</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links">
+      <li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li>
+      <li><a href="bbq-oven.html">BBQ Ovens</a></li>
+      <li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li>
+      <li><a href="steamer-cabinets.html">Steamer Cabinets</a></li>
+      <li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li>
+      <li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+      <li><a href="thawing-machine.html">Thawing Machine</a></li>
+    </ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

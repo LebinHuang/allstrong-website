@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Steamer Cabinets | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ===== PRODUCT PAGE SPECIFIC STYLES ===== */
+.product-page { background: #fafaf8; min-height: 100vh; }
+
+/* BREADCRUMB */
+.breadcrumb-bar {
+  background: #f0eeea;
+  border-bottom: 1px solid #e0deda;
+  padding: 14px 0;
+}
+.breadcrumb-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: #888; font-weight: 500;
+}
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+
+/* PRODUCT HERO SECTION */
+.product-hero {
+  max-width: 1400px; margin: 0 auto; padding: 60px 40px 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+}
+
+/* LEFT: Image gallery */
+.product-gallery { position: sticky; top: 90px; }
+.main-image-wrap {
+  background: #111;
+  aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+  border: 1px solid #e8e8e5;
+}
+.main-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 20px;
+}
+.img-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--red); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 6px 12px;
+}
+.nsf-badge {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(0,0,0,0.75); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* RIGHT: Product info */
+.product-details { padding-top: 8px; }
+.product-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.product-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.product-eyebrow span {
+  font-size: 11px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: 3px;
+}
+.product-title {
+  font-size: clamp(32px, 4vw, 52px); font-weight: 900;
+  color: var(--black); text-transform: uppercase;
+  letter-spacing: -1px; line-height: 1; margin-bottom: 8px;
+}
+.product-title em { color: var(--red); font-style: normal; }
+.product-ref {
+  font-size: 12px; color: #999; font-weight: 500;
+  letter-spacing: 1px; margin-bottom: 28px;
+}
+.product-summary {
+  font-size: 15px; color: #555; line-height: 1.9;
+  font-weight: 300; margin-bottom: 32px;
+  padding-bottom: 32px; border-bottom: 1px solid #e8e8e5;
+}
+
+/* Spec highlights */
+.spec-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  margin-bottom: 32px;
+}
+.spec-chip {
+  background: white; padding: 16px 18px;
+  border: 1px solid #ebebeb;
+}
+.spec-chip .chip-label {
+  font-size: 10px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;
+}
+.spec-chip .chip-val {
+  font-size: 14px; font-weight: 800; color: var(--black);
+}
+
+/* CTA buttons */
+.product-ctas {
+  display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;
+}
+.btn-quote {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--red); color: white; text-decoration: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px 28px; transition: all 0.25s; min-width: 180px;
+}
+.btn-quote:hover { background: #96281b; transform: translateY(-2px); }
+.btn-download {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: white; color: var(--black); text-decoration: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px 28px; border: 2px solid var(--black); transition: all 0.25s; min-width: 180px;
+}
+.btn-download:hover { background: var(--black); color: white; }
+
+/* Trust chips */
+.trust-chips {
+  display: flex; gap: 8px; flex-wrap: wrap; padding-top: 24px;
+  border-top: 1px solid #e8e8e5;
+}
+.trust-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; color: #666;
+  background: #f5f4f2; padding: 7px 12px;
+}
+
+/* SPECS TABLE */
+.specs-section {
+  background: white;
+  border-top: 3px solid var(--black);
+  padding: 80px 0;
+}
+.specs-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+}
+.specs-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px;
+}
+.spec-group-title {
+  font-size: 13px; font-weight: 800; color: var(--black);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--red);
+}
+.spec-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 13px 0; border-bottom: 1px solid #f0f0ee; gap: 20px;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-key {
+  font-size: 12px; font-weight: 600; color: #888;
+  text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;
+}
+.spec-value {
+  font-size: 13px; font-weight: 700; color: var(--black);
+  text-align: right; line-height: 1.5;
+}
+
+/* COMPARTMENT DETAILS */
+.compartments-section {
+  background: var(--black); padding: 80px 0;
+}
+.compartments-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+}
+.compartment-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px;
+}
+.comp-card {
+  background: #1a1a1a; padding: 36px 30px;
+  border-top: 3px solid transparent; transition: border-color 0.2s;
+  position: relative; overflow: hidden;
+}
+.comp-card:hover { border-top-color: var(--red); }
+.comp-number {
+  font-size: 64px; font-weight: 900; color: rgba(255,255,255,0.04);
+  position: absolute; top: 10px; right: 16px; line-height: 1;
+  pointer-events: none;
+}
+.comp-icon { font-size: 28px; margin-bottom: 16px; }
+.comp-title {
+  font-size: 14px; font-weight: 800; color: white;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+}
+.comp-dims {
+  font-size: 22px; font-weight: 900; color: var(--red);
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.comp-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
+
+/* FEATURES */
+.features-section { padding: 80px 0; background: #fafaf8; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.features-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px;
+}
+.feature-card {
+  background: white; padding: 32px 28px;
+  border-bottom: 3px solid transparent; transition: all 0.25s;
+}
+.feature-card:hover { border-bottom-color: var(--red); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: #666; line-height: 1.7; font-weight: 300; }
+
+/* WARRANTY */
+.warranty-bar {
+  background: var(--red); padding: 40px 0;
+}
+.warranty-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.warranty-text h3 {
+  font-size: 22px; font-weight: 900; color: white;
+  text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px;
+}
+.warranty-text p { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; }
+.btn-warranty {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; color: var(--red); text-decoration: none;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 30px; transition: all 0.25s; flex-shrink: 0; white-space: nowrap;
+}
+.btn-warranty:hover { background: var(--black); color: white; }
+
+/* BACK TO PRODUCTS */
+.back-bar {
+  background: #f0eeea; padding: 20px 0;
+  border-bottom: 1px solid #e0deda;
+}
+.back-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--black);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--red); }
+
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 48px; }
+  .product-gallery { position: static; }
+  .specs-grid { grid-template-columns: 1fr; gap: 40px; }
+  .compartment-cards { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .product-hero { padding: 40px 20px 60px; }
+  .specs-inner, .compartments-inner, .features-inner, .warranty-inner, .back-inner, .breadcrumb-inner { padding: 0 20px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .spec-highlights { grid-template-columns: 1fr; }
+  .warranty-inner { flex-direction: column; text-align: center; }
+  .product-ctas { flex-direction: column; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">🔥 NSF Certified · Factory Direct · Custom Fabrication · Call: 626-448-7878</div>
+
+<!-- HEADER (same as index) -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="tables-and-counters.html">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="#" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<!-- BACK BAR -->
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to All Products</a>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <a href="#">Products</a>
+    <span class="sep">›</span>
+    <a href="#">Cooking Equipment</a>
+    <span class="sep">›</span>
+    <a href="#">Steamer</a>
+    <span class="sep">›</span>
+    <span class="current">Steamer Cabinets</span>
+  </div>
+</div>
+
+<!-- PRODUCT HERO -->
+<div class="product-hero">
+
+  <!-- LEFT: Image -->
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <span class="img-badge">Popular</span>
+      <span class="nsf-badge">NSF ✓</span>
+      <img src="images/steamer-cabinets.png" alt="Allstrong Steamer Cabinet — 3 Compartment Stainless Steel"/>
+    </div>
+  </div>
+
+  <!-- RIGHT: Details -->
+  <div class="product-details">
+    <div class="product-eyebrow"><span>Steamer Series</span></div>
+    <h1 class="product-title">Steamer<br/><em>Cabinets</em></h1>
+    <p class="product-ref">SKU: steamer-cabinets &nbsp;·&nbsp; Mfr: Allstrong Restaurant Equipment</p>
+
+    <p class="product-summary">
+      Custom designed removable Steamer Cabinet built to mount directly on top of your Wok Range. Constructed entirely from Stainless Steel #304, this 3-compartment unit delivers precision steam cooking with individual controls per chamber — ideal for dim sum, bao, rice, and more. NSF &amp; CSA Certified.
+    </p>
+
+    <!-- Spec highlights -->
+    <div class="spec-highlights">
+      <div class="spec-chip">
+        <div class="chip-label">BTU Output</div>
+        <div class="chip-val">130,000 BTU/HR</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Burner</div>
+        <div class="chip-val">23-Tip Jet Burner</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Compartments</div>
+        <div class="chip-val">3 Independent Chambers</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Overall Height</div>
+        <div class="chip-val">75½" (Cabinet: 48"H)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Gas Type</div>
+        <div class="chip-val">Natural Gas or Propane</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Warranty</div>
+        <div class="chip-val">90-Day Parts Warranty</div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="product-ctas">
+      <a href="tel:6264487878" class="btn-quote">
+        📞 &nbsp;Get a Quote
+      </a>
+      <a href="https://allstrong.com/attachment?id_attachment=14" target="_blank" class="btn-download">
+        ↓ &nbsp;Download Spec Sheet
+      </a>
+    </div>
+
+    <!-- Trust chips -->
+    <div class="trust-chips">
+      <span class="trust-chip">✅ NSF Certified</span>
+      <span class="trust-chip">✅ CSA Listed</span>
+      <span class="trust-chip">🏭 Factory Direct</span>
+      <span class="trust-chip">🔧 Removable Design</span>
+      <span class="trust-chip">⚙️ Custom Available</span>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARTMENT BREAKDOWN -->
+<section class="compartments-section">
+  <div class="compartments-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Interior Dimensions</span></div>
+        <h2 class="section-title" style="color:white;">3 <em>Compartments</em></h2>
+      </div>
+    </div>
+    <div class="compartment-cards">
+      <div class="comp-card">
+        <div class="comp-number">01</div>
+        <div class="comp-icon">🔝</div>
+        <div class="comp-title">Upper Compartment</div>
+        <div class="comp-dims">26" × 24" × 8½"</div>
+        <div class="comp-desc">Length × Depth × Height interior clearance. Individual steam vent on/off control. Ideal for delicate items requiring precise steam management.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-number">02</div>
+        <div class="comp-icon">🔲</div>
+        <div class="comp-title">Middle Compartment</div>
+        <div class="comp-dims">26" × 24" × 8½"</div>
+        <div class="comp-desc">Length × Depth × Height interior clearance. Individual steam vent on/off control. Perfect for medium-volume steaming during peak service.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-number">03</div>
+        <div class="comp-icon">⬇️</div>
+        <div class="comp-title">Bottom Compartment</div>
+        <div class="comp-dims">26" × 24" × 16"</div>
+        <div class="comp-desc">Length × Depth × Height interior clearance — double the height for large items. Individual steam vent on/off control. Great for whole fish, large bao trays.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL SPECS TABLE -->
+<section class="specs-section">
+  <div class="specs-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Technical Data</span></div>
+        <h2 class="section-title">Full <em>Specifications</em></h2>
+      </div>
+    </div>
+    <div class="specs-grid">
+      <div>
+        <div class="spec-group-title">Construction</div>
+        <div class="spec-row"><span class="spec-key">Material</span><span class="spec-value">Stainless Steel #304</span></div>
+        <div class="spec-row"><span class="spec-key">Compartments</span><span class="spec-value">3 (with individual doors)</span></div>
+        <div class="spec-row"><span class="spec-key">Cabinet Design</span><span class="spec-value">Removable for easy service</span></div>
+        <div class="spec-row"><span class="spec-key">Water Control</span><span class="spec-value">Auto floating ball valve (front panel)</span></div>
+        <div class="spec-row"><span class="spec-key">Steam Vents</span><span class="spec-value">Individual on/off per compartment</span></div>
+        <div class="spec-row"><span class="spec-key">Certification</span><span class="spec-value">NSF Std 2 · CSA Listed</span></div>
+
+        <div class="spec-group-title" style="margin-top:36px;">Overall Dimensions</div>
+        <div class="spec-row"><span class="spec-key">Length</span><span class="spec-value">35½"</span></div>
+        <div class="spec-row"><span class="spec-key">Depth</span><span class="spec-value">39"</span></div>
+        <div class="spec-row"><span class="spec-key">Total Height</span><span class="spec-value">75½"</span></div>
+        <div class="spec-row"><span class="spec-key">Cabinet Height</span><span class="spec-value">48"</span></div>
+      </div>
+      <div>
+        <div class="spec-group-title">Gas &amp; Performance</div>
+        <div class="spec-row"><span class="spec-key">Burner Type</span><span class="spec-value">23-Tip Jet Burner</span></div>
+        <div class="spec-row"><span class="spec-key">BTU Output</span><span class="spec-value">130,000 BTU/HR</span></div>
+        <div class="spec-row"><span class="spec-key">Gas Type</span><span class="spec-value">Natural Gas or Propane</span></div>
+        <div class="spec-row"><span class="spec-key">Gas Regulator</span><span class="spec-value">¾" included</span></div>
+        <div class="spec-row"><span class="spec-key">Mounting</span><span class="spec-value">On top of Wok Range</span></div>
+
+        <div class="spec-group-title" style="margin-top:36px;">Compartment Interior</div>
+        <div class="spec-row"><span class="spec-key">Upper</span><span class="spec-value">26"L × 24"D × 8½"H</span></div>
+        <div class="spec-row"><span class="spec-key">Middle</span><span class="spec-value">26"L × 24"D × 8½"H</span></div>
+        <div class="spec-row"><span class="spec-key">Bottom</span><span class="spec-value">26"L × 24"D × 16"H</span></div>
+        <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-value">90 days (parts only)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Why Choose This</span></div>
+        <h2 class="section-title">Key <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-title">Stainless Steel #304</div>
+        <div class="feature-desc">Entire cabinet built from heavy-gauge #304 stainless steel for maximum durability, hygiene, and resistance to high-steam environments.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🔓</div>
+        <div class="feature-title">Removable Cabinet</div>
+        <div class="feature-desc">Unique removable design allows easy deep cleaning and routine maintenance without disassembling the entire unit.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🎛️</div>
+        <div class="feature-title">Individual Steam Control</div>
+        <div class="feature-desc">Each of the 3 compartments has its own steam vent on/off valve, giving you independent temperature and moisture control per chamber.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">💧</div>
+        <div class="feature-title">Auto Water Level</div>
+        <div class="feature-desc">Automatic floating ball control valve maintains water level continuously — no manual monitoring needed during service.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">130,000 BTU Power</div>
+        <div class="feature-desc">High-output 23-tip jet burner delivers fast heat recovery — essential for high-volume dim sum and steaming operations.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">⛽</div>
+        <div class="feature-title">Dual Gas Compatible</div>
+        <div class="feature-desc">Works with both Natural Gas and Liquid Propane. ¾" gas regulator included. Easy to configure for your kitchen setup.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">NSF &amp; CSA Certified</div>
+        <div class="feature-desc">Wok Range is NSF &amp; CSA listed (Standard 4). Cabinet is NSF listed (Standard 2). Meets all commercial kitchen compliance requirements.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🔧</div>
+        <div class="feature-title">Custom Options</div>
+        <div class="feature-desc">Need a custom size or configuration? Contact our factory directly — we specialize in custom stainless steel fabrication.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WARRANTY BAR -->
+<div class="warranty-bar">
+  <div class="warranty-inner">
+    <div class="warranty-text">
+      <h3>90-Day Parts Warranty</h3>
+      <p>All Allstrong equipment comes with a 90-day limited warranty on parts. Factory support available directly from our South El Monte, CA facility.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-warranty">📞 Call 626-448-7878</a>
+  </div>
+</div>
+
+<!-- FOOTER (same as index) -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF Certified</div><div class="trust-sub">All commercial equipment certified</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman — direct pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🔧</div><div><div class="trust-title">Custom Fabrication</div><div class="trust-sub">Built to your specifications</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878 anytime</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery available across the US</div></div></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+<li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Scroll reveal for product page
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

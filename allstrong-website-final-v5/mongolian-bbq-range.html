@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mongolian BBQ Range | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ===== MONGOLIAN BBQ RANGE PAGE ===== */
+.product-page { background: #fafaf8; min-height: 100vh; }
+
+.breadcrumb-bar { background: #f0eeea; border-bottom: 1px solid #e0deda; padding: 14px 0; }
+.breadcrumb-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; font-weight: 500; }
+.breadcrumb-inner a { color: #888; text-decoration: none; transition: color 0.2s; }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .sep { color: #ccc; }
+.breadcrumb-inner .current { color: var(--black); font-weight: 700; }
+
+.back-bar { background: #f0eeea; padding: 20px 0; border-bottom: 1px solid #e0deda; }
+.back-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.back-link:hover { color: var(--red); }
+
+/* HERO */
+.product-hero { max-width: 1400px; margin: 0 auto; padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.product-gallery { position: sticky; top: 90px; }
+.main-image-wrap { background: #111; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid #e8e8e5; }
+.main-image-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 24px; }
+.img-badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; }
+.nsf-badge { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.75); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2); }
+
+/* temp badge */
+.temp-strip {
+  margin-top: 16px; background: var(--black); color: white;
+  padding: 16px 22px; display: flex; align-items: center; justify-content: space-between;
+}
+.temp-val { font-size: 36px; font-weight: 900; color: var(--red); letter-spacing: -1px; line-height: 1; }
+.temp-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-top: 3px; }
+.temp-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+.temp-note { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 300; max-width: 180px; line-height: 1.5; }
+
+/* PRODUCT DETAILS */
+.product-details { padding-top: 8px; }
+.product-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.product-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); }
+.product-eyebrow span { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; }
+.product-title { font-size: clamp(30px, 4vw, 50px); font-weight: 900; color: var(--black); text-transform: uppercase; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+.product-title em { color: var(--red); font-style: normal; }
+.product-ref { font-size: 12px; color: #999; font-weight: 500; letter-spacing: 1px; margin-bottom: 28px; }
+.product-summary { font-size: 15px; color: #555; line-height: 1.9; font-weight: 300; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #e8e8e5; }
+
+.spec-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 32px; }
+.spec-chip { background: white; padding: 16px 18px; border: 1px solid #ebebeb; }
+.spec-chip .chip-label { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+.spec-chip .chip-val { font-size: 14px; font-weight: 800; color: var(--black); line-height: 1.3; }
+
+.product-ctas { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.btn-quote { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--red); color: white; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; transition: all 0.25s; min-width: 160px; }
+.btn-quote:hover { background: #96281b; transform: translateY(-2px); }
+.btn-download { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: var(--black); text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; border: 2px solid var(--black); transition: all 0.25s; min-width: 160px; }
+.btn-download:hover { background: var(--black); color: white; }
+
+.trust-chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid #e8e8e5; }
+.trust-chip { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #666; background: #f5f4f2; padding: 7px 12px; }
+
+/* MODEL TABLE SECTION */
+.models-section { background: var(--black); padding: 80px 0; }
+.models-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.models-table-wrap { overflow-x: auto; margin-top: 48px; }
+.models-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.models-table thead tr { background: var(--red); }
+.models-table thead th { padding: 14px 20px; text-align: left; font-size: 11px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+.models-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.15s; }
+.models-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.models-table tbody td { padding: 16px 20px; color: rgba(255,255,255,0.75); font-weight: 400; white-space: nowrap; }
+.models-table tbody td:first-child { font-weight: 700; color: white; font-size: 14px; }
+.btu-highlight { color: var(--red) !important; font-weight: 800 !important; font-size: 15px !important; }
+
+/* SIZE VISUAL */
+.sizes-section { background: white; padding: 80px 0; }
+.sizes-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.size-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 48px; }
+.size-card { background: #fafaf8; padding: 48px 32px; text-align: center; border-top: 3px solid transparent; transition: all 0.25s; position: relative; overflow: hidden; }
+.size-card:hover { border-top-color: var(--red); background: white; box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-4px); }
+.size-card::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(192,57,43,0.04); transition: all 0.4s; }
+.size-card:hover::before { width: 200%; padding-bottom: 200%; }
+.size-order { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px; }
+.size-diameter { font-size: 72px; font-weight: 900; color: var(--black); letter-spacing: -3px; line-height: 1; }
+.size-diameter span { font-size: 28px; color: #aaa; }
+.size-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 2px; margin: 8px 0 20px; }
+.size-specs { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.size-spec-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0ee; font-size: 12px; }
+.size-spec-row:last-child { border-bottom: none; }
+.size-spec-row .sk { color: #aaa; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.size-spec-row .sv { font-weight: 700; color: var(--black); }
+
+/* STANDARD FEATURES */
+.features-section { background: #fafaf8; padding: 80px 0; }
+.features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.features-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 48px; }
+.feature-card { background: white; padding: 32px 28px; border-bottom: 3px solid transparent; transition: all 0.25s; }
+.feature-card:hover { border-bottom-color: var(--red); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; }
+.feature-title { font-size: 13px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.feature-desc { font-size: 12px; color: #666; line-height: 1.7; font-weight: 300; }
+
+/* STANDARD FEATURES LIST */
+.std-features-section { background: var(--black); padding: 80px 0; }
+.std-features-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.std-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 48px; }
+.std-item { background: #1a1a1a; padding: 28px 24px; display: flex; align-items: flex-start; gap: 14px; border-left: 2px solid transparent; transition: all 0.2s; }
+.std-item:hover { border-left-color: var(--red); background: #1f1f1f; }
+.std-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.std-text { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 400; line-height: 1.5; }
+
+/* WARRANTY */
+.warranty-bar { background: var(--red); padding: 40px 0; }
+.warranty-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.warranty-text h3 { font-size: 22px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 4px; }
+.warranty-text p { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; }
+.btn-warranty { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--red); text-decoration: none; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 14px 30px; transition: all 0.25s; flex-shrink: 0; }
+.btn-warranty:hover { background: var(--black); color: white; }
+
+@media (max-width: 1024px) {
+  .product-hero { grid-template-columns: 1fr; gap: 48px; }
+  .product-gallery { position: static; }
+  .size-cards { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2,1fr); }
+  .std-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .product-hero, .models-inner, .sizes-inner, .features-inner, .std-features-inner, .warranty-inner, .back-inner, .breadcrumb-inner { padding: 0 20px; }
+  .product-hero { padding-top: 40px; padding-bottom: 60px; }
+  .features-grid, .std-grid { grid-template-columns: 1fr; }
+  .spec-highlights { grid-template-columns: 1fr; }
+  .product-ctas { flex-direction: column; }
+  .warranty-inner { flex-direction: column; }
+  .temp-strip { flex-direction: column; gap: 12px; }
+  .temp-divider { width: 60px; height: 1px; }
+}
+</style>
+</head>
+<body class="product-page">
+
+<div class="announce-bar">🔥 NSF Certified · Up to 785,000 BTU · 3 Sizes Available · Call: 626-448-7878</div>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-badge">AS</div>
+      <div class="logo-text-wrap">
+        <div class="brand">Allstrong</div>
+        <div class="tagline">Restaurant Equipment Inc.</div>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li>
+        <a href="#">Products <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="#">Cooking Equipment</a>
+          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="bbq-oven.html">BBQ Ovens</a>
+          <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
+          <a href="steamer-cabinets.html">Steamer Cabinets</a>
+          <a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a>
+          <a href="rice-noodle-range.html">Rice Noodle Range</a>
+          <a href="thawing-machine.html">Thawing Machine</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Furniture <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="tables-and-counters.html">Work Tables &amp; Counters</a>
+          <a href="#">Cabinets</a>
+          <a href="#">Shelves</a>
+          <a href="#">Equipment Stands</a>
+          <a href="#">Hoods</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Parts &amp; Accessories <span class="arrow"></span></a>
+        <div class="dropdown">
+          <a href="faucets.html">Faucets</a>
+          <a href="#">Range Accessories</a>
+          <a href="#">Drop-in / Hand Sink</a>
+          <a href="#">Insulation Chamber</a>
+        </div>
+      </li>
+      <li><a href="#">Custom Made</a></li>
+      <li><a href="#">Close Out</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:6264487878" class="nav-phone"><span>📞</span>626-448-7878</a>
+      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <div class="back-inner">
+    <a href="index.html" class="back-link">← Back to All Products</a>
+  </div>
+</div>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span>
+    <a href="#">Products</a><span class="sep">›</span>
+    <a href="#">Cooking Equipment</a><span class="sep">›</span>
+    <a href="#">Mongolian BBQ Grills</a><span class="sep">›</span>
+    <span class="current">Mongolian BBQ Range</span>
+  </div>
+</div>
+
+<!-- PRODUCT HERO -->
+<div class="product-hero">
+  <div class="product-gallery">
+    <div class="main-image-wrap">
+      <span class="img-badge">ARE-MBG Series</span>
+      <span class="nsf-badge">NSF ✓</span>
+      <img src="images/mongolian-bbq-range.png" alt="Allstrong Mongolian BBQ Range"/>
+    </div>
+    <div class="temp-strip">
+      <div>
+        <div class="temp-val">650°F</div>
+        <div class="temp-label">Max Surface Temp</div>
+      </div>
+      <div class="temp-divider"></div>
+      <div>
+        <div class="temp-val">¾"</div>
+        <div class="temp-label">Steel Plate Thickness</div>
+      </div>
+      <div class="temp-divider"></div>
+      <div class="temp-note">Anti-warp steel top — no deformation at extreme heat</div>
+    </div>
+  </div>
+
+  <div class="product-details">
+    <div class="product-eyebrow"><span>ARE-MBG Series · Mongolian Grill</span></div>
+    <h1 class="product-title">Mongolian<br/><em>BBQ Range</em></h1>
+    <p class="product-ref">SKU: ARE-MBG-36 / 48 / 60 &nbsp;·&nbsp; Mfr: Allstrong Restaurant Equipment</p>
+
+    <p class="product-summary">
+      Allstrong custom-designed Mongolian BBQ Grills — engineered for high-traffic, interactive dining environments. Combining a large-diameter, heavy-duty round steel cooktop with a high-output burner system, the unit heats up rapidly and maintains stable high temperatures for simultaneous multi-portion cooking. The anti-warp ¾" steel grill top endures surface temperatures up to 650°F without deformation. Its excellent heat distribution and superior thermal retention minimize temperature drop during continuous operation — enhancing cooking efficiency, customer engagement, and table turnover. NSF Certified.
+    </p>
+
+    <div class="spec-highlights">
+      <div class="spec-chip">
+        <div class="chip-label">Max BTU Output</div>
+        <div class="chip-val">785,000 BTU/Hr (60" model)</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Grill Top Thickness</div>
+        <div class="chip-val">¾" Anti-Warp Steel</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Max Surface Temp</div>
+        <div class="chip-val">650°F — No Deformation</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Available Sizes</div>
+        <div class="chip-val">36", 48", 60" Diameter</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Insulation</div>
+        <div class="chip-val">2" Interior Double-Wall</div>
+      </div>
+      <div class="spec-chip">
+        <div class="chip-label">Certification</div>
+        <div class="chip-val">NSF Certified</div>
+      </div>
+    </div>
+
+    <div class="product-ctas">
+      <a href="tel:6264487878" class="btn-quote">📞 &nbsp;Get a Quote</a>
+      <a href="https://allstrong.com/attachment?id_attachment=10" target="_blank" class="btn-download">↓ &nbsp;Download Spec Sheet</a>
+    </div>
+
+    <div class="trust-chips">
+      <span class="trust-chip">✅ NSF Certified</span>
+      <span class="trust-chip">🏭 Factory Direct</span>
+      <span class="trust-chip">🔥 Up to 785,000 BTU</span>
+      <span class="trust-chip">🥩 Meats · Veggies · Noodles</span>
+      <span class="trust-chip">📐 3 Sizes: 36"–60"</span>
+    </div>
+  </div>
+</div>
+
+<!-- MODEL COMPARISON TABLE -->
+<section class="models-section">
+  <div class="models-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Choose Your Size</span></div>
+        <h2 class="section-title" style="color:white;">Model <em>Specifications</em></h2>
+      </div>
+      <p style="color:rgba(255,255,255,0.35);font-size:12px;font-weight:300;max-width:260px;text-align:right;">All models use 1-¼" Gas Inlet O.D. Contact us for custom configurations.</p>
+    </div>
+    <div class="models-table-wrap">
+      <table class="models-table">
+        <thead>
+          <tr>
+            <th>Order No.</th>
+            <th>Total Dia. D (in)</th>
+            <th>Cooking Dia. D1 (in)</th>
+            <th>Gas Inlet O.D (in)</th>
+            <th>Ring Burners</th>
+            <th>BTU/Hr</th>
+            <th>G.W. (lb)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ARE-MBG-36</td>
+            <td>49"</td>
+            <td>36"</td>
+            <td>1-¼"</td>
+            <td>1</td>
+            <td class="btu-highlight">400,000</td>
+            <td>450</td>
+          </tr>
+          <tr>
+            <td>ARE-MBG-48</td>
+            <td>61"</td>
+            <td>48"</td>
+            <td>1-¼"</td>
+            <td>2</td>
+            <td class="btu-highlight">587,000</td>
+            <td>750</td>
+          </tr>
+          <tr>
+            <td>ARE-MBG-60</td>
+            <td>73"</td>
+            <td>60"</td>
+            <td>1-¼"</td>
+            <td>3</td>
+            <td class="btu-highlight">785,000</td>
+            <td>1,200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SIZE CARDS -->
+<section class="sizes-section">
+  <div class="sizes-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>3 Configurations</span></div>
+        <h2 class="section-title">Pick Your <em>Size</em></h2>
+      </div>
+    </div>
+    <div class="size-cards">
+      <div class="size-card reveal">
+        <div class="size-order">ARE-MBG-36</div>
+        <div class="size-diameter">36<span>"</span></div>
+        <div class="size-label">Cooking Diameter</div>
+        <div class="size-specs">
+          <div class="size-spec-row"><span class="sk">Total Dia.</span><span class="sv">49"</span></div>
+          <div class="size-spec-row"><span class="sk">BTU/Hr</span><span class="sv" style="color:var(--red);">400,000</span></div>
+          <div class="size-spec-row"><span class="sk">Ring Burners</span><span class="sv">1</span></div>
+          <div class="size-spec-row"><span class="sk">Weight</span><span class="sv">450 lb</span></div>
+          <div class="size-spec-row"><span class="sk">Gas Inlet</span><span class="sv">1-¼"</span></div>
+        </div>
+      </div>
+      <div class="size-card reveal reveal-delay-1" style="border-top-color:var(--red);">
+        <div class="size-order" style="color:var(--red);">ARE-MBG-48 ⭐ Popular</div>
+        <div class="size-diameter">48<span>"</span></div>
+        <div class="size-label">Cooking Diameter</div>
+        <div class="size-specs">
+          <div class="size-spec-row"><span class="sk">Total Dia.</span><span class="sv">61"</span></div>
+          <div class="size-spec-row"><span class="sk">BTU/Hr</span><span class="sv" style="color:var(--red);">587,000</span></div>
+          <div class="size-spec-row"><span class="sk">Ring Burners</span><span class="sv">2</span></div>
+          <div class="size-spec-row"><span class="sk">Weight</span><span class="sv">750 lb</span></div>
+          <div class="size-spec-row"><span class="sk">Gas Inlet</span><span class="sv">1-¼"</span></div>
+        </div>
+      </div>
+      <div class="size-card reveal reveal-delay-2">
+        <div class="size-order">ARE-MBG-60</div>
+        <div class="size-diameter">60<span>"</span></div>
+        <div class="size-label">Cooking Diameter</div>
+        <div class="size-specs">
+          <div class="size-spec-row"><span class="sk">Total Dia.</span><span class="sv">73"</span></div>
+          <div class="size-spec-row"><span class="sk">BTU/Hr</span><span class="sv" style="color:var(--red);">785,000</span></div>
+          <div class="size-spec-row"><span class="sk">Ring Burners</span><span class="sv">3</span></div>
+          <div class="size-spec-row"><span class="sk">Weight</span><span class="sv">1,200 lb</span></div>
+          <div class="size-spec-row"><span class="sk">Gas Inlet</span><span class="sv">1-¼"</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label"><span>Engineering Highlights</span></div>
+        <h2 class="section-title">Key <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">High-Output Burner System</div>
+        <div class="feature-desc">Powerful duck-tip jet burners deliver consistent, high heat across the entire cooking surface. Two rings spaced equally for excellent combustion distribution and fast heat-up times.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🌡️</div>
+        <div class="feature-title">Anti-Warp ¾" Steel Top</div>
+        <div class="feature-desc">The ¾"-thick steel grill plate endures surface temperatures up to 650°F without deformation. Superior heat transfer minimizes hot spots across the entire surface.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">304-Grade Stainless Steel</div>
+        <div class="feature-desc">Exterior and construction use 304-grade stainless steel with 2" double-wall insulation. Outstanding resistance to heat, corrosion, and grease for long-term durability.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🧹</div>
+        <div class="feature-title">Integrated Grease Management</div>
+        <div class="feature-desc">Built-in stainless steel scrap ring with 2½" flange and four galvanized grease drip pans at all quadrants. Easy daily cleaning and maintenance with minimal downtime.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">👥</div>
+        <div class="feature-title">Interactive Open-Cook Design</div>
+        <div class="feature-desc">Open cooking design enhances customer engagement and visual appeal — perfect for interactive dining concepts. Increases table turnover and creates a memorable dining experience.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🎛️</div>
+        <div class="feature-title">Manual Burner Control</div>
+        <div class="feature-desc">Each burner has its own safety pilot control with standard pilot system. Thermal control is visible through a pre-cut window for easy monitoring during service.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-title">Adjustable Bullet Legs</div>
+        <div class="feature-desc">Four adjustable and removable sanitary bullet-type legs for convenient leveling on uneven floors and easy relocation within the kitchen as needed.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">🥩</div>
+        <div class="feature-title">Versatile Multi-Ingredient</div>
+        <div class="feature-desc">Ideal for meats, vegetables, noodles and more. Designed for continuous multi-portion cooking in high-traffic environments — supports fast service speeds and high customer throughput.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD FEATURES LIST -->
+<section class="std-features-section">
+  <div class="std-features-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span>Included as Standard</span></div>
+        <h2 class="section-title" style="color:white;">Standard <em>Features</em></h2>
+      </div>
+    </div>
+    <div class="std-grid">
+      <div class="std-item reveal">
+        <div class="std-dot"></div>
+        <div class="std-text">Stainless steel stove top</div>
+      </div>
+      <div class="std-item reveal reveal-delay-1">
+        <div class="std-dot"></div>
+        <div class="std-text">Heavy duty ¾" steel grill top (anti-warp, up to 650°F)</div>
+      </div>
+      <div class="std-item reveal reveal-delay-2">
+        <div class="std-dot"></div>
+        <div class="std-text">Stainless steel scrap ring with 2½" flange</div>
+      </div>
+      <div class="std-item reveal reveal-delay-3">
+        <div class="std-dot"></div>
+        <div class="std-text">Stainless steel adjustable legs (4 bullet-type)</div>
+      </div>
+      <div class="std-item reveal">
+        <div class="std-dot"></div>
+        <div class="std-text">Four full-size galvanized grease drip pans (all quadrants)</div>
+      </div>
+      <div class="std-item reveal reveal-delay-1">
+        <div class="std-dot"></div>
+        <div class="std-text">Double-wall insulated construction body (2" interior insulation)</div>
+      </div>
+      <div class="std-item reveal reveal-delay-2">
+        <div class="std-dot"></div>
+        <div class="std-text">Manual controlled burner with individual safety pilot per burner</div>
+      </div>
+      <div class="std-item reveal reveal-delay-3">
+        <div class="std-dot"></div>
+        <div class="std-text">Standard pilot system with thermal control visible through pre-cut window</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WARRANTY -->
+<div class="warranty-bar">
+  <div class="warranty-inner">
+    <div class="warranty-text">
+      <h3>NSF Certified · Factory Direct</h3>
+      <p>All Allstrong Mongolian BBQ Ranges are NSF Certified and built at our South El Monte, CA factory. 3 sizes in stock — call to order.</p>
+    </div>
+    <a href="tel:6264487878" class="btn-warranty">📞 Call 626-448-7878</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🏆</div><div><div class="trust-title">NSF Certified</div><div class="trust-sub">All commercial equipment certified</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🏭</div><div><div class="trust-title">Factory Direct</div><div class="trust-sub">No middleman — direct pricing</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🔥</div><div><div class="trust-title">Up to 785,000 BTU</div><div class="trust-sub">3 ring burners on 60" model</div></div></div>
+    <div class="trust-item"><div class="trust-icon">📞</div><div><div class="trust-title">Expert Support</div><div class="trust-sub">Call 626-448-7878 anytime</div></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div><div class="trust-title">Nationwide Shipping</div><div class="trust-sub">Delivery available across the US</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
+      <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
+      <div class="footer-address"><p>📍 1839 Durfee Ave, South El Monte, CA 91733</p><p>📞 <a href="tel:6264487878">626-448-7878</a></p></div>
+    </div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li>
+<li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

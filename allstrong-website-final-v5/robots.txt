@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lebinhuang.github.io/allstrong-website/sitemap.xml
