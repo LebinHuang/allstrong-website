@@ -15,6 +15,90 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ============================================================
+   STICKY PINNED REVEAL — drive text/visual swap from scroll
+   progress through the .pinned-container.
+   ============================================================ */
+(function () {
+  const container = document.querySelector('.pinned-container');
+  if (!container) return;
+
+  const texts   = container.querySelectorAll('.ps-text');
+  const visuals = container.querySelectorAll('.ps-visual');
+  const rails   = container.querySelectorAll('.ps-rail-item');
+  const fill    = document.querySelector('.ps-fill');
+  const current = document.querySelector('.ps-current');
+  const totalEl = document.querySelector('.ps-total');
+  const total   = texts.length;
+  if (!total) return;
+  if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+  const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+  const navH = () => parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+  ) || 72;
+
+  let lastIdx = 0;
+  let ticking = false;
+
+  function setActive(idx) {
+    if (idx === lastIdx) return;
+    lastIdx = idx;
+    texts.forEach((t, i) => {
+      const on = i === idx;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    visuals.forEach((v, i) => v.classList.toggle('is-active', i === idx));
+    rails.forEach((r, i)   => r.classList.toggle('is-active', i === idx));
+    if (fill)    fill.style.transform = `scaleX(${(idx + 1) / total})`;
+    if (current) current.textContent  = String(idx + 1).padStart(2, '0');
+  }
+
+  function update() {
+    ticking = false;
+    if (!isDesktop()) return; // mobile uses stacked layout, no pinning
+    const rect = container.getBoundingClientRect();
+    const stageH = window.innerHeight - navH();
+    const totalScroll = rect.height - stageH;
+    if (totalScroll <= 0) return;
+    let scrolled = navH() - rect.top;
+    if (scrolled < 0) scrolled = 0;
+    if (scrolled > totalScroll) scrolled = totalScroll;
+    const progress = scrolled / totalScroll;
+    let idx = Math.floor(progress * total);
+    if (idx > total - 1) idx = total - 1;
+    if (idx < 0) idx = 0;
+    setActive(idx);
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  /* Click the side-rail dots to jump to a product */
+  rails.forEach(item => {
+    item.addEventListener('click', () => {
+      const jumpIdx = parseInt(item.dataset.jump, 10);
+      if (!isDesktop()) return;
+      const rect = container.getBoundingClientRect();
+      const stageH = window.innerHeight - navH();
+      const totalScroll = rect.height - stageH;
+      // Target scroll position so this index becomes active (aim for the middle of its slice)
+      const target = (jumpIdx + 0.5) / total * totalScroll;
+      const absoluteY = window.scrollY + rect.top - navH() + target;
+      window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ============================================================
    PRODUCT CARD ANIMATIONS
    1. Magnetic Tilt  — card tilts toward cursor in 3D
    2. Particle Explosion — fire sparks burst from cursor
