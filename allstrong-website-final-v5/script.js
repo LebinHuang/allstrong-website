@@ -15,6 +15,62 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ============================================================
+   CINEMATIC REEL — scene reveal + progress indicator
+   ============================================================ */
+(function () {
+  const scenes = document.querySelectorAll('.reel-scene');
+  if (!scenes.length) return;
+
+  const progressFill    = document.querySelector('.reb-fill');
+  const progressCurrent = document.querySelector('.reb-current');
+  const progressTotal   = document.querySelector('.reb-total');
+  const total = scenes.length;
+  if (progressTotal) progressTotal.textContent = String(total).padStart(2, '0');
+
+  let activeIdx = 1;
+
+  const reelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        const idx = parseInt(entry.target.dataset.scene, 10);
+        // Update progress to the most-recently-entered scene
+        if (idx >= activeIdx) {
+          activeIdx = idx;
+          if (progressFill)    progressFill.style.transform    = `scaleX(${idx / total})`;
+          if (progressCurrent) progressCurrent.textContent     = String(idx).padStart(2, '0');
+        }
+      }
+    });
+  }, { threshold: 0.35 });
+
+  scenes.forEach(s => reelObserver.observe(s));
+
+  // Also track which scene is closest to viewport center, so scrolling up/down updates the counter
+  const centerObserver = new IntersectionObserver((entries) => {
+    let best = null;
+    let bestRatio = 0;
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > bestRatio) {
+        bestRatio = entry.intersectionRatio;
+        best = entry.target;
+      }
+    });
+    if (best) {
+      const idx = parseInt(best.dataset.scene, 10);
+      activeIdx = idx;
+      if (progressFill)    progressFill.style.transform    = `scaleX(${idx / total})`;
+      if (progressCurrent) progressCurrent.textContent     = String(idx).padStart(2, '0');
+    }
+  }, {
+    threshold: [0.25, 0.5, 0.75],
+    rootMargin: '-20% 0px -20% 0px'
+  });
+
+  scenes.forEach(s => centerObserver.observe(s));
+})();
+
+/* ============================================================
    PRODUCT CARD ANIMATIONS
    1. Magnetic Tilt  — card tilts toward cursor in 3D
    2. Particle Explosion — fire sparks burst from cursor
