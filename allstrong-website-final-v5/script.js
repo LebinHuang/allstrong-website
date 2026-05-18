@@ -15,6 +15,117 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ============================================================
+   TOTEM SLIDER — Paffi-inspired
+   Vertical page scroll → horizontal track translation + 3D twist
+   ============================================================ */
+(function () {
+  const wrap = document.querySelector('.totem-wrap');
+  if (!wrap) return;
+  const stage = wrap.querySelector('.totem-stage');
+  const track = wrap.querySelector('.totem-track');
+  const totems = wrap.querySelectorAll('.totem');
+  const total = totems.length;
+  if (!total || !track) return;
+
+  const fill = document.querySelector('.ts-fill');
+  const currentEl = document.querySelector('.ts-current');
+  const totalEl = document.querySelector('.ts-total');
+  const prevBtn = document.querySelector('.ts-arrow-prev');
+  const nextBtn = document.querySelector('.ts-arrow-next');
+  if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+  const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+  const navH = () => parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+  ) || 72;
+
+  let ticking = false;
+  let lastIdx = -1;
+
+  function update() {
+    ticking = false;
+    if (!isDesktop()) return;
+    const rect = wrap.getBoundingClientRect();
+    const stageH = window.innerHeight - navH();
+    const totalScroll = rect.height - stageH;
+    if (totalScroll <= 0) return;
+    let scrolled = navH() - rect.top;
+    if (scrolled < 0) scrolled = 0;
+    if (scrolled > totalScroll) scrolled = totalScroll;
+    const progress = scrolled / totalScroll;
+
+    // Horizontal travel: align active totem with center.
+    // Active index is continuous (no floor) so motion is smooth between totems.
+    const totemW = totems[0].offsetWidth;
+    const gapPx = 36;
+    const stride = totemW + gapPx;
+    const continuous = progress * (total - 1); // 0 → total-1
+    const travelX = continuous * stride;
+    track.style.transform = `translate3d(${-travelX}px, 0, 0)`;
+
+    // Per-totem 3D twist based on its center distance from viewport center
+    const viewCx = window.innerWidth / 2;
+    let centerIdx = 0;
+    let centerBest = Infinity;
+    totems.forEach((t, i) => {
+      const tr = t.getBoundingClientRect();
+      const tCx = tr.left + tr.width / 2;
+      const dx = (tCx - viewCx) / window.innerWidth; // ~ -1 .. 1
+      const absDx = Math.abs(dx);
+      const rotY = -dx * 28;                 // up to ±~14deg either side
+      const scale = Math.max(0.78, 1 - absDx * 0.32);
+      const tz = -Math.min(260, absDx * 320);
+      const opacity = Math.max(0.35, 1 - absDx * 0.95);
+      t.style.transform = `translate3d(0, 0, ${tz}px) rotateY(${rotY}deg) scale(${scale})`;
+      t.style.opacity = String(opacity);
+      t.classList.toggle('is-center', absDx < 0.18);
+      if (absDx < centerBest) { centerBest = absDx; centerIdx = i; }
+    });
+
+    // Counter + progress fill based on the visually-centered totem
+    if (centerIdx !== lastIdx) {
+      lastIdx = centerIdx;
+      if (currentEl) currentEl.textContent = String(centerIdx + 1).padStart(2, '0');
+      if (fill) fill.style.transform = `scaleX(${(centerIdx + 1) / total})`;
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  /* Jump to a specific totem by scrolling the page */
+  function jumpTo(idx) {
+    if (!isDesktop()) return;
+    idx = Math.max(0, Math.min(total - 1, idx));
+    const rect = wrap.getBoundingClientRect();
+    const stageH = window.innerHeight - navH();
+    const totalScroll = rect.height - stageH;
+    if (totalScroll <= 0) return;
+    const targetProgress = idx / (total - 1);
+    const targetScrolled = targetProgress * totalScroll;
+    const absoluteY = window.scrollY + rect.top - navH() + targetScrolled;
+    window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => jumpTo(lastIdx - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => jumpTo(lastIdx + 1));
+  totems.forEach((t, i) => {
+    t.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // let CTAs handle their own clicks
+      jumpTo(i);
+    });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => requestAnimationFrame(update));
+  update();
+})();
+
+/* ============================================================
    PRODUCT CARD ANIMATIONS
    1. Magnetic Tilt  — card tilts toward cursor in 3D
    2. Particle Explosion — fire sparks burst from cursor

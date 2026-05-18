@@ -1050,3 +1050,291 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   }
   .spec-ticker .st-item { font-size: 11px; letter-spacing: 2px; }
 }
+
+
+/* ============================================================
+   TOTEM SLIDER — Paffi-inspired horizontal 3D totems
+   Vertical page scroll drives horizontal track translation +
+   per-totem 3D rotation based on distance from viewport center.
+   ============================================================ */
+.section-totem {
+  position: relative;
+  background: #050505;
+  color: #fff;
+  --tt-count: 8;
+  --tt-per-product: 100vh;
+}
+.totem-wrap {
+  position: relative;
+  height: calc(var(--tt-count) * var(--tt-per-product));
+}
+.totem-stage {
+  position: sticky;
+  top: var(--nav-height);
+  height: calc(100vh - var(--nav-height));
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(192,57,43,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #060708 0%, #050505 100%);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  perspective: 1800px;
+}
+
+/* Eyebrow bar */
+.ts-eyebrow-bar {
+  display: flex; align-items: center; gap: 32px;
+  padding: 16px 40px;
+  background: rgba(5,5,5,0.78);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  z-index: 10;
+}
+.ts-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+  flex-shrink: 0;
+}
+.ts-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); box-shadow: 0 0 12px var(--red);
+  animation: tsPulse 2.4s ease-in-out infinite;
+}
+@keyframes tsPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.75); }
+}
+.ts-progress {
+  flex: 1; height: 1px;
+  background: rgba(255,255,255,0.1);
+  position: relative; overflow: hidden;
+}
+.ts-fill {
+  position: absolute; top: 0; left: 0; bottom: 0; width: 100%;
+  background: linear-gradient(90deg, var(--red), #f4f6f8);
+  transform-origin: left center;
+  transform: scaleX(0.125);
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.ts-counter {
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
+  color: rgba(255,255,255,0.6);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+.ts-current {
+  background: linear-gradient(180deg, #fff 0%, #b8bdc2 60%, #6b7075 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+.ts-sep { margin: 0 4px; color: var(--red); }
+
+/* Viewport — holds the horizontal track */
+.totem-viewport {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Track — horizontally translated by JS */
+.totem-track {
+  display: flex;
+  gap: 36px;
+  padding-inline: 25vw;
+  align-items: center;
+  height: 100%;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Individual totem — tall vertical panel */
+.totem {
+  flex: 0 0 50vw;
+  max-width: 520px;
+  min-width: 340px;
+  height: 76vh;
+  max-height: 720px;
+  position: relative;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: opacity 0.45s ease;
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+.totem-img {
+  position: absolute; inset: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center 38%;
+  filter: brightness(0.95) contrast(1.05);
+  transition: transform 1.6s cubic-bezier(0.22,1,0.36,1);
+}
+.totem-img-cover { background-size: cover; }
+.totem-blueprint .totem-img {
+  background: linear-gradient(135deg, #0d0f12 0%, #050608 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20%;
+}
+.totem-blueprint .totem-img svg { width: 80%; height: auto; }
+.totem.is-center .totem-img { transform: scale(1.04); }
+
+.totem-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 50%, rgba(0,0,0,0.9) 100%);
+  pointer-events: none;
+}
+
+.totem-grain {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,0.014) 0px, rgba(255,255,255,0.014) 1px,
+      transparent 1px, transparent 4px);
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* Big number, top-left */
+.totem-num {
+  position: absolute; top: 22px; left: 26px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px; font-weight: 900;
+  letter-spacing: -2px; line-height: 0.9;
+  background: linear-gradient(180deg, #fff 0%, #b8bdc2 55%, #6b7075 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 3;
+}
+
+/* Vertical side label */
+.totem-side {
+  position: absolute; top: 50%; right: 18px;
+  transform: rotate(-90deg) translateX(50%);
+  transform-origin: right center;
+  white-space: nowrap;
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  z-index: 3;
+}
+
+/* Info block at bottom */
+.totem-info {
+  position: absolute; left: 26px; right: 26px; bottom: 26px;
+  z-index: 3;
+}
+.totem-series {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 8px;
+}
+.totem-title {
+  font-size: clamp(22px, 2vw, 32px);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -0.8px; text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.totem-title em {
+  font-style: italic;
+  background: linear-gradient(180deg, #fff 0%, #c0c4c8 50%, #6b7075 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.05em;
+}
+.totem-tag {
+  font-size: 11px; line-height: 1.6;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.totem-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: #fff;
+  padding: 11px 18px;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.25s ease, gap 0.25s ease;
+}
+.totem-cta:hover { background: var(--red-dark); gap: 12px; }
+
+/* Hairline glint on top edge of each totem */
+.totem::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  z-index: 2;
+}
+
+/* Bottom controls */
+.ts-controls {
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  padding: 18px 40px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(5,5,5,0.6);
+  backdrop-filter: blur(10px);
+}
+.ts-arrow {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.ts-arrow:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: translateY(-1px);
+}
+.ts-scroll-hint {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* Mobile fallback — disable pinning, fall back to horizontal scroll */
+@media (max-width: 900px) {
+  .section-totem { --tt-count: 1; }
+  .totem-wrap { height: auto; }
+  .totem-stage {
+    position: relative; top: auto;
+    height: auto;
+    grid-template-rows: auto auto auto;
+    perspective: none;
+  }
+  .totem-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 30px 0;
+  }
+  .totem-track {
+    padding-inline: 16px;
+    gap: 14px;
+    transform: none !important;
+    height: auto;
+  }
+  .totem {
+    flex: 0 0 80vw;
+    min-width: 80vw;
+    height: 60vh;
+    scroll-snap-align: center;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .totem-num { font-size: 40px; }
+  .ts-eyebrow-bar { padding: 12px 16px; gap: 14px; }
+  .ts-label { font-size: 10px; letter-spacing: 2px; }
+  .ts-controls { display: none; }
+}
