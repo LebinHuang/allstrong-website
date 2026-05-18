@@ -15,6 +15,91 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ============================================================
+   BENTO SHOWROOM — custom cursor + per-card perspective tilt
+   ============================================================ */
+(function () {
+  const section = document.querySelector('.section-bento');
+  const cursor  = document.querySelector('.bento-cursor');
+  const cards   = document.querySelectorAll('.bento-card');
+  if (!section || !cursor) return;
+
+  const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+
+  // --- Custom cursor follow loop (lerp for smoothness) ---
+  let tx = -100, ty = -100;
+  let cx = -100, cy = -100;
+  let targetScale = 0.4;
+  let curScale = 0.4;
+  let targetOpacity = 0;
+  let curOpacity = 0;
+  let rafId = null;
+
+  const HALF = 39; // half of cursor 78px
+
+  function loop() {
+    cx += (tx - cx) * 0.22;
+    cy += (ty - cy) * 0.22;
+    curScale += (targetScale - curScale) * 0.22;
+    curOpacity += (targetOpacity - curOpacity) * 0.22;
+    cursor.style.transform = `translate3d(${cx - HALF}px, ${cy - HALF}px, 0) scale(${curScale.toFixed(3)})`;
+    cursor.style.opacity = curOpacity.toFixed(3);
+    const settled =
+      Math.abs(tx - cx) < 0.2 &&
+      Math.abs(ty - cy) < 0.2 &&
+      Math.abs(targetScale - curScale) < 0.002 &&
+      Math.abs(targetOpacity - curOpacity) < 0.005;
+    if (settled && targetOpacity === 0) {
+      rafId = null;
+      return;
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+  function kick() { if (!rafId) rafId = requestAnimationFrame(loop); }
+
+  section.addEventListener('mouseenter', () => {
+    if (!isDesktop()) return;
+    section.classList.add('is-cursor-active');
+    targetOpacity = 1;
+    targetScale = 1;
+    kick();
+  });
+  section.addEventListener('mouseleave', () => {
+    section.classList.remove('is-cursor-active');
+    targetOpacity = 0;
+    targetScale = 0.4;
+    kick();
+  });
+  section.addEventListener('mousemove', (e) => {
+    if (!isDesktop()) return;
+    tx = e.clientX; ty = e.clientY;
+    if (cx === -100 && cy === -100) { cx = tx; cy = ty; }
+    kick();
+  });
+  section.addEventListener('mousedown', () => { targetScale = 0.82; kick(); });
+  section.addEventListener('mouseup',   () => { targetScale = 1;    kick(); });
+
+  // --- Per-card perspective tilt ---
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (!isDesktop()) return;
+      card.classList.add('is-tilting');
+    });
+    card.addEventListener('mousemove', (e) => {
+      if (!isDesktop()) return;
+      const rect = card.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width  / 2)) / rect.width;
+      const dy = (e.clientY - (rect.top  + rect.height / 2)) / rect.height;
+      card.style.transform =
+        `translateY(-6px) rotateX(${(-dy * 6).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('is-tilting');
+      card.style.transform = '';
+    });
+  });
+})();
+
+/* ============================================================
    PRODUCT CARD ANIMATIONS
    1. Magnetic Tilt  — card tilts toward cursor in 3D
    2. Particle Explosion — fire sparks burst from cursor
