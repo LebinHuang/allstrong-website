@@ -80,6 +80,12 @@ header {
 .dropdown a:hover { color: white; background: rgba(255,255,255,0.04); padding-left: 28px; }
 .dropdown a:hover::before { opacity: 1; }
 
+/* Active-page highlight (applied by includes.js) */
+.nav-menu > li > a.is-current { color: white; }
+.nav-menu > li > a.is-current::after { width: 60%; }
+.dropdown a.is-current { color: white; background: rgba(255,255,255,0.04); }
+.dropdown a.is-current::before { opacity: 1; }
+
 .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .nav-phone { font-size: 13px; font-weight: 700; color: white; text-decoration: none; }
 .nav-phone span { color: var(--red); margin-right: 4px; }
