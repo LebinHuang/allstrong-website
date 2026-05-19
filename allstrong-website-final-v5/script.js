@@ -15,59 +15,134 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ============================================================
-   CINEMATIC REEL — scene reveal + progress indicator
+   TOTEM SLIDER — Paffi-inspired
+   Vertical page scroll → horizontal track translation + 3D twist
    ============================================================ */
 (function () {
-  const scenes = document.querySelectorAll('.reel-scene');
-  if (!scenes.length) return;
+  const wrap = document.querySelector('.totem-wrap');
+  if (!wrap) return;
+  const stage = wrap.querySelector('.totem-stage');
+  const track = wrap.querySelector('.totem-track');
+  const totems = wrap.querySelectorAll('.totem');
+  const total = totems.length;
+  if (!total || !track) return;
 
-  const progressFill    = document.querySelector('.reb-fill');
-  const progressCurrent = document.querySelector('.reb-current');
-  const progressTotal   = document.querySelector('.reb-total');
-  const total = scenes.length;
-  if (progressTotal) progressTotal.textContent = String(total).padStart(2, '0');
+  const fill = document.querySelector('.ts-fill');
+  const currentEl = document.querySelector('.ts-current');
+  const totalEl = document.querySelector('.ts-total');
+  const prevBtn = document.querySelector('.ts-arrow-prev');
+  const nextBtn = document.querySelector('.ts-arrow-next');
+  if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
 
-  let activeIdx = 1;
+  const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+  const navH = () => parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+  ) || 72;
 
-  const reelObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        const idx = parseInt(entry.target.dataset.scene, 10);
-        // Update progress to the most-recently-entered scene
-        if (idx >= activeIdx) {
-          activeIdx = idx;
-          if (progressFill)    progressFill.style.transform    = `scaleX(${idx / total})`;
-          if (progressCurrent) progressCurrent.textContent     = String(idx).padStart(2, '0');
-        }
-      }
+  let ticking = false;
+  let lastIdx = -1;
+
+  // Center the track so totem 0 starts dead-center and each subsequent
+  // totem lands on center after one stride of horizontal travel.
+  function setPadding() {
+    if (!isDesktop()) { track.style.paddingInline = ''; return; }
+    const w = totems[0].offsetWidth;
+    const pad = Math.max(0, (window.innerWidth - w) / 2);
+    track.style.paddingInline = pad + 'px';
+  }
+
+  function update() {
+    ticking = false;
+    if (!isDesktop()) return;
+    const rect = wrap.getBoundingClientRect();
+    const stageH = window.innerHeight - navH();
+    const totalScroll = rect.height - stageH;
+    if (totalScroll <= 0) return;
+    let scrolled = navH() - rect.top;
+    if (scrolled < 0) scrolled = 0;
+    if (scrolled > totalScroll) scrolled = totalScroll;
+    const progress = scrolled / totalScroll;
+
+    // Horizontal travel: align active totem with center.
+    // Active index is continuous (no floor) so motion is smooth between totems.
+    const totemW = totems[0].offsetWidth;
+    const gapPx = 36;
+    const stride = totemW + gapPx;
+    const continuous = progress * (total - 1); // 0 → total-1
+    const travelX = continuous * stride;
+    track.style.transform = `translate3d(${-travelX}px, 0, 0)`;
+
+    // Per-totem 3D twist based on its center distance from viewport center
+    const viewCx = window.innerWidth / 2;
+    let centerIdx = 0;
+    let centerBest = Infinity;
+    totems.forEach((t, i) => {
+      const tr = t.getBoundingClientRect();
+      const tCx = tr.left + tr.width / 2;
+      const dx = (tCx - viewCx) / window.innerWidth; // ~ -1 .. 1
+      const absDx = Math.abs(dx);
+      const rotY = -dx * 28;                 // up to ±~14deg either side
+      const scale = Math.max(0.78, 1 - absDx * 0.32);
+      const tz = -Math.min(260, absDx * 320);
+      const opacity = Math.max(0.35, 1 - absDx * 0.95);
+      t.style.transform = `translate3d(0, 0, ${tz}px) rotateY(${rotY}deg) scale(${scale})`;
+      t.style.opacity = String(opacity);
+      const centerish = absDx < 0.2;
+      t.classList.toggle('is-center', centerish);
+      // Only the centered totem is interactive. Off-center totems are
+      // rotated forward in 3D and would otherwise occlude the centered
+      // totem's "Details" link; disabling their pointer events lets the
+      // click pass through to the centered card's CTA.
+      t.style.pointerEvents = centerish ? 'auto' : 'none';
+      if (absDx < centerBest) { centerBest = absDx; centerIdx = i; }
     });
-  }, { threshold: 0.35 });
 
-  scenes.forEach(s => reelObserver.observe(s));
-
-  // Also track which scene is closest to viewport center, so scrolling up/down updates the counter
-  const centerObserver = new IntersectionObserver((entries) => {
-    let best = null;
-    let bestRatio = 0;
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > bestRatio) {
-        bestRatio = entry.intersectionRatio;
-        best = entry.target;
-      }
-    });
-    if (best) {
-      const idx = parseInt(best.dataset.scene, 10);
-      activeIdx = idx;
-      if (progressFill)    progressFill.style.transform    = `scaleX(${idx / total})`;
-      if (progressCurrent) progressCurrent.textContent     = String(idx).padStart(2, '0');
+    // Counter + progress fill based on the visually-centered totem
+    if (centerIdx !== lastIdx) {
+      lastIdx = centerIdx;
+      if (currentEl) currentEl.textContent = String(centerIdx + 1).padStart(2, '0');
+      if (fill) fill.style.transform = `scaleX(${(centerIdx + 1) / total})`;
     }
-  }, {
-    threshold: [0.25, 0.5, 0.75],
-    rootMargin: '-20% 0px -20% 0px'
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  /* Jump to a specific totem by scrolling the page */
+  function jumpTo(idx) {
+    if (!isDesktop()) return;
+    idx = Math.max(0, Math.min(total - 1, idx));
+    const rect = wrap.getBoundingClientRect();
+    const stageH = window.innerHeight - navH();
+    const totalScroll = rect.height - stageH;
+    if (totalScroll <= 0) return;
+    const targetProgress = idx / (total - 1);
+    const targetScrolled = targetProgress * totalScroll;
+    const absoluteY = window.scrollY + rect.top - navH() + targetScrolled;
+    window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => jumpTo(lastIdx - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => jumpTo(lastIdx + 1));
+  totems.forEach((t, i) => {
+    t.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;        // let CTAs navigate
+      if (t.classList.contains('is-center')) return; // don't hijack the active card
+      jumpTo(i);
+    });
   });
 
-  scenes.forEach(s => centerObserver.observe(s));
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    setPadding();
+    requestAnimationFrame(update);
+  });
+  setPadding();
+  update();
 })();
 
 /* ============================================================
