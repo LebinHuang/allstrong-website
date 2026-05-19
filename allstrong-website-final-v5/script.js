@@ -87,14 +87,18 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
       const opacity = Math.max(0.35, 1 - absDx * 0.95);
       t.style.transform = `translate3d(0, 0, ${tz}px) rotateY(${rotY}deg) scale(${scale})`;
       t.style.opacity = String(opacity);
-      const centerish = absDx < 0.2;
-      t.classList.toggle('is-center', centerish);
-      // Only the centered totem is interactive. Off-center totems are
-      // rotated forward in 3D and would otherwise occlude the centered
-      // totem's "Details" link; disabling their pointer events lets the
-      // click pass through to the centered card's CTA.
-      t.style.pointerEvents = centerish ? 'auto' : 'none';
       if (absDx < centerBest) { centerBest = absDx; centerIdx = i; }
+    });
+
+    // The single totem closest to center is always the interactive one.
+    // Off-center totems rotate forward in 3D and would otherwise occlude
+    // the front card's "Details" link, so we disable their pointer events
+    // — clicks then pass through to the active card's CTA. (Using a fixed
+    // distance threshold left dead zones where nothing was clickable.)
+    totems.forEach((t, i) => {
+      const on = (i === centerIdx);
+      t.classList.toggle('is-center', on);
+      t.style.pointerEvents = on ? 'auto' : 'none';
     });
 
     // Counter + progress fill based on the visually-centered totem
@@ -128,11 +132,14 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
   if (prevBtn) prevBtn.addEventListener('click', () => jumpTo(lastIdx - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => jumpTo(lastIdx + 1));
-  totems.forEach((t, i) => {
+  // Only the centered totem receives pointer events, so a click anywhere on
+  // the front card navigates to its product page (the whole card is a link).
+  totems.forEach((t) => {
     t.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;        // let CTAs navigate
-      if (t.classList.contains('is-center')) return; // don't hijack the active card
-      jumpTo(i);
+      if (e.target.closest('a')) return; // CTA handles its own click
+      const cta = t.querySelector('.totem-cta');
+      const href = cta && cta.getAttribute('href');
+      if (href) window.location.href = href;
     });
   });
 
