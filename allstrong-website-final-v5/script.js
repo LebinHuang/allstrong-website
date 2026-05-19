@@ -42,6 +42,15 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   let ticking = false;
   let lastIdx = -1;
 
+  // Center the track so totem 0 starts dead-center and each subsequent
+  // totem lands on center after one stride of horizontal travel.
+  function setPadding() {
+    if (!isDesktop()) { track.style.paddingInline = ''; return; }
+    const w = totems[0].offsetWidth;
+    const pad = Math.max(0, (window.innerWidth - w) / 2);
+    track.style.paddingInline = pad + 'px';
+  }
+
   function update() {
     ticking = false;
     if (!isDesktop()) return;
@@ -78,7 +87,13 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
       const opacity = Math.max(0.35, 1 - absDx * 0.95);
       t.style.transform = `translate3d(0, 0, ${tz}px) rotateY(${rotY}deg) scale(${scale})`;
       t.style.opacity = String(opacity);
-      t.classList.toggle('is-center', absDx < 0.18);
+      const centerish = absDx < 0.2;
+      t.classList.toggle('is-center', centerish);
+      // Only the centered totem is interactive. Off-center totems are
+      // rotated forward in 3D and would otherwise occlude the centered
+      // totem's "Details" link; disabling their pointer events lets the
+      // click pass through to the centered card's CTA.
+      t.style.pointerEvents = centerish ? 'auto' : 'none';
       if (absDx < centerBest) { centerBest = absDx; centerIdx = i; }
     });
 
@@ -115,13 +130,18 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   if (nextBtn) nextBtn.addEventListener('click', () => jumpTo(lastIdx + 1));
   totems.forEach((t, i) => {
     t.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // let CTAs handle their own clicks
+      if (e.target.closest('a')) return;        // let CTAs navigate
+      if (t.classList.contains('is-center')) return; // don't hijack the active card
       jumpTo(i);
     });
   });
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => requestAnimationFrame(update));
+  window.addEventListener('resize', () => {
+    setPadding();
+    requestAnimationFrame(update);
+  });
+  setPadding();
   update();
 })();
 
