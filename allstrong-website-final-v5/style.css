@@ -1271,18 +1271,57 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   font-size: 11px; line-height: 1.6;
   color: rgba(255,255,255,0.55);
   margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   font-weight: 400;
 }
 .totem-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--red); color: #fff;
-  padding: 11px 18px;
-  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  display: inline-flex; align-items: center; gap: 9px;
+  color: #fff;
+  padding: 14px 24px;
+  font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
   text-transform: uppercase; text-decoration: none;
-  transition: background 0.25s ease, gap 0.25s ease;
-  position: relative; z-index: 5;
+  /* lifted, tactile red button with a metallic edge */
+  background: linear-gradient(180deg, #d8453a 0%, #c0392b 52%, #9c2a1e 100%);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 4px;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.5),
+    0 3px 8px rgba(192,57,43,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -2px 4px rgba(0,0,0,0.28);
+  position: relative; overflow: hidden;
+  z-index: 5;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, gap 0.25s ease;
 }
-.totem-cta:hover { background: var(--red-dark); gap: 12px; }
+/* sheen sweep across the button */
+.totem-cta::after {
+  content: ''; position: absolute; top: 0; left: -130%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.totem-cta:hover {
+  gap: 13px;
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 32px rgba(0,0,0,0.55),
+    0 5px 12px rgba(192,57,43,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -2px 4px rgba(0,0,0,0.3);
+}
+.totem-cta:hover::after { animation: none; left: 140%; }
+/* auto-sheen on the active (centered) card's button */
+.totem.is-center .totem-cta::after {
+  animation: totemCtaSheen 3.4s ease-in-out 0.6s infinite;
+}
+@keyframes totemCtaSheen {
+  0%   { left: -130%; }
+  22%  { left: 140%; }
+  100% { left: 140%; }
+}
 
 /* Hairline glint on top edge of each totem */
 .totem::before {
