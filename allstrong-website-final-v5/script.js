@@ -32,7 +32,10 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   const totalEl = document.querySelector('.ts-total');
   const prevBtn = document.querySelector('.ts-arrow-prev');
   const nextBtn = document.querySelector('.ts-arrow-next');
+  const viewport = wrap.querySelector('.totem-viewport');
   if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+  let currentHref = null; // product page for the currently centered totem
 
   const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
   const navH = () => parseFloat(
@@ -90,16 +93,12 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
       if (absDx < centerBest) { centerBest = absDx; centerIdx = i; }
     });
 
-    // The single totem closest to center is always the interactive one.
-    // Off-center totems rotate forward in 3D and would otherwise occlude
-    // the front card's "Details" link, so we disable their pointer events
-    // — clicks then pass through to the active card's CTA. (Using a fixed
-    // distance threshold left dead zones where nothing was clickable.)
-    totems.forEach((t, i) => {
-      const on = (i === centerIdx);
-      t.classList.toggle('is-center', on);
-      t.style.pointerEvents = on ? 'auto' : 'none';
-    });
+    // Mark the centered totem and remember its product link. On desktop the
+    // whole viewport is clickable (see below) and routes to this href — we
+    // don't rely on hit-testing the 3D-transformed cards, which is unreliable.
+    totems.forEach((t, i) => t.classList.toggle('is-center', i === centerIdx));
+    const centerCta = totems[centerIdx].querySelector('.totem-cta');
+    currentHref = centerCta ? centerCta.getAttribute('href') : null;
 
     // Counter + progress fill based on the visually-centered totem
     if (centerIdx !== lastIdx) {
@@ -132,11 +131,23 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
   if (prevBtn) prevBtn.addEventListener('click', () => jumpTo(lastIdx - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => jumpTo(lastIdx + 1));
-  // Only the centered totem receives pointer events, so a click anywhere on
-  // the front card navigates to its product page (the whole card is a link).
+
+  // Desktop: clicking anywhere in the slider viewport opens the centered
+  // product. We route via our own centerIdx tracking instead of relying on
+  // the browser to hit-test 3D-transformed, overlapping cards.
+  if (viewport) {
+    viewport.addEventListener('click', (e) => {
+      if (!isDesktop()) return;
+      if (e.target.closest('a')) return; // a real link handles itself
+      if (currentHref) window.location.href = currentHref;
+    });
+  }
+
+  // Mobile: native horizontal carousel — each card opens its own product.
   totems.forEach((t) => {
     t.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // CTA handles its own click
+      if (isDesktop()) return; // desktop handled by the viewport listener
+      if (e.target.closest('a')) return;
       const cta = t.querySelector('.totem-cta');
       const href = cta && cta.getAttribute('href');
       if (href) window.location.href = href;
