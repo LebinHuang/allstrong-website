@@ -1146,6 +1146,14 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   justify-content: flex-start;
 }
 
+/* Desktop: the whole viewport is the click target (routes to the centered
+   product via JS). Cards themselves are non-interactive so overlapping
+   3D-transformed neighbors never swallow the click. */
+@media (min-width: 901px) {
+  .totem-viewport { cursor: pointer; }
+  .totem { pointer-events: none; }
+}
+
 /* Track — horizontally translated by JS; padding-inline set by JS to
    center the active totem exactly (accounts for max-width cap). */
 .totem-track {
