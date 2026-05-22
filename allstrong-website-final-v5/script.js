@@ -387,3 +387,34 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   });
 
 })();
+
+/* ============================================================
+   STATIC EMAIL FORM — Contact / Custom Quote
+   Forms tagged with [data-mailto] open the visitor's mail client
+   with all named fields pre-composed. Works on GitHub Pages (no
+   backend). Each field's label comes from data-label or its name.
+   ============================================================ */
+(function () {
+  var forms = document.querySelectorAll('form[data-mailto]');
+  if (!forms.length) return;
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var to = form.getAttribute('data-mailto');
+      var subject = form.getAttribute('data-subject') || 'Allstrong website enquiry';
+      var lines = [];
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (!el.name || el.type === 'submit') return;
+        var label = el.getAttribute('data-label') || el.name;
+        var val = (el.value || '').trim();
+        lines.push(label + ': ' + (val || '—'));
+      });
+      var href = 'mailto:' + to +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      window.location.href = href;
+      var note = form.querySelector('.form-sent');
+      if (note) note.style.display = 'block';
+    });
+  });
+})();
