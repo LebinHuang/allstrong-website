@@ -48,13 +48,13 @@
           <a href="#">Insulation Chamber</a>
         </div>
       </li>
-      <li><a href="#">Custom Made</a></li>
+      <li><a href="custom-quote.html">Custom Made</a></li>
       <li><a href="#">Close Out</a></li>
-      <li><a href="#">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
     </ul>
     <div class="nav-actions">
       <a href="tel:6264487878" class="nav-phone"><span>\u{1F4DE}</span>626-448-7878</a>
-      <a href="tel:6264487878" class="btn-contact">Contact Us</a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
     </div>
   </div>
 </header>`;
@@ -68,7 +68,7 @@
     </div>
     <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li><li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
     <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
-    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="#">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="custom-quote.html">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2024 <span>Allstrong Restaurant Equipment Inc.</span> All Rights Reserved.</p>
