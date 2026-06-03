@@ -19,7 +19,7 @@
       <li>
         <a href="#">Products <span class="arrow"></span></a>
         <div class="dropdown">
-          <a href="#">Cooking Equipment</a>
+          <a href="cooking-equipment.html">Cooking Equipment</a>
           <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
           <a href="bbq-oven.html">BBQ Ovens</a>
           <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
