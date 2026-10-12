@@ -1570,3 +1570,15 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   .form-row, .form-row-3 { grid-template-columns: 1fr; }
   .biz-stats { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* Catalog photography: seamless white fields and uncropped equipment. */
+.main-image-wrap,.cat-img-wrap,.cat-img-inner.light-bg {background:#fff!important;border-color:#eee!important;}
+.cat-img-inner {background-size:contain!important;background-color:#fff!important;}
+.totem:not(.totem-blueprint) .totem-img {background-color:#fff!important;background-size:contain!important;filter:none;background-position:center;}
+.new-product {max-width:1280px;margin:auto;padding:130px 32px 80px;}
+.new-product-layout {display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;margin-top:36px;}
+.new-product-layout img {width:100%;height:620px;object-fit:contain;background:white;}
+.new-product h1 {font-size:clamp(30px,4vw,54px);line-height:1.1;margin:16px 0 24px;}
+.new-product p {line-height:1.8;}.new-product-eyebrow {color:#c0392b;text-transform:uppercase;font-size:12px;letter-spacing:2px;}
+.new-product-cta {display:inline-block;margin-top:24px;padding:16px 24px;background:#c0392b;color:#fff;text-decoration:none;}
+@media(max-width:768px){.new-product-layout{grid-template-columns:1fr;gap:24px}.new-product-layout img{height:400px}.new-product{padding:110px 20px 50px}}
