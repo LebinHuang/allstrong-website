@@ -5,6 +5,7 @@
   const product = (name, image, href, description, label = name) => ({name,image,href,description,label});
   const series = [
     {name:'Wok', word:'WOK', products:[
+      product('California-Style Wok Range','california-style-wok-range.webp','california-style-wok-range.html','Explore the California-style configuration in the Allstrong Wok Range series.','California-Style'),
       product('Chinese Wok Range','wok-range.webp','chinese-wok-range.html','Commercial wok cooking, built around the demands of your kitchen.','Chinese Wok'),
       product('Multi-Function Wok Range','multi-function-wok-range.webp','multi-function-wok-range.html','Explore the wok station at the heart of the Multi-Function range.','Multi-Function')
     ]},
