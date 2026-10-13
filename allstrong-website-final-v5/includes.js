@@ -20,6 +20,7 @@
         <a href="#">Products <span class="arrow"></span></a>
         <div class="dropdown">
           <a href="cooking-equipment.html">Cooking Equipment</a>
+          <a href="california-style-wok-range.html">California-Style Wok Range</a>
           <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
           <a href="bbq-oven.html">BBQ Ovens</a>
           <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
@@ -66,7 +67,7 @@
       <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
       <div class="footer-address"><p>\u{1F4CD} 1839 Durfee Ave, South El Monte, CA 91733</p><p>\u{1F4DE} <a href="tel:6264487878">626-448-7878</a></p></div>
     </div>
-    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li><li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="california-style-wok-range.html">California-Style Wok Range</a></li><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="noodle-pasta-broiler.html">Noodle / Pasta Broiler</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li><li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
     <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
     <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="custom-quote.html">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
   </div>
