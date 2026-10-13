@@ -21,7 +21,7 @@
         <div class="dropdown">
           <a href="cooking-equipment.html">Cooking Equipment</a>
           <a href="california-style-wok-range.html">California-Style Wok Range</a>
-          <a href="chinese-wok-range.html">Chinese Wok Ranges</a>
+          <a href="chinese-wok-range.html">Wok Ranges</a>
           <a href="bbq-oven.html">BBQ Ovens</a>
           <a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a>
           <a href="steamer-cabinets.html">Steamer Cabinets</a>
@@ -54,7 +54,7 @@
       <li><a href="about.html">About Us</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="tel:6264487878" class="nav-phone"><span>\u{1F4DE}</span>626-448-7878</a>
+      <a href="tel:6264487878" class="nav-phone"><span><svg width="16" height="16" style="vertical-align:middle;margin-right:6px;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3H3v4c0 8 6 14 14 14h4v-6l-5-1-2 3a14 14 0 0 1-7-7l3-2-1-5Z"/></svg></span>626-448-7878</a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
     </div>
   </div>
@@ -65,9 +65,9 @@
     <div>
       <a href="index.html" class="logo-wrap"><div class="logo-badge">AS</div><div class="logo-text-wrap"><div class="brand">Allstrong</div><div class="tagline">Restaurant Equipment Inc.</div></div></a>
       <p class="footer-desc">Professional commercial kitchen equipment manufacturer. NSF-certified wok ranges, custom fabrication, and cooking equipment trusted by restaurants nationwide.</p>
-      <div class="footer-address"><p>\u{1F4CD} 1839 Durfee Ave, South El Monte, CA 91733</p><p>\u{1F4DE} <a href="tel:6264487878">626-448-7878</a></p></div>
+      <div class="footer-address"><p><svg width="16" height="16" style="vertical-align:middle;margin-right:6px;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> 1839 Durfee Ave, South El Monte, CA 91733</p><p><svg width="16" height="16" style="vertical-align:middle;margin-right:6px;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3H3v4c0 8 6 14 14 14h4v-6l-5-1-2 3a14 14 0 0 1-7-7l3-2-1-5Z"/></svg> <a href="tel:6264487878">626-448-7878</a></p></div>
     </div>
-    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="california-style-wok-range.html">California-Style Wok Range</a></li><li><a href="chinese-wok-range.html">Chinese Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="ramen-cooker.html">Ramen Cooker</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li><li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
+    <div><div class="footer-col-title">Products</div><ul class="footer-links"><li><a href="california-style-wok-range.html">California-Style Wok Range</a></li><li><a href="chinese-wok-range.html">Wok Ranges</a></li><li><a href="bbq-oven.html">BBQ Ovens</a></li><li><a href="mongolian-bbq-range.html">Mongolian BBQ Grills</a></li><li><a href="steamer-cabinets.html">Steamer Cabinets</a></li><li><a href="ramen-cooker.html">Ramen Cooker</a></li><li><a href="rice-noodle-range.html">Rice Noodle Range</a></li><li><a href="thawing-machine.html">Thawing Machine</a></li></ul></div>
     <div><div class="footer-col-title">Furniture &amp; Parts</div><ul class="footer-links"><li><a href="tables-and-counters.html">Work Tables &amp; Counters</a></li><li><a href="#">Cabinets</a></li><li><a href="#">Shelves</a></li><li><a href="#">Hoods</a></li><li><a href="faucets.html">Faucets</a></li><li><a href="#">Range Accessories</a></li></ul></div>
     <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="#">Company Video</a></li><li><a href="custom-quote.html">Custom Made</a></li><li><a href="#">Close Out Deals</a></li><li><a href="#">Blog</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
   </div>
@@ -122,4 +122,5 @@
     injectFooter();
   }
 })();
+
 
