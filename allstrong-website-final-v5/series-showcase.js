@@ -17,10 +17,9 @@
       product('Dumpling Range — 7 Holes','dumpling-range-7.webp','dumpling-range-7.html','Explore the seven-hole dumpling range configuration.','7-Hole Dumpling')
     ]},
     {name:'Ramen', word:'RAMEN', products:[
-      product('Ramen Range','ramen-range.webp','ramen-range.html','A purpose-built station for your ramen service.','Ramen')
-    ]},
-    {name:'Pasta', word:'PASTA', products:[
-      product('Pasta Cooker','noodle-pasta-broiler.webp','noodle-pasta-broiler.html','Explore a dedicated pasta cooking configuration.','Pasta')
+      product('Ramen Cooker — 9 Holes','ramen-cooker-9.webp','ramen-cooker.html?holes=9','24-inch configuration with 130,000 BTU/hr output.','9 Holes'),
+      product('Ramen Cooker — 6 Holes','ramen-cooker-6.webp','ramen-cooker.html?holes=6','16-inch or 18-inch configurations with 130,000 BTU/hr output.','6 Holes'),
+      product('Ramen Cooker — 12 Holes','ramen-cooker-12.webp','ramen-cooker.html?holes=12','32-inch configuration with 140,000 BTU/hr output.','12 Holes')
     ]},
     {name:'Rice Noodle', word:'RICE NOODLE', products:[
       product('Rice Noodle Range','rice-noodle-range.webp','rice-noodle-range.html','A steaming station designed for rice noodle preparation.','Rice Noodle')
@@ -148,3 +147,4 @@
   deck.addEventListener('pointerleave',()=>{items[selected].style.setProperty('--ss-x','0px');items[selected].style.setProperty('--ss-y','0px');});
   show(0,false);
 })();
+
