@@ -8,14 +8,20 @@
       product('Chinese Wok Range','wok-range.webp','chinese-wok-range.html','Commercial wok cooking, built around the demands of your kitchen.','Chinese Wok'),
       product('Multi-Function Wok Range','multi-function-wok-range.webp','multi-function-wok-range.html','Explore the wok station at the heart of the Multi-Function range.','Multi-Function')
     ]},
-    {name:'Steam', word:'STEAM', products:[
-      product('Steamer Cabinet','steamer-cabinets.webp','steamer-cabinets.html','A dedicated steaming configuration for a commercial kitchen.','Steamer Cabinet'),
+    {name:'Steamer', word:'STEAM', products:[
+      product('Steamer Cabinet','steamer-cabinets.webp','steamer-cabinets.html','A dedicated steaming configuration for a commercial kitchen.','Steamer Cabinet')
+    ]},
+    {name:'Dumpling', word:'DUMPLING', products:[
       product('Dumpling Range — 4 Holes','dumpling-range-4.webp','dumpling-range-4.html','Explore the four-hole dumpling range configuration.','4-Hole Dumpling'),
       product('Dumpling Range — 7 Holes','dumpling-range-7.webp','dumpling-range-7.html','Explore the seven-hole dumpling range configuration.','7-Hole Dumpling')
     ]},
-    {name:'Noodle', word:'NOODLE', products:[
-      product('Ramen Range','ramen-range.webp','ramen-range.html','A purpose-built station for your ramen service.','Ramen'),
-      product('Pasta Cooker','noodle-pasta-broiler.webp','noodle-pasta-broiler.html','Explore a dedicated pasta cooking configuration.','Pasta'),
+    {name:'Ramen', word:'RAMEN', products:[
+      product('Ramen Range','ramen-range.webp','ramen-range.html','A purpose-built station for your ramen service.','Ramen')
+    ]},
+    {name:'Pasta', word:'PASTA', products:[
+      product('Pasta Cooker','noodle-pasta-broiler.webp','noodle-pasta-broiler.html','Explore a dedicated pasta cooking configuration.','Pasta')
+    ]},
+    {name:'Rice Noodle', word:'RICE NOODLE', products:[
       product('Rice Noodle Range','rice-noodle-range.webp','rice-noodle-range.html','A steaming station designed for rice noodle preparation.','Rice Noodle')
     ]},
     {name:'Roast', word:'ROAST', products:[
@@ -26,9 +32,11 @@
     {name:'Grill', word:'GRILL', products:[
       product('Mongolian BBQ Range','mongolian-bbq-range.webp','mongolian-bbq-range.html','A circular cooking surface for Mongolian barbecue service.')
     ]},
-    {name:'Cook', word:'COOK', products:[
-      product('Automatic Rotary Cooker','auto-cooker.webp','auto-cooker.html','Explore Allstrong automatic rotary cooking equipment.','Rotary Cooker'),
-      product('Kettle Cooker','kettle-cooker.webp','kettle-cooker.html','Explore the kettle cooking configuration.','Kettle Cooker')
+    {name:'Auto Cooker', word:'AUTO COOKER', products:[
+      product('Auto Cooker','auto-cooker.webp','auto-cooker.html','Explore Allstrong automatic cooking equipment.')
+    ]},
+    {name:'Soup Cooker', word:'SOUP COOKER', products:[
+      product('Soup Cooker','kettle-cooker.webp','kettle-cooker.html','Explore Allstrong soup cooking equipment.')
     ]},
     {name:'Cool', word:'COOL', products:[
       product('Air Cooler','air-cooler.webp','air-cooler.html','Explore the Allstrong air cooler cabinet.')
@@ -43,6 +51,9 @@
   const variants = root.querySelector('.ss-variants');
   const nav = root.querySelector('.ss-nav');
   const status = root.querySelector('.ss-live');
+  root.style.setProperty('--ss-series-count', series.length);
+  root.querySelector('.ss-total').textContent = String(series.length).padStart(2,'0');
+  root.querySelector('.ss-product-count').textContent = `${series.reduce((count,s)=>count+s.products.length,0)} Products`;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let selected = 0, variant = 0, pointer = null, suppressClick = false;
   const items = series.map((s,i) => {
@@ -81,7 +92,7 @@
       tabs[i].setAttribute('aria-pressed',i===selected?'true':'false');
     });
     if(word.textContent!==s.word) {
-      word.textContent=s.word; word.classList.remove('is-arriving'); void word.offsetWidth; word.classList.add('is-arriving');
+      word.textContent=s.word; word.dataset.long=String(s.word.length>7); word.classList.remove('is-arriving'); void word.offsetWidth; word.classList.add('is-arriving');
     }
     details.querySelector('.ss-category').textContent=`${s.name} Series / Allstrong`;
     details.querySelector('.ss-name').textContent=p.name;
