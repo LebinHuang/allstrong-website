@@ -646,7 +646,7 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   -webkit-mask: var(--mask);
   mask: var(--mask);
 
-  animation: hcSweep 8s ease-in-out infinite;
+  animation: hcSweep 5s ease-in-out infinite;
   opacity: 0;
 }
 
@@ -660,7 +660,7 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
 }
 
 .hc-brand-sweep-delayed {
-  animation-delay: 2.5s;
+  animation-delay: 1.8s;
 }
 
 /* Cleaner approach: since CSS mix-blend-mode alone isn't enough,
@@ -688,7 +688,7 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: hcTextSweep 8s ease-in-out infinite;
+  animation: hcTextSweep 5s ease-in-out infinite;
   pointer-events: none;
   z-index: 2;
   white-space: nowrap;
@@ -703,7 +703,7 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
 
 /* Second row with delayed animation */
 .hc-row-2 .hc-text-mask::before {
-  animation-delay: 3s;
+  animation-delay: 1.8s;
 }
 
 /* Center tagline — fades in quietly over the reveal */
