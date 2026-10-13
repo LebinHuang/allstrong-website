@@ -3,12 +3,13 @@ const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
 const countEl = document.getElementById("slideCount");
 function goToSlide(n) {
+  if (!slides.length || dots.length !== slides.length || !countEl) return;
   slides[current].classList.remove("active"); dots[current].classList.remove("active");
   current = (n + slides.length) % slides.length;
   slides[current].classList.add("active"); dots[current].classList.add("active");
   countEl.textContent = String(current+1).padStart(2,"0") + " / " + String(slides.length).padStart(2,"0");
 }
-setInterval(() => goToSlide(current + 1), 5500);
+if (slides.length > 1) setInterval(() => goToSlide(current + 1), 5500);
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
 }, { threshold: 0.1 });
