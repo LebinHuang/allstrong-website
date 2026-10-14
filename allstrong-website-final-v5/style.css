@@ -1595,3 +1595,23 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   header .nav-phone { display: none; }
   header .btn-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 12px; font-size: 9px; letter-spacing: .6px; white-space: nowrap; }
 }
+
+/* Fit both animated brand lines inside the mobile hero. */
+@media (max-width: 768px) {
+  .hc-row-1 { margin-bottom: 12px; }
+  .hc-row-2 { margin-top: 8px; }
+  .hc-brand-text { font-size: 14vw; letter-spacing: -.03em; }
+  .hc-text-mask-small .hc-brand-text { font-size: 5.5vw; letter-spacing: -.02em; }
+  /* Paint the sweep on the same glyphs to keep size and registration mark aligned. */
+  .hc-text-mask::before, .hc-brand-sweep { display: none; }
+  .hc-brand-text {
+    background: linear-gradient(95deg, transparent 30%, rgba(220,220,220,.3) 42%, rgba(255,255,255,.95) 50%, rgba(220,220,220,.3) 58%, transparent 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hcTextSweep 5s ease-in-out infinite;
+  }
+  .hc-row-2 .hc-brand-text { animation-delay: 1.8s; }
+  .hc-brand-text sup { -webkit-text-fill-color: rgba(255,255,255,.15); }
+}
