@@ -1582,3 +1582,16 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
 .new-product p {line-height:1.8;}.new-product-eyebrow {color:#c0392b;text-transform:uppercase;font-size:12px;letter-spacing:2px;}
 .new-product-cta {display:inline-block;margin-top:24px;padding:16px 24px;background:#c0392b;color:#fff;text-decoration:none;}
 @media(max-width:768px){.new-product-layout{grid-template-columns:1fr;gap:24px}.new-product-layout img{height:400px}.new-product{padding:110px 20px 50px}}
+
+/* Keep the shared mobile header within the viewport. */
+@media (max-width: 768px) {
+  header .nav-inner { min-width: 0; padding: 0 16px; gap: 12px; }
+  header .logo-wrap { flex: 1 1 0; min-width: 0; gap: 8px; }
+  header .logo-badge { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
+  header .logo-text-wrap { min-width: 0; }
+  header .logo-text-wrap .brand { font-size: 15px; letter-spacing: 1px; }
+  header .logo-text-wrap .tagline { font-size: 8px; letter-spacing: .5px; line-height: 1.4; overflow-wrap: anywhere; }
+  header .nav-actions { gap: 0; }
+  header .nav-phone { display: none; }
+  header .btn-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 12px; font-size: 9px; letter-spacing: .6px; white-space: nowrap; }
+}
