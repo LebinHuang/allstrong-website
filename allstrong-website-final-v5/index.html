@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <link rel="stylesheet" href="series-showcase.css"/>
+<link rel="stylesheet" href="our-story.css"/>
 </head>
 <body>
 
@@ -213,22 +214,35 @@
   </div>
 </section>
 
-<div class="about-banner">
-  <div class="about-left">
-    <div class="section-label"><span>Our Story</span></div>
-    <h2 style="font-size:clamp(34px,4vw,54px);font-weight:900;color:white;text-transform:uppercase;letter-spacing:-1px;line-height:1;margin-top:14px;">Engineered For<br/><span style="color:var(--red);">Professional</span><br/>Kitchens</h2>
-    <p class="about-desc">Allstrong Restaurant Equipment has been manufacturing NSF-certified commercial kitchen equipment for decades. Located in South El Monte, CA, our factory produces high-performance wok ranges, custom stainless steel fabrications, and commercial cooking equipment trusted by restaurants nationwide.</p>
-    <a href="about.html" class="btn-white">Visit Factory →</a>
-    <div class="about-stats">
-      <div class="stat"><div class="stat-num">40<span>+</span></div><div class="stat-label">Years Experience</div></div>
-      <div class="stat"><div class="stat-num">500<span>+</span></div><div class="stat-label">Products Made</div></div>
-      <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">NSF Certified</div></div>
+<!-- OUR STORY — equipment film with a concise brand introduction -->
+<section class="story" id="our-story" aria-labelledby="story-title">
+  <div class="story-media" aria-hidden="true">
+    <video class="story-video" muted loop playsinline preload="none" poster="images/our-story-poster.jpg" data-src="videos/allstrong-wok-story.mp4" tabindex="-1"></video>
+  </div>
+  <div class="story-shade" aria-hidden="true"></div>
+  <div class="story-inner">
+    <div class="story-top">
+      <p class="story-eyebrow">Our Story</p>
+      <p class="story-origin">South El Monte, California</p>
+    </div>
+    <div class="story-copy">
+      <h2 class="story-title" id="story-title"><span>Built around</span> <span>the way</span> <span>you <em>cook.</em></span></h2>
+      <p class="story-description">Since 1982, Allstrong has built commercial cooking equipment in South El Monte, California. From wok ranges to custom stainless steel fabrication, we build around your kitchen, your menu, and the way you work.</p>
+      <a class="story-link" href="about.html">Get to know Allstrong <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="story-bottom">
+      <dl class="story-facts">
+        <div><dt>Since 1982</dt><dd>Decades of manufacturing experience</dd></div>
+        <div><dt>Factory direct</dt><dd>From our California factory to your kitchen</dd></div>
+        <div><dt>Built to fit</dt><dd>Custom configurations for your cooking line</dd></div>
+      </dl>
+      <button class="story-toggle is-paused" type="button" aria-label="Play background video" title="Play background video" hidden>
+        <svg class="story-pause" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zM12 3h3v14h-3z"/></svg>
+        <svg class="story-play" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+      </button>
     </div>
   </div>
-  <div class="about-right">
-    <div class="about-right-bg" style="background-image:url('images/about-bg.jpg');"></div>
-  </div>
-</div>
+</section>
 
 <section class="section-parts">
   <div class="container">
@@ -279,5 +293,6 @@
 
 <script src="script.js"></script>
 <script src="series-showcase.js"></script>
+<script src="our-story.js"></script>
 </body>
 </html>
