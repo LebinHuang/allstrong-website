@@ -87,26 +87,7 @@
 .story-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px; }
 .story-facts dt { font-size: 15px; font-weight: 600; letter-spacing: -.2px; margin-bottom: 8px; }
 .story-facts dd { font-size: 10px; line-height: 1.6; color: #b9c1c6; }
-.story-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(255,255,255,.45);
-  border-radius: 50%;
-  background: rgba(8,12,15,.35);
-  color: #fff;
-  cursor: pointer;
-}
-.story-toggle[hidden] { display: none; }
-.story-toggle:hover { background: rgba(255,255,255,.13); border-color: #fff; }
-.story-toggle svg { width: 16px; height: 16px; }
-.story-toggle .story-play { display: none; }
-.story-toggle.is-paused .story-play { display: block; }
-.story-toggle.is-paused .story-pause { display: none; }
-.story a:focus-visible, .story button:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
+.story a:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
 @media (min-width: 1700px) {
   .story-copy { padding-top: 95px; padding-bottom: 85px; }
 }
