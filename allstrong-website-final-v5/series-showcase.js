@@ -13,8 +13,8 @@
       product('Steamer Cabinet','steamer-cabinets.webp','steamer-cabinets.html','A dedicated steaming configuration for a commercial kitchen.','Steamer Cabinet')
     ]},
     {name:'Dumpling', word:'DUMPLING', products:[
-      product('Dumpling Range — 4 Holes','dumpling-range-4.webp','dumpling-range-4.html','Explore the four-hole dumpling range configuration.','4-Hole Dumpling'),
-      product('Dumpling Range — 7 Holes','dumpling-range-7.webp','dumpling-range-7.html','Explore the seven-hole dumpling range configuration.','7-Hole Dumpling')
+      product('Dumpling Range — 4 Holes','dumpling-range-4.webp','dumpling-range.html?holes=4&size=32','Explore the four-hole dumpling range configuration.','4-Hole Dumpling'),
+      product('Dumpling Range — 7 Holes','dumpling-range-7.webp','dumpling-range.html?holes=7&size=36#models','Explore the seven-hole dumpling range configuration.','7-Hole Dumpling')
     ]},
     {name:'Ramen', word:'RAMEN', products:[
       product('Ramen Cooker — 9 Holes','ramen-cooker-9.webp','ramen-cooker.html?holes=9','24-inch configuration with 130,000 BTU/hr output.','9 Holes'),

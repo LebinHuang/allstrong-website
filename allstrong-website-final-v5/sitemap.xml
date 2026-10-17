@@ -73,5 +73,10 @@
   <url>
     <loc>https://lebinhuang.github.io/allstrong-website/california-style-wok-range.html</loc>
   </url>
+  <url>
+    <loc>https://lebinhuang.github.io/allstrong-website/dumpling-range.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
 
