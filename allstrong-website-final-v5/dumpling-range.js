@@ -8,8 +8,9 @@
     { holes: 7, width: 36, output: 140000 }
   ];
   const initial = new URLSearchParams(location.search);
-  const initialHoles = Number(initial.get('holes')) || 4;
-  const initialWidth = Number(initial.get('size')) || (initialHoles === 4 ? 32 : 0);
+  const requestedWidth = Number(initial.get('size'));
+  const initialHoles = Number(initial.get('holes')) || configurations.find(model => model.width === requestedWidth)?.holes || 4;
+  const initialWidth = requestedWidth || (initialHoles === 4 ? 32 : 0);
   let selected = configurations.find(model => model.holes === initialHoles && model.width === initialWidth)
     || configurations.find(model => model.holes === initialHoles) || configurations[3];
   function updateURL() {
@@ -21,8 +22,21 @@
   const format = value => value.toLocaleString('en-US');
   const widthPicker = document.getElementById('width-picker');
   const dialog = document.getElementById('quote-dialog');
+  const modelImage = document.getElementById('model-image');
+  const modelCaption = document.getElementById('model-image-caption');
+  const modelImages = {
+    2: { src: 'assets/dumpling/model-2.webp', width: 1122, height: 1402, alt: 'Allstrong two-hole dumpling range with two diagonal steaming openings', caption: '2-hole range shown. Reference image for the 16″ and 18″ configurations.' },
+    4: { src: 'assets/dumpling/front.webp', width: 1800, height: 1005, alt: 'Allstrong four-hole dumpling range, complete frontal view', caption: '4-hole range shown. Reference image for the 24″ and 32″ configurations.' },
+    7: { src: 'assets/dumpling/model-7.webp', width: 1122, height: 1402, alt: 'Allstrong seven-hole dumpling range with seven circular steaming openings', caption: '7-hole range shown. 36″ configuration.' }
+  };
   const selectionText = () => `${selected.holes}-hole range · ${selected.width}″ wide · ${format(selected.output)} BTU/hr`;
   function update() {
+    const photo = modelImages[selected.holes];
+    if (modelImage.getAttribute('src') !== photo.src) modelImage.setAttribute('src', photo.src);
+    modelImage.alt = photo.alt;
+    modelImage.width = photo.width;
+    modelImage.height = photo.height;
+    modelCaption.textContent = photo.caption;
     document.querySelectorAll('[data-holes]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.holes) === selected.holes)));
     widthPicker.replaceChildren(...configurations.filter(model => model.holes === selected.holes).map(model => {
       const button = document.createElement('button');
