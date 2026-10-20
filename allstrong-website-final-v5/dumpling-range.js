@@ -25,9 +25,9 @@
   const modelImage = document.getElementById('model-image');
   const modelCaption = document.getElementById('model-image-caption');
   const modelImages = {
-    2: { src: 'assets/dumpling/model-2.webp', width: 1122, height: 1402, alt: 'Allstrong two-hole dumpling range with two diagonal steaming openings', caption: '2-hole range shown. Reference image for the 16″ and 18″ configurations.' },
+    2: { src: 'assets/dumpling/model-2-studio.webp', width: 1672, height: 941, alt: 'Allstrong two-hole dumpling range with two diagonal steaming openings', caption: '2-hole range shown. Reference image for the 16″ and 18″ configurations.' },
     4: { src: 'assets/dumpling/front.webp', width: 1800, height: 1005, alt: 'Allstrong four-hole dumpling range, complete frontal view', caption: '4-hole range shown. Reference image for the 24″ and 32″ configurations.' },
-    7: { src: 'assets/dumpling/model-7.webp', width: 1122, height: 1402, alt: 'Allstrong seven-hole dumpling range with seven circular steaming openings', caption: '7-hole range shown. 36″ configuration.' }
+    7: { src: 'assets/dumpling/model-7-studio.webp', width: 1672, height: 941, alt: 'Allstrong seven-hole dumpling range with seven circular steaming openings', caption: '7-hole range shown. 36″ configuration.' }
   };
   const selectionText = () => `${selected.holes}-hole range · ${selected.width}″ wide · ${format(selected.output)} BTU/hr`;
   function update() {

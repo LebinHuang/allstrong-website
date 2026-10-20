@@ -1,0 +1,19 @@
+Allstrong dumpling model studio background edits
+Method: built-in imagegen; two separate image edits.
+
+Inputs for each edit:
+Image 1: model-2.webp or model-7.webp (the edit target).
+Image 2: assets/dumpling/front.webp (the four-hole studio reference).
+
+Shared prompt:
+Use case: compositing. Asset type: matching product photo for an existing commercial appliance website.
+Image 1 is the EDIT TARGET and the authoritative source for the appliance. Image 2 is ONLY the studio-background, ground-plane, lighting and composition reference; its four-hole appliance must NOT be copied.
+Replace the white background of Image 1 with the SAME dark charcoal studio as Image 2: nearly black charcoal wall, subtle darker vignette at sides, faint wall/floor junction about two thirds down, matte dark gray floor with very restrained texture, soft realistic contact shadows under each foot, restrained floor reflection. Match Image 2's neutral silver-gray brushed steel color and broad soft studio illumination. Make it look photographed in the same studio session.
+Make a landscape 16:9 image with the entire target appliance centered, top near 5% of canvas and lowest feet near 96%, matching the relative product height of Image 2. Add dark studio space to the left and right. Keep the target's ORIGINAL three-quarter camera angle and exact proportions; do NOT rotate to the frontal reference angle. Do not stretch the product.
+Preserve Image 1's exact cabinet construction, physical outline, hole count and placement, faucet, pair of backsplash handles, top exhaust, front ledge, control knob, ON / -OFF / BURNER markings, Allstrong wordmark, slots, panel seams, screws, legs, braces and feet. Keep all text unchanged and legible. Only replace the background and naturally integrate lighting/contact shadows. No steam, food, pots, added parts, graphics or watermark. No white fringe or bright white floor.
+
+Additional instruction for the two-hole edit:
+The target is the narrow TWO-HOLE appliance: keep exactly TWO dark openings in their original diagonal layout, rear opening at viewer right and front opening at viewer left.
+
+Additional instruction for the seven-hole edit:
+The target is the SEVEN-HOLE appliance: preserve exactly SEVEN circular openings in the existing round cooking insert, with their exact arrangement.
