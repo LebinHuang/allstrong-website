@@ -1596,7 +1596,8 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
   header .btn-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 12px; font-size: 9px; letter-spacing: .6px; white-space: nowrap; }
 }
 
-/* Use the same brand sweep on desktop and mobile, painted on the actual glyphs. */
+/* Mobile-only hero adjustments; desktop retains its original reveal. */
+@media (max-width: 768px) {
 .hc-text-mask::before, .hc-brand-sweep { display: none; }
 .hc-brand-text {
   background: linear-gradient(95deg, transparent 30%, rgba(220,220,220,.3) 42%, rgba(255,255,255,.95) 50%, rgba(220,220,220,.3) 58%, transparent 70%);
@@ -1608,7 +1609,6 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.05); padd
 }
 .hc-row-2 .hc-brand-text { animation-delay: 1.8s; }
 .hc-brand-text sup { -webkit-text-fill-color: rgba(255,255,255,.15); }
-@media (max-width: 768px) {
   .hero-cinematic {
     min-height: calc(100svh - 135px);
     padding: 56px 16px 88px;
