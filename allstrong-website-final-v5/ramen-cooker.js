@@ -1,33 +1,10 @@
-(() => {
-  'use strict';
-  const models = {6:{widths:[16,18],btu:'130,000',label:'06 / SIX HOLES',word:'six'},9:{widths:[24],btu:'130,000',label:'09 / NINE HOLES',word:'nine'},12:{widths:[32],btu:'140,000',label:'12 / TWELVE HOLES',word:'twelve'}};
-  let holes = 9, sixWidth = 16;
-  function render() {
-    const model = models[holes], width = holes === 6 ? sixWidth : model.widths[0];
-    const src = `images/ramen-cooker-${holes}.webp`;
-    const img = document.getElementById('rc-image');
-    img.src = src; img.alt = `Allstrong ${model.word}-hole commercial ramen cooker with stainless-steel exhaust`;
-    document.getElementById('rc-enlarge').href = src;
-    document.getElementById('rc-image-label').textContent = model.label;
-    document.getElementById('rc-selected').textContent = `${holes}-hole configuration`;
-    document.getElementById('rc-output').textContent = model.btu;
-    document.getElementById('rc-size').textContent = `${width} × 39 × 60″`;
-    document.getElementById('rc-six-width').hidden = holes !== 6;
-    document.querySelectorAll('[data-holes]').forEach(button => button.setAttribute('aria-pressed',String(Number(button.dataset.holes) === holes)));
-    document.querySelectorAll('[data-size]').forEach(button => button.setAttribute('aria-pressed',String(Number(button.dataset.size) === sixWidth)));
-    document.querySelectorAll('[data-model]').forEach(row => row.classList.toggle('is-selected',row.dataset.model === `${holes}-${width}`));
-  }
-  function updateURL() {
-    const url = new URL(location.href);
-    url.searchParams.set('holes',String(holes));
-    if (holes === 6) url.searchParams.set('size',String(sixWidth)); else url.searchParams.delete('size');
-    history.replaceState(null,'',url);
-  }
-  document.querySelectorAll('[data-holes]').forEach(button => button.addEventListener('click',() => { holes=Number(button.dataset.holes); render(); updateURL(); }));
-  document.querySelectorAll('[data-size]').forEach(button => button.addEventListener('click',() => { sixWidth=Number(button.dataset.size); render(); updateURL(); }));
-  const params = new URLSearchParams(location.search);
-  const requested = Number(params.get('holes'));
-  if (Object.hasOwn(models,requested)) holes=requested;
-  if (params.get('size') === '18') sixWidth=18;
-  render();
+(()=>{'use strict';
+const models={6:{widths:[16,18],output:130000,layout:'2 × 3'},9:{widths:[24],output:130000,layout:'3 × 3'},12:{widths:[32],output:140000,layout:'4 × 3'}};
+const params=new URLSearchParams(location.search);let holes=[6,9,12].includes(Number(params.get('holes')))?Number(params.get('holes')):9;let sixWidth=params.get('width')==='18'?18:16;
+function render(){const m=models[holes],width=holes===6?sixWidth:m.widths[0];document.querySelectorAll('[data-holes]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.holes)===holes)));document.querySelectorAll('[data-width]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.width)===sixWidth)));document.getElementById('width-picker').hidden=holes!==6;document.getElementById('model-name').textContent=`${holes}-HOLE / ${width}″ CONFIGURATION`;document.getElementById('model-output').textContent=m.output.toLocaleString('en-US');document.getElementById('model-dimensions').textContent=`${width}″ × 39″ × 60″`;document.getElementById('model-layout').textContent=`${holes} / ${m.layout} layout`;document.getElementById('configuration-image-note').textContent=holes===9?'Specifications shown for the cooker in this video.':`${holes}-hole specifications selected. The video shows the 9-hole cooker.`;document.querySelectorAll('[data-row]').forEach(r=>r.classList.toggle('is-selected',r.dataset.row===`${holes}-${width}`));const subject=`Ramen Cooker inquiry — ${holes} holes / ${width} inch`;const body=['Hello Allstrong,','','I would like a quote for a Ramen Cooker.',`Configuration: ${holes} holes / ${width} inch width`,`Overall size: ${width} W × 39 D × 60 H inches`,`Burner output: ${m.output.toLocaleString('en-US')} BTU/hr`,'','Fuel type:','Quantity:','Project notes:',''].join('\n');document.querySelectorAll('[data-quote]').forEach(a=>a.href=`mailto:info@allstrong.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`)}
+function updateURL(){const u=new URL(location.href);u.searchParams.set('holes',holes);if(holes===6)u.searchParams.set('width',sixWidth);else u.searchParams.delete('width');history.replaceState(null,'',u)}document.querySelectorAll('[data-holes]').forEach(b=>b.addEventListener('click',()=>{holes=Number(b.dataset.holes);render();updateURL()}));document.querySelectorAll('[data-width]').forEach(b=>b.addEventListener('click',()=>{sixWidth=Number(b.dataset.width);render();updateURL()}));render();
+const menu=document.querySelector('.mobile-menu'),nav=document.getElementById('mobile-nav');function closeMenu(){nav.hidden=true;menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation')}menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';nav.hidden=!open;menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');const states=new Map();document.querySelectorAll('video').forEach(video=>{const button=document.querySelector(`[data-video="${video.id}"]`),state={video,button,visible:false,manualPause:false};states.set(video,state);function label(){button.innerHTML=`${video.paused?'Play':'Pause'} ${video.id==='hero-film'?'film':'video'} <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${video.paused?'M8 5l11 7-11 7Z':'M9 5v14M15 5v14'}"/></svg>`;button.setAttribute('aria-label',`${video.paused?'Play':'Pause'} ${video.id==='hero-film'?'product film':'boiling water video'}`)}button.addEventListener('click',()=>{state.manualPause=!video.paused;if(video.paused)video.play().catch(label);else video.pause()});['play','pause','error','loadeddata'].forEach(e=>video.addEventListener(e,label));if(reduced.matches){video.autoplay=false;video.pause()}label()});
+const observer=new IntersectionObserver(entries=>{for(const e of entries){const state=states.get(e.target);state.visible=e.isIntersecting;if(e.isIntersecting&&!state.manualPause&&!reduced.matches&&!document.hidden)state.video.play().catch(()=>{});else state.video.pause()}},{threshold:.15});states.forEach(s=>observer.observe(s.video));document.addEventListener('visibilitychange',()=>states.forEach(s=>{if(document.hidden)s.video.pause();else if(s.visible&&!s.manualPause&&!reduced.matches)s.video.play().catch(()=>{})}));reduced.addEventListener('change',()=>states.forEach(s=>{if(reduced.matches)s.video.pause();else if(s.visible&&!s.manualPause)s.video.play().catch(()=>{})}));
+const dialog=document.getElementById('image-dialog'),image=document.getElementById('enlarged-image');document.querySelectorAll('[data-enlarge]').forEach(b=>b.addEventListener('click',()=>{const original=b.querySelector('img');image.src=b.dataset.enlarge;image.alt=original.alt;document.getElementById('enlarged-caption').textContent=original.alt;dialog.showModal()}));dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()});
 })();
