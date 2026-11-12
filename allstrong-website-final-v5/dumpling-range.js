@@ -74,32 +74,59 @@
   menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; mobileNav.hidden = !open; menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); });
   mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const intro = document.getElementById('hero-intro');
-  const loop = document.getElementById('hero-loop');
-  let introFinished = false;
-  const safePlay = video => { const attempt = video.play(); if (attempt && attempt.catch) attempt.catch(() => {}); };
-  const finishIntro = () => { introFinished = true; intro.classList.add('finished'); if (!reduced.matches) safePlay(loop); };
-  intro.addEventListener('ended', finishIntro);
-  intro.addEventListener('error', finishIntro);
-  if (reduced.matches) intro.classList.add('finished');
-  else { const attempt = intro.play(); if (attempt && attempt.catch) attempt.catch(finishIntro); }
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const intro = document.getElementById('hero-intro'), loop = document.getElementById('hero-loop');
+  const stage = document.querySelector('.hero-stage');
+  let introFinished = false, inView = false;
+  const allowed = () => inView && !reduced.matches;
+  const loopPlayer = AllstrongVideo.create(loop, {
+    shouldPlay: () => allowed() && introFinished,
+    onPlaying: () => intro.classList.add('finished')
+  });
+  const finishIntro = () => { introFinished = true; introPlayer.pause(); syncHero(); };
+  const introPlayer = AllstrongVideo.create(intro, {
+    shouldPlay: () => allowed() && !introFinished,
+    onEnded: finishIntro, onError: finishIntro, onBlocked: finishIntro
+  });
+  function syncHero() {
+    if (!allowed()) { introPlayer.pause(); loopPlayer.pause(); return; }
+    if (introFinished) loopPlayer.play(); else introPlayer.play();
+  }
+  intro.addEventListener('timeupdate', () => { if (allowed() && intro.duration - intro.currentTime <= 3) loopPlayer.load(); });
+  const ambient = [...document.querySelectorAll('[data-ambient]')].map(video => {
+    const state = { video, visible: false };
+    state.player = AllstrongVideo.create(video, { shouldPlay: () => state.visible && !reduced.matches });
+    return state;
+  });
+  function syncMotion() {
+    if (reduced.matches) { intro.classList.add('finished'); document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')); }
+    else if (!introFinished) intro.classList.remove('finished');
+    syncHero();
+    ambient.forEach(state => { if (state.visible && !reduced.matches) state.player.play(); else state.player.pause(); });
+  }
   if ('IntersectionObserver' in window) {
-    const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-      const video = entry.target;
-      if (!entry.isIntersecting || reduced.matches) { video.pause(); return; }
-      if (video === intro && introFinished) return;
-      if (video === loop && !introFinished) return;
-      safePlay(video);
+    const preload = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting || reduced.matches) return;
+      if (entry.target === stage) (introFinished ? loopPlayer : introPlayer).load();
+      else ambient.find(state => state.video === entry.target).player.load();
+      preload.unobserve(entry.target);
+    }), { rootMargin: '350px 0px' });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.target === stage) { inView = entry.isIntersecting; syncHero(); }
+      else {
+        const state = ambient.find(item => item.video === entry.target);
+        state.visible = entry.isIntersecting;
+        if (state.visible && !reduced.matches) state.player.play(); else state.player.pause();
+      }
     }), { threshold: .15 });
-    document.querySelectorAll('video').forEach(video => videoObserver.observe(video));
+    [stage, ...ambient.map(state => state.video)].forEach(target => { preload.observe(target); observer.observe(target); });
     if (!reduced.matches) {
       document.documentElement.classList.add('js-motion');
-      const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }), { threshold: .08 });
-      document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+      const reveal = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); reveal.unobserve(entry.target); } }), { threshold: .08 });
+      document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
     }
-  } else if (!reduced.matches) document.querySelectorAll('[data-ambient]').forEach(safePlay);
-  reduced.addEventListener('change', () => { if (reduced.matches) document.querySelectorAll('video').forEach(video => video.pause()); else document.querySelectorAll('[data-ambient]').forEach(safePlay); });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) document.querySelectorAll('video').forEach(video => video.pause()); else if (!reduced.matches) { if (introFinished) safePlay(loop); else safePlay(intro); } });
+  } else { inView = true; ambient.forEach(state => state.visible = true); }
+  reduced.addEventListener('change', syncMotion);
+  syncMotion();
   update();
 })();

@@ -28,22 +28,37 @@
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const film=document.getElementById('cabinet-film'),loop=document.getElementById('cabinet-steam-loop'),stage=document.querySelector('.cabinet-hero__film');
  let finished=false,inView=false;
- const active=()=>finished?loop:film;
- const pause=()=>{film.pause();loop.pause();};
- const play=()=>{if(reduced.matches||document.hidden||!inView)return;const target=active();const p=target.play();if(p&&p.catch)p.catch(()=>{});};
- const showLoop=()=>{if(finished&&!reduced.matches)stage.classList.add('is-looping');};
- loop.addEventListener('playing',showLoop);
- const finish=()=>{finished=true;film.pause();play();if(loop.readyState>=2&&!loop.paused)showLoop();};
- film.addEventListener('ended',finish);film.addEventListener('error',finish);
- loop.addEventListener('error',()=>{stage.classList.remove('is-looping');});
- const applyMotion=()=>{stage.classList.toggle('is-reduced',reduced.matches);if(reduced.matches){pause();film.removeAttribute('autoplay');document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}else play();};
+ const allowed=()=>!reduced.matches&&inView;
+ const loopPlayer=AllstrongVideo.create(loop,{
+  shouldPlay:()=>allowed()&&finished,
+  onPlaying:()=>{if(finished)stage.classList.add('is-looping');},
+  onError:()=>stage.classList.remove('is-looping')
+ });
+ const finish=()=>{finished=true;filmPlayer.pause();sync();};
+ const filmPlayer=AllstrongVideo.create(film,{
+  shouldPlay:()=>allowed()&&!finished,
+  onEnded:finish,onError:finish,onBlocked:finish
+ });
+ function sync(){
+  if(!allowed()){filmPlayer.pause();loopPlayer.pause();return;}
+  if(finished)loopPlayer.play();else filmPlayer.play();
+ }
+ // Warm the short steam loop near the end, after the main film has started.
+ film.addEventListener('timeupdate',()=>{if(allowed()&&film.duration-film.currentTime<=3)loopPlayer.load();});
+ const applyMotion=()=>{
+  stage.classList.toggle('is-reduced',reduced.matches);
+  if(reduced.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+  sync();
+ };
  applyMotion();
  if('IntersectionObserver'in window){
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{inView=entry.isIntersecting;if(inView)play();else pause();}),{threshold:.15});observer.observe(stage);
+  const preload=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting&&!reduced.matches){(finished?loopPlayer:filmPlayer).load();preload.unobserve(stage);}
+  }),{rootMargin:'350px 0px'});preload.observe(stage);
+  const observer=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;sync();},{threshold:.15});observer.observe(stage);
   if(!reduced.matches){document.documentElement.classList.add('js-motion');const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');reveal.unobserve(entry.target);}}),{threshold:.06});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));}
- }else{inView=true;play();}
- if(reduced.addEventListener)reduced.addEventListener('change',applyMotion);else reduced.addListener(applyMotion);
- document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();else play();});
+ }else{inView=true;sync();}
+ reduced.addEventListener('change',applyMotion);
  const states=[
   ['closed-steam','Three cabinet doors closed, with steam leaving the rooftop exhausts'],
   ['bottom-open','Lower chamber open and releasing steam; upper two doors closed'],

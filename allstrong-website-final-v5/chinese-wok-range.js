@@ -54,44 +54,52 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const videos=[...document.querySelectorAll('video')];
-  const visible=new Set();
-  const completed=new WeakSet();
-  async function play(video,manual=false){
-    if(document.hidden||(!manual&&(reduced.matches||completed.has(video)||(video.hasAttribute('data-play-once')&&video.ended))))return;
-    try{await video.play();}catch{const b=video.parentElement.querySelector('.video-retry');if(b)b.hidden=false;}
+  const visible=new Set(),completed=new WeakSet(),manual=new WeakSet(),players=new Map();
+  function play(video,user=false){
+    if(user)manual.add(video);
+    if(!visible.has(video)||completed.has(video)||(!manual.has(video)&&reduced.matches))return;
+    players.get(video).play();
   }
   videos.forEach(video=>{
     const retry=video.parentElement.querySelector('.video-retry');
     const once=video.hasAttribute('data-play-once');
-    video.muted=true;
-    if(once){
-      video.loop=false;
-      video.addEventListener('ended',()=>{
+    if(once)video.loop=false;
+    const player=AllstrongVideo.create(video,{
+      shouldPlay:()=>visible.has(video)&&!completed.has(video)&&(!reduced.matches||manual.has(video)),
+      onPlaying:()=>{if(retry)retry.hidden=true;},
+      onBlocked:()=>{if(retry)retry.hidden=false;},
+      onError:()=>{if(retry)retry.hidden=false;},
+      onEnded:()=>{
+        if(!once)return;
         completed.add(video);
-        if(retry){
-          retry.innerHTML='Replay 360° <span aria-hidden="true">↻</span>';
-          retry.hidden=false;
-        }
-      });
-    }
-    video.addEventListener('playing',()=>{if(retry)retry.hidden=true;});
-    if(retry)retry.addEventListener('click',()=>{
-      if(once&&(completed.has(video)||video.ended)){
-        video.currentTime=0;
-        completed.delete(video);
+        if(retry){retry.innerHTML='Replay 360° <span aria-hidden="true">↻</span>';retry.hidden=false;}
       }
+    });
+    players.set(video,player);
+    if(retry)retry.addEventListener('click',()=>{
+      if(once&&(completed.has(video)||video.ended)){player.reset();completed.delete(video);}
       play(video,true);
     });
-    if(reduced.matches){video.removeAttribute('autoplay');video.pause();if(retry)retry.hidden=false;}
+    if(reduced.matches&&retry)retry.hidden=false;
   });
   if('IntersectionObserver' in window){
+    const preload=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting&&!reduced.matches){players.get(entry.target).load();preload.unobserve(entry.target);}
+    }),{rootMargin:'350px 0px'});
     const observer=new IntersectionObserver(entries=>entries.forEach(({target:video,isIntersecting})=>{
-      if(isIntersecting){visible.add(video);play(video);}else{visible.delete(video);video.pause();}
-    }),{threshold:.15});videos.forEach(video=>observer.observe(video));
+      if(isIntersecting){visible.add(video);play(video);}else{visible.delete(video);players.get(video).pause();}
+    }),{threshold:.15});
+    videos.forEach(video=>{preload.observe(video);observer.observe(video);});
     if(!reduced.matches){document.documentElement.classList.add('js-motion');const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');reveal.unobserve(e.target);}}),{threshold:.06});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));}
-  }else{videos.forEach(v=>{visible.add(v);play(v);});}
-  function applyMotion(){videos.forEach(video=>{if(reduced.matches){video.removeAttribute('autoplay');video.pause();const b=video.parentElement.querySelector('.video-retry');if(b)b.hidden=false;}else if(visible.has(video))play(video);});if(reduced.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
-  if(reduced.addEventListener)reduced.addEventListener('change',applyMotion);else reduced.addListener(applyMotion);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)videos.forEach(v=>v.pause());else visible.forEach(v=>play(v));});
+  }else{videos.forEach(video=>{visible.add(video);play(video);});}
+  function applyMotion(){
+    videos.forEach(video=>{
+      if(reduced.matches){manual.delete(video);players.get(video).pause();const b=video.parentElement.querySelector('.video-retry');if(b)b.hidden=false;}
+      else if(visible.has(video))play(video);
+    });
+    if(reduced.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+  }
+  reduced.addEventListener('change',applyMotion);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)visible.forEach(video=>play(video));});
   update();
 })();
