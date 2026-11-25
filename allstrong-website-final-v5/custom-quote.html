@@ -1,54 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Request a Custom Quote | Allstrong Restaurant Equipment Inc.</title>
-<meta name="description" content="Request a custom fabrication quote from Allstrong — specify product type, dimensions, burner count, material grade, and quantity. Factory-direct custom commercial kitchen equipment."/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore Allstrong custom stainless steel workstations for commercial kitchens.">
+<title>Custom Made | Allstrong Restaurant Equipment Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="custom-made.css">
+<script defer src="custom-made.js"></script>
 </head>
-<body class="biz-page">
-
+<body>
 <div class="announce-bar">🔧 Custom Built · Tell Us Your Specs · Factory Direct · Call: 626-448-7878</div>
-
 <div id="site-header"></div>
 <script src="includes.js"></script>
-
-<!-- HERO -->
-<section class="page-hero">
-  <div class="container">
-    <div class="section-label"><span>Allstrong Custom Fabrication</span></div>
-    <h1>Custom Made.<br/><em>Built</em> Right.</h1>
-    <p>Tell us your specs — burner count, hole sizes, dimensions, material grade — and we'll fabricate it to your exact needs. From a single unit to a full kitchen build.</p>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="biz-section alt">
-  <div class="container">
-    <div class="section-label"><span>How It Works</span></div>
-    <h2 class="section-title" style="margin:14px 0 0;">From spec to <em>shipped</em></h2>
-    <div class="value-grid">
-      <div class="value-card"><div class="vc-icon">01</div><h4>Send Your Specs</h4><p>Fill out the form with as much detail as you have — rough dimensions are fine to start.</p></div>
-      <div class="value-card"><div class="vc-icon">02</div><h4>We Quote &amp; Confirm</h4><p>Our team reviews, suggests options, and sends a firm quote with lead time.</p></div>
-      <div class="value-card"><div class="vc-icon">03</div><h4>We Fabricate</h4><p>Laser-cut, brake-formed, TIG-welded, and #4 finished in our South El Monte factory.</p></div>
+<main class="custom-made">
+  <section class="workstation-hero" aria-labelledby="page-title">
+    <div class="shell intro">
+      <h1 id="page-title">Custom Stainless Steel<br class="desktop-break"> Workstations</h1>
+      <p>Prep surfaces, ingredient pans, sinks and storage arranged around how your commercial kitchen works.</p>
+      <div class="actions"><a class="button primary" href="#quote">Request a Quote</a><a class="button ghost" href="#layouts">Explore Layouts</a></div>
     </div>
-  </div>
-</section>
-
-<!-- QUOTE FORM -->
-<section class="biz-section dark">
-  <div class="container">
-    <div class="split-2">
-      <div>
-        <div class="section-label"><span>Request a Quote</span></div>
-        <h2 class="section-title" style="margin:14px 0 16px;">Build <em>sheet</em></h2>
-        <p class="biz-lead">The more you tell us, the faster we can quote. Don't worry if you don't have every number — we'll fill in the gaps together.</p>
+    <div class="shell wide">
+      <div class="panorama">
+        <img id="full-line" src="images/custom-made/line.webp" alt="Four stainless steel stations arranged in a line, from dry prep on the left to a sink station on the right." width="2048" height="685" fetchpriority="high">
+        <div class="hotspots" aria-label="Select a section of the workstation">
+          <button type="button" data-station="dry" aria-pressed="true" aria-label="View Dry Prep Station"></button>
+          <button type="button" data-station="contour" aria-pressed="false" aria-label="View Contoured Pan Station"></button>
+          <button type="button" data-station="storage" aria-pressed="false" aria-label="View Pan Station with Storage"></button>
+          <button type="button" data-station="sink" aria-pressed="false" aria-label="View Prep Station with Sinks"></button>
+        </div>
       </div>
-
-      <div>
-        <form class="biz-form" data-mailto="info@allstrong.com" data-subject="Custom fabrication quote request">
+      <div class="image-tools"><span>Select a section to explore its layout.</span><button type="button" class="text-button" id="expand">Enlarge full view</button></div>
+    </div>
+  </section>
+  <section class="layout-section" id="layouts" aria-labelledby="layout-title">
+    <div class="shell">
+      <h2 id="layout-title">Explore workstation layouts</h2>
+      <div class="stations" role="group" aria-label="Workstation layouts">
+        <button type="button" data-station="dry" aria-pressed="true">Dry Prep</button>
+        <button type="button" data-station="contour" aria-pressed="false">Contoured Pan Station</button>
+        <button type="button" data-station="storage" aria-pressed="false">Pan Station with Storage</button>
+        <button type="button" data-station="sink" aria-pressed="false">Prep with Sinks</button>
+      </div>
+      <div class="station-panel">
+        <div class="station-picture"><img id="station-image" src="images/custom-made/station-dry.webp" alt="Dry prep station with a flat worktop, two upper shelves and a lower shelf." width="1086" height="1448" loading="lazy"></div>
+        <div class="station-copy" aria-live="polite">
+          <h3 id="station-title">Dry Prep Station</h3>
+          <p id="station-description">An uninterrupted worktop for dry prep, with two shelves above and storage below.</p>
+          <ul id="station-features"><li>Flat stainless steel worktop</li><li>Two upper shelves</li><li>Open lower shelf</li></ul>
+          <a class="button dark" href="#quote" id="quote-selection">Use this layout for my quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="details-section" aria-labelledby="details-title">
+    <div class="shell">
+      <h2 id="details-title">Details to consider</h2>
+      <div class="details">
+        <article><img src="images/custom-made/detail-counter.webp" alt="Close-up of the angled transition along the stainless steel worktop." loading="lazy"><h3>Counter shape</h3><p>Show us where the worktop needs to turn, widen or step back.</p></article>
+        <article><img src="images/custom-made/detail-sinks.webp" alt="Close-up of the sinks and vertical stainless steel divider." loading="lazy"><h3>Sink placement</h3><p>Mark where you need the sinks and how you want to separate them from prep space.</p></article>
+        <article><img src="images/custom-made/detail-storage.webp" alt="Close-up of two cabinet doors and adjacent open shelving." loading="lazy"><h3>Storage layout</h3><p>Tell us where you need open shelving, enclosed storage or both.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="quote-section" id="quote" aria-labelledby="quote-title">
+    <div class="shell quote-grid">
+      <div><h2 id="quote-title">Request a Quote</h2><p>Share your kitchen layout, approximate dimensions and what the station needs to do. A sketch, floor plan or photo can help explain the space.</p></div>
+      <form class="biz-form" data-mailto="info@allstrong.com" data-subject="Custom fabrication quote request">
           <div class="form-field">
             <label for="q-product">Product type</label>
             <select id="q-product" name="product" data-label="Product type">
@@ -56,10 +75,16 @@
               <option>BBQ Oven</option>
               <option>Mongolian BBQ Range</option>
               <option>Steamer Cabinet</option>
-              <option>Noodle / Pasta Broiler</option>
+              <option>Ramen Cooker</option>
               <option>Rice Noodle Range</option>
-              <option>Work Table / Counter</option>
+              <option selected>Work Table / Counter</option>
               <option>Custom / Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="quote-layout">Workstation reference layout (optional)</label>
+            <select id="quote-layout" name="layout" data-label="Workstation reference layout">
+              <option value="">Select a layout</option>
             </select>
           </div>
           <div class="form-row-3">
@@ -103,28 +128,18 @@
             <div class="form-field"><label for="q-phone">Phone</label><input id="q-phone" name="phone" data-label="Phone" type="tel" placeholder="(626) 000-0000"/></div>
           </div>
 
-          <button type="submit" class="form-submit">Request Quote
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7h15M11 1l5 6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <p class="form-note form-sent" style="display:none;">Your email app should now be opening with your quote request ready to send. If it didn't, email us directly at <a href="mailto:info@allstrong.com" style="color:#fff;">info@allstrong.com</a>.</p>
-          <p class="form-note" style="color:rgba(255,255,255,0.5);">Submitting opens your email app with the build sheet pre-filled — no account required. Prefer to call? <a href="tel:6264487878" style="color:#fff;">626-448-7878</a>.</p>
+          <button type="submit" class="button dark">Request Quote</button>
+          <p class="form-note form-sent" style="display:none;" role="status">Your email app should now open with the request ready to send. You can also email <a href="mailto:info@allstrong.com">info@allstrong.com</a> directly.</p>
+          <p class="form-note">Your email app will open with your details filled in. Attach any sketches or photos before sending. You can also call us at <a href="tel:6264487878">626-448-7878</a>.</p>
         </form>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="biz-cta">
-  <div class="container">
-    <h2>Not sure where to start?</h2>
-    <p>Call the factory and we'll spec it with you.</p>
-    <a href="tel:6264487878" class="btn-white-solid">📞 Call 626-448-7878</a>
-  </div>
-</section>
-
+  </section>
+<dialog id="image-dialog" aria-labelledby="image-title">
+  <div class="dialog-header"><h2 id="image-title">Full workstation layout</h2><form method="dialog"><button class="text-button" type="submit">Close</button></form></div>
+  <div class="dialog-image" tabindex="0" aria-label="Full workstation image, scroll horizontally to see all stations"><img src="images/custom-made/line.webp" alt="Full workstation line with dry prep, two pan stations and the sink station."></div>
+</dialog>
+</main>
 <div id="site-footer"></div>
-
 <script src="script.js"></script>
 </body>
 </html>
